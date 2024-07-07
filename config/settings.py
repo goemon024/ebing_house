@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'wlist.apps.WlistConfiq',
+    'wlist.apps.WlistConfig',
 ]
 
 LOGIN_REDIRECT_URL = 'home'
