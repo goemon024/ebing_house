@@ -4,7 +4,7 @@ from .views import WordsList, WordsCreate, WordsDelete, WordsUpdate
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('wlist/', WordsList.as_view(), name='wlist'),
+    path('', WordsList.as_view(), name='wlist'),
     # path('detail/<int:pk>', TodoDetail.as_view(), name='detail'),
     path('create/', WordsCreate.as_view(), name='create'),
     path('delete/<int:pk>', WordsDelete.as_view(), name='delete'),
