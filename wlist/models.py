@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.core.exceptions import ValidationError
 
 from django.utils import timezone
@@ -6,9 +7,12 @@ import requests
 from bs4 import BeautifulSoup
 import deepl
 
+from django.contrib.auth.models import AbstractUser
+
 # Create your models here.
 
 class WordsModel(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     word = models.CharField(max_length=10)
     mean1 = models.CharField(max_length=15,blank=True,null=True)
     mean2 = models.CharField(max_length=200,blank=True,null=True)
