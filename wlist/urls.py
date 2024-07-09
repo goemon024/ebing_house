@@ -6,7 +6,7 @@ app_name = 'wlist'
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', WordsList.as_view(), name='wlist'),
+    path('', WordsList.as_view(), name='list_top'),
     # path('detail/<int:pk>', TodoDetail.as_view(), name='detail'),
     path('create/', WordsCreate.as_view(), name='create'),
     path('delete/<int:pk>', WordsDelete.as_view(), name='delete'),
