@@ -30,6 +30,18 @@
   {% endfor %}
   <a href ="{% url 'wlist:send_email' %}" class="btn btn-secondary mb-2" tabindex="-1" role="button" aria-disabled="true">メール送信</a>
 
+  {% for m in memo_list %}
+  <div class="word-and-buttons">
+    <span class="word">{{ m.memo }}</span>
+    <!-- <p>登録日{{ item.reg_date | date:'  o/n/j'}}</p> -->
+    <div class="buttons">
+    <a href ="{% url 'wlist:memo_update' m.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a>
+    <a href ="{% url 'wlist:memo_delete' m.pk %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">削除</a>
+    </div>
+  </div>
+  {% endfor %}
+
+
 </div>
 
 {% endblock content%}

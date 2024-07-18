@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
-from .models import WordsModel
+from .models import WordsModel, MemoModel
 from django.urls import reverse_lazy
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,8 +15,15 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 class WordsList(LoginRequiredMixin,ListView):
+    ## ListViewにより、テンプレート上のobject_listでモデルのインスタンスが渡される。
     template_name = 'list_top.html'
     model = WordsModel
+    
+    def get_context_data(self, **kwargs):
+        context = super(ListView,self).get_context_data(**kwargs)
+        context['memo_list'] = MemoModel.objects.filter(user=self.request.user)
+        # context['memo_list'] = MemoModel.objects.filter(user=self.request.user)
+        return context
 
 # class TodoDetail(DetailView):
 #     template_name = 'detail.html'
@@ -45,6 +52,30 @@ class WordsUpdate(LoginRequiredMixin,UpdateView):
     success_url = reverse_lazy('wlist:list_top')
 
 
+
+class MemoCreate(LoginRequiredMixin,CreateView):
+    template_name = 'memo_create.html'
+    model = MemoModel
+    fields = ('memo',)
+    success_url = reverse_lazy('wlist:list_top')  # reverse_lazyは、データが保存された後に実行される。
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+    
+class MemoDelete(LoginRequiredMixin,DeleteView):
+    template_name = 'memo_delete.html'
+    model = MemoModel
+    success_url = reverse_lazy('wlist:list_top')
+    
+class MemoUpdate(LoginRequiredMixin,UpdateView):
+    template_name = 'memo_update.html'
+    model = MemoModel
+    fields = ('user','memo','reg_date')
+    success_url = reverse_lazy('wlist:list_top')
+
+
 @login_required
 def send_email_view(request):
     # example_instance = get_object_or_404(WordsModel, user=request.user)
@@ -55,7 +86,6 @@ def send_email_view(request):
     for w in user_words:
         message += f'{w.word}:{w.mean1},{w.mean2}\n' 
     
-    # message = f'Hello {request.user.username},\n{example_instance.word},\n{example_instance.mean1}'
     from_email = 'hirotrics@gmail.com'
     recipient_list = [request.user.email]
     
