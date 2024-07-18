@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import deepl
 
-from django.contrib.auth.models import AbstractUser
+# from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -57,3 +57,24 @@ class WordsModel(models.Model):
         result = translator.translate_text(phrase, target_lang="JA")
         print(result.text)
         return result.text
+    
+class MemoModel(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    memo = models.CharField(max_length=250)
+    reg_date = models.DateField(blank=True,null=True)
+    
+    def __str__(self):
+        if len(self.memo) > 10:
+            return self.memo[:10]
+        else:
+            return self.memo
+    
+    def save(self, *args, **kwargs):
+        user1 = kwargs.pop('user', None)
+        if user1:
+            self.user = user1
+        
+        if not self.reg_date:
+            self.reg_date = timezone.now()
+
+        super(MemoModel, self).save(*args, **kwargs)

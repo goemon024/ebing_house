@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
-from .views import WordsList, WordsCreate, WordsDelete, WordsUpdate, send_email_view
+from .views import WordsList, WordsCreate, WordsDelete, WordsUpdate,\
+MemoCreate, MemoDelete, MemoUpdate, send_email_view
 
 app_name = 'wlist'
 
@@ -11,6 +12,12 @@ urlpatterns = [
     path('create/', WordsCreate.as_view(), name='create'),
     path('delete/<int:pk>', WordsDelete.as_view(), name='delete'),
     path('update/<int:pk>', WordsUpdate.as_view(), name='update'),
+    
+    path('memo_create/', MemoCreate.as_view(), name='memo_create'),
+    path('memo_delete/<int:pk>', MemoDelete.as_view(), name='memo_delete'),
+    path('memo_update/<int:pk>', MemoUpdate.as_view(), name='memo_update'),
+
+    
     
     path('send_email/', send_email_view, name='send_email'),
 
