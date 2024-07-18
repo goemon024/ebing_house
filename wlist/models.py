@@ -22,6 +22,9 @@ class WordsModel(models.Model):
         return self.word
     
     def save(self, *args, **kwargs):
+        user1 = kwargs.pop('user', None)
+        if user1:
+            self.user = user1
         
         if not self.reg_date:
             self.reg_date = timezone.now()

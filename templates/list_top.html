@@ -27,8 +27,9 @@
     <a href ="{% url 'wlist:delete' item.pk %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">削除</a>
     </div>
   </div>
-
   {% endfor %}
+  <a href ="{% url 'wlist:send_email' %}" class="btn btn-secondary mb-2" tabindex="-1" role="button" aria-disabled="true">メール送信</a>
+
 </div>
 
 {% endblock content%}
