@@ -33,6 +33,15 @@
     padding-left: 10px; /* 少しの間隔を設定 */
 }
 
+.word-and-buttons .memo {
+    flex: 1; /* 残りの幅を使う */
+    white-space: nowrap; /* テキストが長くても改行させない */
+    overflow: hidden; /* テキストが長すぎる場合は隠す */
+    text-overflow: ellipsis; /* テキストが長すぎる場合は省略記号を表示 */
+    padding-left: 10px; /* 少しの間隔を設定 */
+}
+
 .word-and-buttons .buttons {
     margin-left: 10px;
 }
+

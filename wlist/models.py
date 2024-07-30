@@ -13,7 +13,7 @@ import deepl
 
 class WordsModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
-    word = models.CharField(max_length=10)
+    word = models.CharField(max_length=20)
     mean1 = models.CharField(max_length=15,blank=True,null=True)
     mean2 = models.CharField(max_length=200,blank=True,null=True)
     reg_date = models.DateField(blank=True,null=True)
@@ -26,7 +26,7 @@ class WordsModel(models.Model):
         if user1:
             self.user = user1
         
-        if not self.reg_date:
+        if not self.pk:
             self.reg_date = timezone.now()
             self.mean1 = self.api_meanings(self.word)
             self.mean2 = self.scrape_meanings(self.word)
@@ -34,6 +34,11 @@ class WordsModel(models.Model):
                 raise ValidationError({'mean1': 'mean1 must be smaller than 15'})
             if len(self.mean2) > 200:
                 raise ValidationError({'mean2': 'mean2 must be smaller than 200'})
+            
+        else:  # 更新時
+            original = WordsModel.objects.get(pk=self.pk)
+            self.user = original.user
+            self.reg_date = original.reg_date
 
         super(WordsModel, self).save(*args, **kwargs)
         
@@ -53,19 +58,23 @@ class WordsModel(models.Model):
     
     def api_meanings(self,phrase):
         auth_key = "674b2ec2-f1c4-4eb8-ab4c-43e6f7ede7d5:fx"
-        translator = deepl.Translator(auth_key)
-        result = translator.translate_text(phrase, target_lang="JA")
-        print(result.text)
-        return result.text
+        try:
+            translator = deepl.Translator(auth_key)
+            result = translator.translate_text(phrase, target_lang="JA")
+            print(result.text)
+            return result.text
+        except Exception as e:
+            return "not get"
+
     
 class MemoModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
-    memo = models.CharField(max_length=250)
+    memo = models.TextField()
     reg_date = models.DateField(blank=True,null=True)
-    
+           
     def __str__(self):
-        if len(self.memo) > 10:
-            return self.memo[:10]
+        if len(self.memo) > 50:
+            return self.memo[:50]
         else:
             return self.memo
     
@@ -74,7 +83,11 @@ class MemoModel(models.Model):
         if user1:
             self.user = user1
         
-        if not self.reg_date:
-            self.reg_date = timezone.now()
+        if not self.pk:
+            self.reg_date = timezone.now()    
+        else:  # 更新時
+            original = MemoModel.objects.get(pk=self.pk)
+            self.user = original.user
+            self.reg_date = original.reg_date
 
         super(MemoModel, self).save(*args, **kwargs)

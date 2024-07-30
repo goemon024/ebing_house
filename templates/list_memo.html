@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+{% block header %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">メモリスト</h1>
+    </div>
+  </div>
+
+<style>
+  .word-and-buttons .memo {
+    flex: 1; /* 残りの幅を使う */
+    white-space: nowrap; /* テキストが長くても改行させない */
+    overflow: hidden; /* テキストが長すぎる場合は隠す */
+    text-overflow: ellipsis; /* テキストが長すぎる場合は省略記号を表示 */
+    padding-left: 10px; /* 少しの間隔を設定 */
+}
+
+  .date {
+    flex: 0 0 60; 
+    overflow: hidden; /* テキストが長すぎる場合は隠す */
+    text-overflow: ellipsis; /* テキストが長すぎる場合は省略記号を表示 */
+    padding-left: 10px; /* 少しの間隔を設定 */
+}
+</style>
+
+
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+
+{% for m in object_list %}
+<div class="word-and-buttons">
+    <span class="memo">{{ m.memo }}</span>
+    <span class="date">{{ m.reg_date| date:"n月j日" }}</span>
+
+    <!-- <p>登録日{{ item.reg_date | date:'  o/n/j'}}</p> -->
+    <div class="buttons">
+    <a href ="{% url 'wlist:memo_update' m.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a>
+    <a href ="{% url 'wlist:memo_delete' m.pk %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">削除</a>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock content%}

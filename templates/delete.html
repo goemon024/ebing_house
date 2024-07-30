@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link href="{% static 'style2.css' %}" rel="stylesheet">
+{% endblock head %}
 
 {% block content %}
 <form action = '' method='POST'> {% csrf_token %}
+    <p>本当に削除しますか？</p>
+<div class ='container'>
 <input type='submit' value='delete'>
+<a href ="{% url 'wlist:list_top' %}" class="btn btn-secondary mb-2" tabindex="-1" role="button" aria-disabled="true" style=" border: none;" >戻る</a>
+</div>
+
 </form>
 {% endblock content %}

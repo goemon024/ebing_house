@@ -1,19 +1,166 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+
+<style>
+    * {
+        box-sizing: border-box; /* パディングとボーダーを幅と高さに含める */
+    }
+
+    body, html {
+        height: 100vh; /* 全体の高さを設定 */
+        width:100vw; 
+        margin: 0; /* マージンをリセット */
+        display: flex;
+    }
+
+    .main-container {
+        display: flex;
+        gap: 0em;
+        width: 100%; /* 横方向に中央揃え */
+    }
+
+    .menu-container {
+        flex: 1;  /* メニュー部分の幅 */
+        padding: 3em;
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        background: #333;
+        color: white;
+    }
+    .content-container {
+        flex: 8;  /* コンテンツ部分の幅 */
+        padding: 1em;
+        /* /* display: flex; */
+        /* flex-direction: column; */
+        gap: 2em;
+    }
+
+    .container {
+        display: block; /* 通常のブロック要素として縦に並べる */
+        margin-bottom: 1em; /* 各要素の間にスペースを追加 */
+    }
+
+    #menu1, #menu2 {
+
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 1em; /* 内側の余白を追加 */
+        width:20vw;
+        height:40vh;
+        border-radius: 12px;
+    }
+
+    .block {
+        display: block; /* ブロックレベル要素として表示 */
+        padding: 0em;
+        margin-bottom: 0;
+        font-size: 1.2em;
+    }
+
+    #m1_date,#m2_date,#w1_date,#w2_date {
+        width:60%;
+        border: 1px solid #74cdcf; /* 枠線を明るい緑色に設定 */
+        border-radius: 4px;
+        margin: 0.3em;
+    }
+
+</style>
+
+{% endblock head %}
+
+
 
 {% block title %} ホーム {% endblock %}
 
 {% block content %}
-<h2>ホーム</h2>
-{% if user.is_authenticated %}
-ようこそ {{ user.get_username }} さん
-<!-- <p><a href="{% url 'logout' %}"> ログアウト </a></p> -->
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit">ログアウト</button>
-</form>
 
-{% else %}
-<p><a href = "{% url 'login' %}">ログイン</a></p>
-{% endif %}
+{% if user.is_authenticated %}
+
+<div class="main-container">
+
+    <div class = "menu-container">
+        <a href ="{% url 'wlist:list_top' %}" class="btn btn-secondary mb-2" role="button" >全インプット</a>
+        <a href ="{% url 'wlist:list_word' %}" class="btn btn-secondary mb-2" role="button" >英単語帳編集</a>
+        <a href ="{% url 'wlist:list_memo' %}" class="btn btn-secondary mb-2" role="button" >メモ帳編集</a>
+
+        <div style="border: 2px solid #8FBC8F; border-radius: 10px; padding:5%;">
+        <form method="get" action="{% url 'wlist:word_drill' %}" >
+            {% csrf_token %}
+            <p class="block">英単語ドリル</p>
+            <div style="display: flex; justify-content: flex-end;  gap:1em;">
+            <label for="w1_date">From:</label>
+            <input type="date" id="w1_date" name="start_date" value="{{ start_date | date:'Y-m-d'}}">
+            </div>
+            <div style="display: flex; justify-content: flex-end;  gap:1em;">
+            <label for="w2_date">To:</label>
+            <input type="date" id="w2_date" name="end_date" value="{{ end_date | date:'Y-m-d'}}">
+            </div>
+            <button class='btn btn-success block' style="width: 85%; align-self: right;" type="submit">開始</button>
+        </form>
+        </div>
+
+        <div style="border: 2px solid lightblue; border-radius: 10px; padding:5%;">
+        <form method="get" action="{% url 'wlist:word_drill' %}" >
+            {% csrf_token %}
+            <p class="block">メモ帳ドリル</p>
+            <div style="display: flex; justify-content: flex-end;  gap:1em;">
+            <label for="m1_date">From:</label>
+            <input type="date" id="m1_date" name="start_date" value="{{ start_date | date:'Y-m-d'}}">
+            </div>
+            <div style="display: flex; justify-content: flex-end;  gap:1em;">
+            <label for="m2_date">To:  </label>
+            <input type="date" id="m2_date" name="end_date" value="{{ end_date | date:'Y-m-d'}}">
+            </div>
+            <button class='btn btn-primary block' style="width:85%; align-self: right;" type="submit">開始</button>
+        </form>
+        </div>
+
+
+    </div>
+
+    <div class="content-container">
+        <div class="container" style="margin:20px">
+            <h2>エビングハウス 英単語帳＆メモ帳</h2>
+            <p>{{ user.get_username }} さん</p>    
+        </div>
+        <div class="container" style="display: flex; justify-content: flex-start; margin:10vw; gap:5vw ;">
+            <div id="menu1" style=" border:8px solid greenyellow; background-color: lightgreen;">
+                <h3>英単語帳</h3>
+                <a href ="{% url 'wlist:word_record' %}" class="btn btn-success mb-2" role="button">本日のインプット</a>
+                <a href ="{% url 'wlist:word_review' %}" class="btn btn-success mb-2" role="button">昨日までの復習</a>
+            </div>  
+            <div id="menu2" style=" border:8px solid #00bfff; background-color: lightblue;">
+                <h3>メモ帳</h3>
+                <a href ="{% url 'wlist:memo_record' %}" class="btn btn-primary mb-2" role="button" >本日のインプット</a>
+                <a href ="{% url 'wlist:memo_review' %}" class="btn btn-primary mb-2" role="button" >昨日までの復習</a>
+            </div>
+        </div>
+    
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class='btn btn-light block' type="submit" style="width:10%; float: right;">ログアウト</button>
+    </form>
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+    {% else %}
+    <h2>エビングハウス 英単語帳＆メモ帳</h2>
+    <p><a href = "{% url 'login' %}">ログイン</a></p>
+    <p><a href = "{% url 'accounts:signup' %}">新規登録</a></p>
+
+    {% endif %}
+
 {% endblock %}
 
