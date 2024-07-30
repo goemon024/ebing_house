@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link href="{% static 'style2.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block content %}
+
+
+<div style="display: flex; flex-direction: column; align-items: center; width: 1000px;">
+<form action='' method='POST' style="margin-bottom: 50px; display: flex; flex-direction: column; align-items: flex-start; width: 300px;">
+    {% csrf_token %}
+    <label style="margin-bottom: 10px;">New Word:</label>
+    <input type="text" name="{{ form.word.name }}" value="{{ form.word.value|default_if_none:'' }}" style="width: 100%; height: 45px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+    <input type="submit" value="create" style="width: 80px; height: 30px; font-size: 16px;">
+</form>
+<!-- <ul style="display: flex; flex-direction: column; align-items: flex-start; width: 800px;"> -->
+
+  <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-start;">
+  {% for record in today_records %}
+  <ul style="width: 100%; display: flex; justify-content: space-between;">
+      <li style="display: flex; width: 100%;">
+        <span style="flex: 1;">{{ record.word }}</span>
+        <span style="flex: 1;">{{ record.mean1 }}</span>
+        <span style="flex: 7;">{{ record.mean2 }}</span>
+      </li>
+  </ul>
+  {% empty %}
+    本日の記録はありません。
+  {% endfor %}
+</div>
+</div>
+
+{% endblock content %}

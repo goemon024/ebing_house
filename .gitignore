@@ -1,3 +1,4 @@
 __pycache__
 dg1_env
 db.sqlite3
+.env
