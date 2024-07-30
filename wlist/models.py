@@ -7,6 +7,11 @@ import requests
 from bs4 import BeautifulSoup
 import deepl
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
@@ -16,7 +21,7 @@ class WordsModel(models.Model):
     word = models.CharField(max_length=20)
     mean1 = models.CharField(max_length=15,blank=True,null=True)
     mean2 = models.CharField(max_length=200,blank=True,null=True)
-    reg_date = models.DateField(blank=True,null=True)
+    reg_date = models.DateTimeField(blank=True,null=True)
     
     def __str__(self):
         return self.word
@@ -57,7 +62,8 @@ class WordsModel(models.Model):
         return None
     
     def api_meanings(self,phrase):
-        auth_key = "674b2ec2-f1c4-4eb8-ab4c-43e6f7ede7d5:fx"
+        # auth_key = "674b2ec2-f1c4-4eb8-ab4c-43e6f7ede7d5:fx"
+        auth_key = os.getenv('DEEPL_SECRET_KEY')
         try:
             translator = deepl.Translator(auth_key)
             result = translator.translate_text(phrase, target_lang="JA")
@@ -70,7 +76,7 @@ class WordsModel(models.Model):
 class MemoModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     memo = models.TextField()
-    reg_date = models.DateField(blank=True,null=True)
+    reg_date = models.DateTimeField(blank=True,null=True)
            
     def __str__(self):
         if len(self.memo) > 50:
