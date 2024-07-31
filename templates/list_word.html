@@ -16,8 +16,30 @@
     text-overflow: ellipsis; /* テキストが長すぎる場合は省略記号を表示 */
     padding-left: 10px; /* 少しの間隔を設定 */
 }
+
+  #hoverMenu {
+        position: fixed;
+        width: 100px;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: #333;
+        color: white;
+
+        text-align: center;
+        overflow: hidden; 
+        transition: width 0.2s ease;
+    }
+
+    #hoverMenu a {
+        margin-bottom: 20px ;
+        display:block;
+    }
+
 </style>
- 
+
+
+
 {% endblock header %}
 
 {% block content %}
@@ -35,5 +57,26 @@
   </div>
   {% endfor %}
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/cardslide.js' %}"></script>
+
+<div id="hoverMenu">
+    <a href="/" >TOP</a>
+    <a href="/accounts/login">LOG OUT</a>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const hoverMenu = document.getElementById('hoverMenu');
+      
+      window.addEventListener('mousemove', function(e) {
+          if (e.clientX < 100) {
+              hoverMenu.style.width = '100px'; 
+          } else {
+              hoverMenu.style.width = '0';             }
+      });
+  });
+</script>
 
 {% endblock content%}

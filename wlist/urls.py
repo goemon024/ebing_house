@@ -3,7 +3,7 @@ from django.urls import path,include
 from .views import WordsList, MemoList, WordMemoList, WordsCreate,\
 WordsDelete, WordsUpdate, MemoCreate, MemoDelete, MemoUpdate,\
 WordsRecord, MemoRecord, WordsReview, MemoReview,\
-WordsDrill, send_email_view
+WordsDrill, MemoDrill, send_email_view
 
 app_name = 'wlist'
 
@@ -19,7 +19,7 @@ urlpatterns = [
     path('word_review/', WordsReview.as_view(), name='word_review'),
     
     path('word_drill/', WordsDrill.as_view(), name='word_drill'),
-
+    path('memo_drill/', MemoDrill.as_view(), name='memo_drill'),
     
     path('memo_record/', MemoRecord.as_view(), name='memo_record'),
     path('memo_review/', MemoReview.as_view(), name='memo_review'),

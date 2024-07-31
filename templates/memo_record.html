@@ -3,6 +3,21 @@
 
 {% block head %}
 <link href="{% static 'style2.css' %}" rel="stylesheet">
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const hoverMenu = document.getElementById('hoverMenu');
+      
+      window.addEventListener('mousemove', function(e) {
+          if (e.clientX < 100) {
+              hoverMenu.style.width = '100px'; 
+          } else {
+              hoverMenu.style.width = '0';             }
+      });
+  });
+
+</script>
+
 {% endblock head %}
 
 {% block content %}
@@ -34,5 +49,15 @@
   {% endfor %}
 </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/cardslide.js' %}"></script>
+
+<div id="hoverMenu">
+    <a href="/" >TOP</a>
+    <a href="/wlist/list_memo" >メモ帳編集</a>
+    <a href="/accounts/login">LOG OUT</a>
+</div>
+
 
 {% endblock content %}
