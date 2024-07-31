@@ -53,7 +53,25 @@
         color:#f0f0f0 ;;
     } */
 
+
 </style>
+
+{% endblock head %}
+
+{% block content %}
+
+<div id="flashcard-container">
+    {% for card in drill_records %}
+    <div class="flashcard {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
+        <div class = 'upperpart' style="height:100%; ">{{ card.memo }}</div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/cardslide.js' %}"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const hoverMenu = document.getElementById('hoverMenu');
@@ -65,29 +83,8 @@
                 hoverMenu.style.width = '0';             }
         });
     });
-
 </script>
-{% endblock head %}
 
-{% block content %}
-
-<div id="flashcard-container">
-    {% for card in passed_records %}
-    <div class="flashcard {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
-        <div class = 'upperpart' style="height:100%; ">{{ card.memo }}</div>
-        <!-- <div class = 'underpart graystatus' style="height:40%; ">{{ card.memo }}</div> -->
-    </div>
-    {% endfor %}
-</div>
-
-    <!-- <div class="flashcard" data-index="0">Word 1: Meaning 1</div>
-    <div class="flashcard hidden" data-index="1">Word 2: Meaning 2</div>
-    <div class="flashcard hidden" data-index="2">Word 3: Meaning 3</div>
-    <div class="flashcard hidden" data-index="3">Word 4: Meaning 4</div> -->
-    <!-- 他のカードもここに追加 -->
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'js/cardslide.js' %}"></script>
 
 <div id="hoverMenu">
     <a href="/" >TOP</a>
@@ -95,23 +92,5 @@
     <a href="/accounts/login">LOG OUT</a>
 </div>
 
-
-
-<!-- <div style="display: flex; flex-direction: column; align-items: center; width: 1000px;">
-
-  <div style="width: 100%; display: flex; flex-direction: column; align-items: flex-start;">
-  {% for record in passed_records %}
-  <ul style="width: 100%; display: flex; justify-content: space-between;">
-      <li style="display: flex; width: 100%;">
-        <span style="flex: 1;">{{ record.word }}</span>
-        <span style="flex: 1;">{{ record.mean1 }}</span>
-        <span style="flex: 7;">{{ record.mean2 }}</span>
-      </li>
-  </ul>
-  {% empty %}
-    本日の記録はありません。
-  {% endfor %}
-</div>
-</div> -->
 
 {% endblock content %}

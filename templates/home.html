@@ -22,16 +22,16 @@
     }
 
     .menu-container {
-        flex: 1;  /* メニュー部分の幅 */
-        padding: 3em;
+        flex: 1 1 auto;  /* メニュー部分の幅 */
+        padding: 2em;
         display: flex;
         flex-direction: column;
-        gap: 2em;
+        gap: 1em;
         background: #333;
         color: white;
     }
     .content-container {
-        flex: 8;  /* コンテンツ部分の幅 */
+        flex: 4 1 auto ;  /* コンテンツ部分の幅 */
         padding: 1em;
         /* /* display: flex; */
         /* flex-direction: column; */
@@ -83,9 +83,9 @@
 <div class="main-container">
 
     <div class = "menu-container">
-        <a href ="{% url 'wlist:list_top' %}" class="btn btn-secondary mb-2" role="button" >全インプット</a>
-        <a href ="{% url 'wlist:list_word' %}" class="btn btn-secondary mb-2" role="button" >英単語帳編集</a>
-        <a href ="{% url 'wlist:list_memo' %}" class="btn btn-secondary mb-2" role="button" >メモ帳編集</a>
+        <a href ="{% url 'wlist:list_top' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:5em">チュートリアル</a>
+        <a href ="{% url 'wlist:list_word' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:3em">英単語帳編集</a>
+        <a href ="{% url 'wlist:list_memo' %}" class="btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳編集</a>
 
         <div style="border: 2px solid #8FBC8F; border-radius: 10px; padding:5%;">
         <form method="get" action="{% url 'wlist:word_drill' %}" >
@@ -104,7 +104,7 @@
         </div>
 
         <div style="border: 2px solid lightblue; border-radius: 10px; padding:5%;">
-        <form method="get" action="{% url 'wlist:word_drill' %}" >
+        <form method="get" action="{% url 'wlist:memo_drill' %}" >
             {% csrf_token %}
             <p class="block">メモ帳ドリル</p>
             <div style="display: flex; justify-content: flex-end;  gap:1em;">
@@ -118,8 +118,6 @@
             <button class='btn btn-primary block' style="width:85%; align-self: right;" type="submit">開始</button>
         </form>
         </div>
-
-
     </div>
 
     <div class="content-container">
@@ -140,16 +138,11 @@
             </div>
         </div>
     
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button class='btn btn-light block' type="submit" style="width:10%; float: right;">ログアウト</button>
-    </form>
-
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class='btn btn-outline-dark block' type="submit" style="width:10%; float: left; margin:20px;">ログアウト</button>
+        </form>
     </div>
-
-
-
-
 
 
 </div>

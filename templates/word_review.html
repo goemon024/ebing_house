@@ -64,6 +64,11 @@
         transition: width 0.2s ease;
     }
 
+    #hoverMenu a {
+        margin-bottom: 20px ;
+        display:block;
+    }
+
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -77,7 +82,7 @@
         });
     });
 
-    </script>
+</script>
 
 
 {% endblock head %}
@@ -97,12 +102,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/cardslide.js' %}"></script>
 
-
-
 <div id="hoverMenu">
-    <a href="/" style="display:block;">TOP</a> 
+    <a href="/" >TOP</a>
+    <a href="/wlist/list_word" >英単語帳編集</a>
     <a href="/accounts/login">LOG OUT</a>
-
 </div>
 
 

@@ -37,11 +37,11 @@ class WordMemoList(LoginRequiredMixin,ListView):
     model = WordsModel
     
     def get_queryset(self):
-        return WordsModel.objects.filter(user=self.request.user).order_by('-reg_date')
+        return WordsModel.objects.filter(user=self.request.user).order_by('-reg_date','-id')
 
     def get_context_data(self, **kwargs):
         context = super(ListView,self).get_context_data(**kwargs)
-        context['memo_list'] = MemoModel.objects.filter(user=self.request.user).order_by('-reg_date')
+        context['memo_list'] = MemoModel.objects.filter(user=self.request.user).order_by('-reg_date','-id')
         return context
 
 class WordsList(LoginRequiredMixin,ListView):
@@ -49,14 +49,14 @@ class WordsList(LoginRequiredMixin,ListView):
     model = WordsModel
     
     def get_queryset(self):
-        return WordsModel.objects.filter(user=self.request.user).order_by('-reg_date')
+        return WordsModel.objects.filter(user=self.request.user).order_by('-reg_date','-id')
     
 class MemoList(LoginRequiredMixin,ListView):
     template_name = 'list_memo.html'
     model = MemoModel
     
     def get_queryset(self):
-        return MemoModel.objects.filter(user=self.request.user).order_by('-reg_date')
+        return MemoModel.objects.filter(user=self.request.user).order_by('-reg_date','-id')
 
 
 # class TodoDetail(DetailView):
@@ -227,17 +227,6 @@ class WordsDrill(LoginRequiredMixin, ListView):
     context_object_name = 'drill_records'
     success_url = reverse_lazy('wlist:word_drill')  # reverse_lazyは、データが保存された後に実行される。
         
-    # def get_queryset(self):
-    #     form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
-
-    #     if form.is_valid():
-    #         start_date = form.cleaned_data['start_date']
-    #         end_date = form.cleaned_data['end_date']
-    #         print(end_date)
-    #         return self.model.objects.filter(user=self.request.user,
-    #                                          reg_date__range=(start_date, end_date))
-    #     return self.model.objects.none() 
-       
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
@@ -251,6 +240,31 @@ class WordsDrill(LoginRequiredMixin, ListView):
             context['drill_records'] = drill_list
 
         return context
+
+
+class MemoDrill(LoginRequiredMixin, ListView):
+    
+    template_name = 'memo_drill.html'
+    model = MemoModel
+    fields = ('memo',)
+    context_object_name = 'drill_records'
+    success_url = reverse_lazy('wlist:memo_drill')  # reverse_lazyは、データが保存された後に実行される。
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            drill_list = list(self.model.objects.filter(user=self.request.user,
+                                             reg_date__range=(start_date, end_date)))
+            random.shuffle(drill_list)
+            context['drill_records'] = drill_list
+
+        return context
+
+
 
 
 @login_required
