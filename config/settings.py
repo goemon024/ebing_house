@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import dj_database_url
 
 load_dotenv()
 
@@ -85,9 +86,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3', 
     }
 }
+
+# Herokuの環境変数からDATABASE_URLが提供されている場合、その設定を使用
+DATABASES['default'] = dj_database_url.config(
+    default=f'sqlite:///{BASE_DIR}/db.sqlite3',
+    conn_max_age=600,
+    ssl_require=True
+)
 
 
 # Password validation
