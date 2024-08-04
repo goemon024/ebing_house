@@ -95,16 +95,16 @@ DATABASES = {
 # Herokuの環境変数からDATABASE_URLが提供されている場合、その設定を使用
 DATABASE_URL = os.getenv('DATABASE_URL')
 if DATABASE_URL:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'name',
-            'USER': 'user',
-            'PASSWORD': '',
-            'HOST': 'host',
-            'PORT': '',
-        }
-    }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': 'name',
+    #         'USER': 'user',
+    #         'PASSWORD': '',
+    #         'HOST': 'host',
+    #         'PORT': '',
+    #     }
+    # }
     
     DATABASES = {
         'default': dj_database_url.config(default='postgres://u2vlc1eer7jomm:pd9433d0cea01817d04ccf902fd909db5a43f933d8f3a52ba15458bd9d2031a3b@cat670aihdrkt1.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d19p4m6ckfp8qm')
