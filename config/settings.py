@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-rvhm6_wj1!u++2*pw22a!bbcqd!dks)x$gfb%8yk$@7o%v34)%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')=='True'
 
-ALLOWED_HOSTS = ['pure-reaches-08614.herokuapp.com']
+ALLOWED_HOSTS = ['pure-reaches-08614-283f2e14249d.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -91,11 +91,13 @@ DATABASES = {
 }
 
 # Herokuの環境変数からDATABASE_URLが提供されている場合、その設定を使用
-DATABASES['default'] = dj_database_url.config(
-    default=f'sqlite:///{BASE_DIR}/db.sqlite3',
-    conn_max_age=600,
-    ssl_require=True
-)
+DATABASE_URL = os.getenv('DATABASE_URL')
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.config(
+        default=f'sqlite:///{BASE_DIR}/db.sqlite3',
+        conn_max_age=600,
+        ssl_require=True
+    )
 
 
 # Password validation
