@@ -106,12 +106,15 @@ if DATABASE_URL:
         }
     }
     
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://u2vlc1eer7jomm:pd9433d0cea01817d04ccf902fd909db5a43f933d8f3a52ba15458bd9d2031a3b@cat670aihdrkt1.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d19p4m6ckfp8qm')
+    }   
+        
     # DATABASES['default'] = dj_database_url.config(
     #     default=f'sqlite:///{BASE_DIR}/db.sqlite3',
     #     conn_max_age=600,
     #     ssl_require=True
     # )
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
