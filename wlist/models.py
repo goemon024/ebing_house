@@ -62,7 +62,7 @@ class WordsModel(models.Model):
         return None
     
     def api_meanings(self,phrase):
-        # auth_key = "674b2ec2-f1c4-4eb8-ab4c-43e6f7ede7d5:fx"
+
         auth_key = os.getenv('DEEPL_SECRET_KEY')
         try:
             translator = deepl.Translator(auth_key)
