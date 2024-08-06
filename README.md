@@ -15,17 +15,17 @@
   
 ### チュートリアル
 1.ログイン後 ＴＯＰ画面
-![トップ画面](./readme_material/image_top.png)
+![トップ画面](./readme_material/image_top.png)<br><br><br>
   
   
 2.英単語　インプット画面（今日のインプット）
-![インプット画面](./readme_material/image_input.png)
+![インプット画面](./readme_material/image_input.png)<br><br><br>
   
 
 3.英単語帳　復習・ドリル画面
-![復習・ドリル画面](./readme_material/image_card.png)
+![復習・ドリル画面](./readme_material/image_card.png)<br><br><br>
   
 
-（メモ帳については、英単語帳のマイナーチェンジなので省略します）
+（メモ帳については、英単語帳のマイナーチェンジなので省略します）<br><br><br>
   
   
