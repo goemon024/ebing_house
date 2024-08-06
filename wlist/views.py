@@ -64,10 +64,10 @@ class MemoList(LoginRequiredMixin,ListView):
 #     model = WordsModel
 
 class WordsCreate(LoginRequiredMixin,CreateView):
-    template_name = 'create.html'
+    template_name = 'word_create.html'
     model = WordsModel
     fields = ('word',)
-    success_url = reverse_lazy('wlist:list_top')  # reverse_lazyは、データが保存された後に実行される。
+    success_url = reverse_lazy('wlist:list_word')  # reverse_lazyは、データが保存された後に実行される。
     
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -75,15 +75,15 @@ class WordsCreate(LoginRequiredMixin,CreateView):
     
     
 class WordsDelete(LoginRequiredMixin,DeleteView):
-    template_name = 'delete.html'
+    template_name = 'word_delete.html'
     model = WordsModel
-    success_url = reverse_lazy('wlist:list_top')
+    success_url = reverse_lazy('wlist:list_word')
     
 class WordsUpdate(LoginRequiredMixin,UpdateView):
-    template_name = 'update.html'
+    template_name = 'word_update.html'
     model = WordsModel
     fields = ('user','word','mean1','mean2','reg_date')
-    success_url = reverse_lazy('wlist:list_top')
+    success_url = reverse_lazy('wlist:list_word')
 
     # def form_valid(self, form):
     #     instance = form.save(commit=False)
@@ -98,7 +98,7 @@ class MemoCreate(LoginRequiredMixin,CreateView):
     model = MemoModel
     form_class = MemoForm
     # fields = ('memo',)
-    success_url = reverse_lazy('wlist:list_top')  # reverse_lazyは、データが保存された後に実行される。
+    success_url = reverse_lazy('wlist:list_memo')  # reverse_lazyは、データが保存された後に実行される。
     
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -106,15 +106,15 @@ class MemoCreate(LoginRequiredMixin,CreateView):
     
     
 class MemoDelete(LoginRequiredMixin,DeleteView):
-    template_name = 'delete.html' ## wordと同じHTMLファイル
+    template_name = 'memo_delete.html' ## wordと同じHTMLファイル
     model = MemoModel
-    success_url = reverse_lazy('wlist:list_top')
+    success_url = reverse_lazy('wlist:list_memo')
     
 class MemoUpdate(LoginRequiredMixin,UpdateView):
     template_name = 'memo_update.html'
     model = MemoModel
     fields = ('user','memo','reg_date')
-    success_url = reverse_lazy('wlist:list_top')
+    success_url = reverse_lazy('wlist:list_memo')
 
 #######################################################
 class WordsRecord(LoginRequiredMixin, CreateView, ListView):

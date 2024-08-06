@@ -51,8 +51,8 @@
     <span class="mean2">{{ item.mean2 }}</span>
     <span class="date">{{ item.reg_date | date:"n月j日"}}</span>
     <div class="buttons">
-    <a href ="{% url 'wlist:update' item.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a>
-    <a href ="{% url 'wlist:delete' item.pk %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">削除</a>
+    <a href ="{% url 'wlist:word_update' item.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a>
+    <a href ="{% url 'wlist:word_delete' item.pk %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">削除</a>
     </div>
   </div>
   {% endfor %}

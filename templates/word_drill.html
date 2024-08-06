@@ -64,6 +64,17 @@
         transition: width 0.2s ease;
     }
 
+    .no-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-size: 24px; 
+        font-weight: bold; 
+        text-align: center;
+    }
+
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -90,6 +101,14 @@
         <div class = 'upperpart' style="height:60%; font-size: 3em; ">{{ card.word }}</div>
         <div class = 'underpart graystatus' style="height:12%; align-content:center;">{{ card.mean1 }}</div>
         <div class = 'underpart graystatus' style="height:25%; align-content:top;">{{ card.mean2 }}</div>
+    </div>
+
+    {% empty %}
+    <div class="no-data">
+        記録されている単語がありません。
+        <div>
+            <a href="/" class="button">戻る</a>
+        </div>
     </div>
     {% endfor %}
 </div>
