@@ -11,9 +11,10 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('list_top/', WordMemoList.as_view(), name='list_top'),
     # path('detail/<int:pk>', TodoDetail.as_view(), name='detail'),
-    path('create/', WordsCreate.as_view(), name='create'),
-    path('delete/<int:pk>', WordsDelete.as_view(), name='delete'),
-    path('update/<int:pk>', WordsUpdate.as_view(), name='update'),
+    
+    path('word_create/', WordsCreate.as_view(), name='create'),
+    path('word_delete/<int:pk>', WordsDelete.as_view(), name='word_delete'),
+    path('word_update/<int:pk>', WordsUpdate.as_view(), name='word_update'),
     
     path('word_record/', WordsRecord.as_view(), name='word_record'),
     path('word_review/', WordsReview.as_view(), name='word_review'),
@@ -30,7 +31,6 @@ urlpatterns = [
 
     path('list_word/', WordsList.as_view(), name='list_word'),
     path('list_memo/', MemoList.as_view(), name='list_memo'),
-    
     
     path('send_email/', send_email_view, name='send_email'),
 

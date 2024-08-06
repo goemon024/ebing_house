@@ -42,16 +42,16 @@
         padding: 3em;
     }
 
-    /* .underpart {
-        align-content: center;
-        background: whitesmoke;
-        font-size: 1em;
-        padding: 3em;
+    .no-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        font-size: 24px; 
+        font-weight: bold; 
+        text-align: center;
     }
-
-    .graystatus {
-        color:#f0f0f0 ;;
-    } */
 
 </style>
 <script>
@@ -76,6 +76,14 @@
     <div class="flashcard {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
         <div class = 'upperpart' style="height:100%; ">{{ card.memo }}</div>
         <!-- <div class = 'underpart graystatus' style="height:40%; ">{{ card.memo }}</div> -->
+    </div>
+
+    {% empty %}
+    <div class="no-data">
+        記録されているメモがありません。
+        <div>
+        <a href="/" class="button">戻る</a>
+        </div>
     </div>
     {% endfor %}
 </div>
