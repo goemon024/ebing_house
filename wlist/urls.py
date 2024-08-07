@@ -3,12 +3,13 @@ from django.urls import path,include
 from .views import WordsList, MemoList, WordMemoList, WordsCreate,\
 WordsDelete, WordsUpdate, MemoCreate, MemoDelete, MemoUpdate,\
 WordsRecord, MemoRecord, WordsReview, MemoReview,\
-WordsDrill, MemoDrill, send_email_view
+WordsDrill, MemoDrill, Tutorial, send_email_view
 
 app_name = 'wlist'
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
+    path('tutorial/', Tutorial.as_view(), name='tutorial'),
     path('list_top/', WordMemoList.as_view(), name='list_top'),
     # path('detail/<int:pk>', TodoDetail.as_view(), name='detail'),
     

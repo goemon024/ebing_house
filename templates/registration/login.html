@@ -2,14 +2,31 @@
 
 {% block title %} ログイン {% endblock %}
 
-{% block content %}
-<h2>ログイン</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type ="submit">ログイン</button>
-</form>
-<a href ="{% url 'accounts:signup' %}" class="btn btn-secondary mb-2" tabindex="-5" role="button" aria-disabled="true" style="margin-top:20px">sign up</a>
+{% block head %}
+{% load static%}
+<link href="{% static 'style2.css' %}" rel="stylesheet">
 
+<style>
+    /* body, html {
+        width: 70%; 
+    } */
+</style>
+
+{% endblock head %}
+
+{% block content %}
+<div style="width:750px;">
+<h1 style="margin-bottom: 20px; margin-top: -60px;"> エビングハウス 英単語帳＆メモ帳</h1>
+    <div style="display: flex; justify-content: flex-end; width: 100%;">
+        <a href ="{% url 'accounts:signup' %}" class="btn btn-secondary" tabindex="-5" 
+        role="button" aria-disabled="true" style="margin-right: 270px; margin-bottom:60px;">sign up</a>
+    </div>
+<form method="post" style="align-items: flex-start; margin-left: 40px;">
+    <h5 style="margin-bottom: 15px;"> ログイン</h5>
+       {% csrf_token %}
+        {{ form.as_p }}
+    <button type ="submit" style="margin-top: 20px;">ログイン</button>
+</form>
+</div>
 
 {% endblock %}
