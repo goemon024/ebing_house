@@ -29,6 +29,8 @@ class CustomHomeView(LoginRequiredMixin, TemplateView):
         context['today_date'] = timezone.now().date()
         return context
 
+class Tutorial(LoginRequiredMixin,TemplateView):
+    template_name= 'tutorial.html'
 
 
 class WordMemoList(LoginRequiredMixin,ListView):
