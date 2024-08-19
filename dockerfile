@@ -8,6 +8,8 @@ WORKDIR /wm_docker
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
+    default-libmysqlclient-dev \
+    python3-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
