@@ -7,9 +7,10 @@ WORKDIR /wm_docker
 # システムのパッケージをアップデート
 RUN apt-get update && apt-get install -y \
     build-essential \
-    curl \
     default-libmysqlclient-dev \
     python3-dev \
+    pkg-config \
+    curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -17,8 +18,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt /wm_docker/
 
 # pipをアップグレードし、requirements.txtに基づいて依存関係をインストール
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip setuptools wheel \
+    && pip install --no-cache-dir -r requirements.txt
 
 # アプリケーションのソースコードをコンテナにコピー
 COPY . /wm_docker
