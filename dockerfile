@@ -1,5 +1,5 @@
 # ベースイメージとしてPython 3.10.12を使用
-FROM python:3.10.12-slim-buster
+FROM python:3.10.12
 
 # 作業ディレクトリを作成
 WORKDIR /wm_docker
