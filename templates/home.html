@@ -19,6 +19,10 @@
         display: flex;
         gap: 0em;
         width: 100%; /* 横方向に中央揃え */
+        /* overflow-y: auto; */
+
+        height: 100vh; /* 画面全体の高さに合わせる */
+        overflow: hidden; 
     }
 
     .menu-container {
@@ -29,7 +33,12 @@
         gap: 1em;
         background: #333;
         color: white;
+
+        min-width: 300px;
+        height: 100%;
+        overflow-y: auto; 
     }
+
     .content-container {
         flex: 4 1 auto ;  /* コンテンツ部分の幅 */
         padding: 1em;
@@ -86,6 +95,8 @@
         <a href ="{% url 'wlist:tutorial' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:5em">チュートリアル</a>
         <a href ="{% url 'wlist:list_word' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:3em">英単語帳編集</a>
         <a href ="{% url 'wlist:list_memo' %}" class="btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳編集</a>
+        <a href ="{% url 'wlist:list_mc' %}"   class="btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳２編集</a>
+
 
         <div style="border: 2px solid #8FBC8F; border-radius: 10px; padding:5%;">
         <form method="get" action="{% url 'wlist:word_drill' %}" >
@@ -118,6 +129,23 @@
             <button class='btn btn-primary block' style="width:85%; align-self: right;" type="submit">開始</button>
         </form>
         </div>
+
+        <div style="border: 2px solid rgb(167, 169, 214); border-radius: 10px; padding:5%;">
+            <form method="get" action="{% url 'wlist:mc_drill' %}" >
+                {% csrf_token %}
+                <p class="block">メモ帳２ドリル</p>
+                <div style="display: flex; justify-content: flex-end;  gap:1em;">
+                <label for="m1_date">From:</label>
+                <input type="date" id="m1_date" name="start_date" value="{{ start_date | date:'Y-m-d'}}">
+                </div>
+                <div style="display: flex; justify-content: flex-end;  gap:1em;">
+                <label for="m2_date">To:  </label>
+                <input type="date" id="m2_date" name="end_date" value="{{ end_date | date:'Y-m-d'}}">
+                </div>
+                <button class='btn btn-light block' style="width:85%; align-self: right;" type="submit">開始</button>
+        </form>
+        </div>
+
     </div>
 
     <div class="content-container">
@@ -125,7 +153,7 @@
             <h2>エビングハウス 英単語帳＆メモ帳</h2>
             <p>{{ user.get_username }} さん</p>    
         </div>
-        <div class="container" style="display: flex; justify-content: flex-start; margin:10vw; gap:5vw ;">
+        <div class="container" style="display: flex; justify-content: flex-start; margin:3vw; gap:2vw ;">
             <div id="menu1" style=" border:8px solid greenyellow; background-color: lightgreen;">
                 <h3>英単語帳</h3>
                 <a href ="{% url 'wlist:word_record' %}" class="btn btn-success mb-2" role="button">今日のインプット</a>
@@ -136,6 +164,13 @@
                 <a href ="{% url 'wlist:memo_record' %}" class="btn btn-primary mb-2" role="button" >今日のインプット</a>
                 <a href ="{% url 'wlist:memo_review' %}" class="btn btn-primary mb-2" role="button" >復習（1,7,28日前）</a>
             </div>
+            <div id="menu1" style=" border:8px solid rgb(38, 46, 200); background-color: rgb(167, 169, 214);">
+                <h3>メモ帳２</h3>
+                <a href ="{% url 'wlist:mc_record' %}" class="btn btn-light mb-2" role="button">今日のインプット</a>
+                <a href ="{% url 'wlist:mc_review' %}" class="btn btn-light mb-2" role="button">復習（1,7,28日前）</a>
+            </div>  
+
+
         </div>
     
         <form method="post" action="{% url 'logout' %}">

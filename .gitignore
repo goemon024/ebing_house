@@ -3,3 +3,4 @@ dg1_env
 db.sqlite3
 .env
 *.json
+.livereloadignore
