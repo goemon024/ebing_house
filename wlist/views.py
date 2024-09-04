@@ -134,12 +134,12 @@ class McCreate(LoginRequiredMixin,CreateView):
         return super().form_valid(form)    
     
 class McDelete(LoginRequiredMixin,DeleteView):
-    template_name = 'mc_delete.html'
+    template_name = 'mc/mc_delete.html'
     model = McModel
     success_url = reverse_lazy('wlist:list_mc')
     
 class McUpdate(LoginRequiredMixin,UpdateView):
-    template_name = 'mc_update.html'
+    template_name = 'mc/mc_update.html'
     model = McModel
     fields = ('user','memo1','memo2','reg_date')
     success_url = reverse_lazy('wlist:list_mc')
@@ -147,223 +147,353 @@ class McUpdate(LoginRequiredMixin,UpdateView):
 
 
 #######################################################
-class WordsRecord(LoginRequiredMixin, CreateView, ListView):
-    template_name = 'word_record.html'
-    model = WordsModel
-    fields = ('word',)
-    success_url = reverse_lazy('wlist:word_record')  # reverse_lazyは、データが保存された後に実行される。
-    
+
+class BaseRecordView(LoginRequiredMixin, CreateView, ListView):
+    template_name = None
+    model = None
+    fields = None
+    success_url = None
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = timezone.localtime(timezone.now())        
-        context['today_records'] = WordsModel.objects.filter(
+        context['today_records'] = self.model.objects.filter(
             user=self.request.user,
             reg_date=today.date()
         )
         context['form'] = self.get_form()
-        return context
+        return context    
     
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+        # return super().form_invalid(form)
 
+class McRecord(BaseRecordView):
+    template_name = 'mc/mc_record.html'
+    model = McModel
+    fields = ('memo1', 'memo2',)
+    success_url = reverse_lazy('wlist:mc_record')
 
-class MemoRecord(LoginRequiredMixin, CreateView, ListView):
+class WordsRecord(BaseRecordView):
+    template_name = 'word_record.html'
+    model = WordsModel
+    fields = ('word',)  # 異なるフィールドを指定
+    success_url = reverse_lazy('wlist:word_record')
+
+class MemoRecord(BaseRecordView):
     template_name = 'memo_record.html'
     model = MemoModel
     fields = ('memo',)
-    success_url = reverse_lazy('wlist:memo_record')  # reverse_lazyは、データが保存された後に実行される。
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        today = timezone.localtime(timezone.now())
-        context['today_records'] = MemoModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()
-        )
-        context['form'] = self.get_form()
-        return context
-    
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    success_url = reverse_lazy('wlist:memo_record')  
 
-class McRecord(LoginRequiredMixin, CreateView, ListView):
-    template_name = 'mc/mc_record.html'
-    model = McModel
-    fields = ('memo1','memo2',)
-    success_url = reverse_lazy('wlist:mc_record')  # reverse_lazyは、データが保存された後に実行される。
+# class WordsRecord(LoginRequiredMixin, CreateView, ListView):
+#     template_name = 'word_record.html'
+#     model = WordsModel
+#     fields = ('word',)
+#     success_url = reverse_lazy('wlist:word_record')  # reverse_lazyは、データが保存された後に実行される。
     
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         today = timezone.localtime(timezone.now())        
+#         context['today_records'] = WordsModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()
+#         )
+#         context['form'] = self.get_form()
+#         return context
+        
+    
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+    
+#     def form_invalid(self, form):
+#         return self.render_to_response(self.get_context_data(form=form))
+
+
+# class MemoRecord(LoginRequiredMixin, CreateView, ListView):
+#     template_name = 'memo_record.html'
+#     model = MemoModel
+#     fields = ('memo',)
+#     success_url = reverse_lazy('wlist:memo_record')  # reverse_lazyは、データが保存された後に実行される。
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         today = timezone.localtime(timezone.now())
+#         context['today_records'] = MemoModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()
+#         )
+#         context['form'] = self.get_form()
+#         return context
+    
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+    
+#     def form_invalid(self, form):
+#         return self.render_to_response(self.get_context_data(form=form))
+
+# class McRecord(LoginRequiredMixin, CreateView, ListView):
+#     template_name = 'mc/mc_record.html'
+#     model = McModel
+#     fields = ('memo1','memo2',)
+#     success_url = reverse_lazy('wlist:mc_record')  # reverse_lazyは、データが保存された後に実行される。
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         today = timezone.localtime(timezone.now())        
+#         context['today_records'] = McModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()
+#         )
+#         context['form'] = self.get_form()
+#         return context
+    
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+    
+#     def form_invalid(self, form):
+#         return self.render_to_response(self.get_context_data(form=form))
+
+
+#######################################################
+class BaseReview(LoginRequiredMixin, ListView):
+    template_name = None
+    model = None
+    success_url = None 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = timezone.localtime(timezone.now())        
-        context['today_records'] = McModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()
-        )
-        context['form'] = self.get_form()
+        context['today_records'] = self.model.objects.filter(
+            user=self.request.user, 
+            reg_date=today.date())
+        
+        day_list = [1,7,28]
+        passed_list = []
+        for i in day_list:            
+            passed_list += list(self.model.objects.filter(
+                user=self.request.user,
+                reg_date=today.date()- timedelta(days=i)))
+        
+        random.shuffle(passed_list)
+        context['passed_records'] = passed_list
+        
         return context
-    
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
-#######################################################
-class WordsReview(LoginRequiredMixin, ListView):
+class WordsReview(BaseReview):
     template_name = 'word_review.html'
     model = WordsModel
-    # fields = ('word',)
-    success_url = reverse_lazy('wlist:word_review')  # reverse_lazyは、データが保存された後に実行される。
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        today = timezone.localtime(timezone.now())        
-        context['today_records'] = WordsModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()
-        )
-        
-        passed_list = list(WordsModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=1)))\
-                    + list(WordsModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=7)))\
-                    + list(WordsModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=28)))
-        
-        random.shuffle(passed_list)
-        context['passed_records'] = passed_list
+    success_url = reverse_lazy('wlist:word_review')
 
-        return context
-
-class MemoReview(LoginRequiredMixin, ListView):
+class MemoReview(BaseReview):
     template_name = 'memo_review.html'
     model = MemoModel
-    # fields = ('memo',)
-    success_url = reverse_lazy('wlist:memo_review')  # reverse_lazyは、データが保存された後に実行される。
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        today = timezone.localtime(timezone.now())        
-        context['today_records'] = MemoModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()
-        )
-        
-        passed_list = list(MemoModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=1)))\
-                    + list(MemoModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=7)))\
-                    + list(MemoModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=28)))
-        
-        random.shuffle(passed_list)
-        context['passed_records'] = passed_list
+    success_url = reverse_lazy('wlist:memo_review')
 
-        return context
-    
-class McReview(LoginRequiredMixin, ListView):
+class McReview(BaseReview):
     template_name = 'mc/mc_review.html'
     model = McModel
-    # fields = ('memo1',)
-    success_url = reverse_lazy('wlist:mc_review')  # reverse_lazyは、データが保存された後に実行される。
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        today = timezone.localtime(timezone.now())        
-        context['today_records'] = McModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()
-        )
-        
-        passed_list = list(McModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=1)))\
-                    + list(McModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=7)))\
-                    + list(McModel.objects.filter(
-            user=self.request.user,
-            reg_date=today.date()- timedelta(days=28)))
-        
-        random.shuffle(passed_list)
-        context['passed_records'] = passed_list
+    success_url = reverse_lazy('wlist:mc_review')
 
-        return context
+
+# class WordsReview(LoginRequiredMixin, ListView):
+#     template_name = 'word_review.html'
+#     model = WordsModel
+#     # fields = ('word',)
+#     success_url = reverse_lazy('wlist:word_review')  # reverse_lazyは、データが保存された後に実行される。
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         today = timezone.localtime(timezone.now())        
+#         context['today_records'] = WordsModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()
+#         )
+        
+#         passed_list = list(WordsModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=1)))\
+#                     + list(WordsModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=7)))\
+#                     + list(WordsModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=28)))
+        
+#         random.shuffle(passed_list)
+#         context['passed_records'] = passed_list
+
+#         return context
+
+# class MemoReview(LoginRequiredMixin, ListView):
+#     template_name = 'memo_review.html'
+#     model = MemoModel
+#     # fields = ('memo',)
+#     success_url = reverse_lazy('wlist:memo_review')  # reverse_lazyは、データが保存された後に実行される。
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+        
+#         today = timezone.localtime(timezone.now())        
+#         context['today_records'] = MemoModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()
+#         )
+        
+#         passed_list = list(MemoModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=1)))\
+#                     + list(MemoModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=7)))\
+#                     + list(MemoModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=28)))
+        
+#         random.shuffle(passed_list)
+#         context['passed_records'] = passed_list
+
+#         return context
+    
+# class McReview(LoginRequiredMixin, ListView):
+#     template_name = 'mc/mc_review.html'
+#     model = McModel
+#     # fields = ('memo1',)
+#     success_url = reverse_lazy('wlist:mc_review')  # reverse_lazyは、データが保存された後に実行される。
+    
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         today = timezone.localtime(timezone.now())        
+#         context['today_records'] = McModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()
+#         )
+        
+#         passed_list = list(McModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=1)))\
+#                     + list(McModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=7)))\
+#                     + list(McModel.objects.filter(
+#             user=self.request.user,
+#             reg_date=today.date()- timedelta(days=28)))
+        
+#         random.shuffle(passed_list)
+#         context['passed_records'] = passed_list
+
+#         return context
 
 #######################################################
-class WordsDrill(LoginRequiredMixin, ListView):
-    
+class BaseDrill(LoginRequiredMixin, ListView):
+    template_name = None
+    model = None
+    context_object_name = 'drill_records'
+    success_url = None
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            drill_list = list(self.model.objects.filter(user=self.request.user,
+                                             reg_date__range=(start_date, end_date)))
+            random.shuffle(drill_list)
+            context['drill_records'] = drill_list
+        return context
+
+class WordsDrill(BaseDrill):
     template_name = 'word_drill.html'
     model = WordsModel
-    # fields = ('word',)
-    context_object_name = 'drill_records'
-    success_url = reverse_lazy('wlist:word_drill')  # reverse_lazyは、データが保存された後に実行される。
-        
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+    # context_object_name = 'drill_records'
+    success_url = reverse_lazy('wlist:word_drill')
 
-        if form.is_valid():
-            start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
-            drill_list = list(self.model.objects.filter(user=self.request.user,
-                                             reg_date__range=(start_date, end_date)))
-            random.shuffle(drill_list)
-            context['drill_records'] = drill_list
-
-        return context
-
-
-class MemoDrill(LoginRequiredMixin, ListView):
-    
+class MemoDrill(BaseDrill):    
     template_name = 'memo_drill.html'
     model = MemoModel
-    # fields = ('memo',)
-    context_object_name = 'drill_records'
-    success_url = reverse_lazy('wlist:memo_drill')  # reverse_lazyは、データが保存された後に実行される。
-        
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+    # context_object_name = 'drill_records'
+    success_url = reverse_lazy('wlist:memo_drill')
 
-        if form.is_valid():
-            start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
-            drill_list = list(self.model.objects.filter(user=self.request.user,
-                                             reg_date__range=(start_date, end_date)))
-            random.shuffle(drill_list)
-            context['drill_records'] = drill_list
-
-        return context
-
-class McDrill(LoginRequiredMixin, ListView):
-    
+class McDrill(BaseDrill):    
     template_name = 'mc/mc_drill.html'
     model = McModel
-    # fields = ('memo1',)
-    context_object_name = 'mc_records'
-    success_url = reverse_lazy('wlist:mc_drill')  # reverse_lazyは、データが保存された後に実行される。
+    # context_object_name = 'drill_records'
+    success_url = reverse_lazy('wlist:mc_drill')
+
+
+# class WordsDrill(LoginRequiredMixin, ListView):
+#     template_name = 'word_drill.html'
+#     model = WordsModel
+#     # fields = ('word',)
+#     context_object_name = 'drill_records'
+#     success_url = reverse_lazy('wlist:word_drill')  # reverse_lazyは、データが保存された後に実行される。
         
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
 
-        if form.is_valid():
-            start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
-            drill_list = list(self.model.objects.filter(user=self.request.user,
-                                             reg_date__range=(start_date, end_date)))
-            random.shuffle(drill_list)
-            context['drill_records'] = drill_list
+#         if form.is_valid():
+#             start_date = form.cleaned_data['start_date']
+#             end_date = form.cleaned_data['end_date']
+#             drill_list = list(self.model.objects.filter(user=self.request.user,
+#                                              reg_date__range=(start_date, end_date)))
+#             random.shuffle(drill_list)
+#             context['drill_records'] = drill_list
 
-        return context
+#         return context
+
+
+# class MemoDrill(LoginRequiredMixin, ListView):
+    
+#     template_name = 'memo_drill.html'
+#     model = MemoModel
+#     # fields = ('memo',)
+#     context_object_name = 'drill_records'
+#     success_url = reverse_lazy('wlist:memo_drill')  # reverse_lazyは、データが保存された後に実行される。
+        
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+
+#         if form.is_valid():
+#             start_date = form.cleaned_data['start_date']
+#             end_date = form.cleaned_data['end_date']
+#             drill_list = list(self.model.objects.filter(user=self.request.user,
+#                                              reg_date__range=(start_date, end_date)))
+#             random.shuffle(drill_list)
+#             context['drill_records'] = drill_list
+
+#         return context
+
+# class McDrill(LoginRequiredMixin, ListView):
+    
+#     template_name = 'mc/mc_drill.html'
+#     model = McModel
+#     # fields = ('memo1',)
+#     context_object_name = 'mc_records'
+#     success_url = reverse_lazy('wlist:mc_drill')  # reverse_lazyは、データが保存された後に実行される。
+        
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+
+#         if form.is_valid():
+#             start_date = form.cleaned_data['start_date']
+#             end_date = form.cleaned_data['end_date']
+#             drill_list = list(self.model.objects.filter(user=self.request.user,
+#                                              reg_date__range=(start_date, end_date)))
+#             random.shuffle(drill_list)
+#             context['drill_records'] = drill_list
+
+#         return context
 
 
 

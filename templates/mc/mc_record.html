@@ -12,8 +12,12 @@
 <div style="display: flex; flex-direction: column; align-items: center; width: 1000px;">
 <form action='' method='POST' style="margin-bottom: 50px; display: flex; flex-direction: column; align-items: flex-start; width: 300px;">
     {% csrf_token %}
-    <label style="margin-bottom: 10px;">New Memo:</label>
-    <input type="text" name="{{ form.memo1 }}" value="{{ form.memo1.value|default_if_none:'' }}" style="width: 100%; height: 45px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+    <label style="margin-bottom: 10px;">title:</label>
+    <input type="text" name="{{ form.memo1.name }}" value="{{ form.memo1.value|default_if_none:'' }}" style="width: 100%; height: 45px; padding: 10px; font-size: 16px; margin-bottom: 10px;">
+
+    <label style="margin-bottom: 10px;">Description:</label>
+    <textarea name="{{ form.memo2.name }}" style="width: 400px; height: 150px; padding: 10px; font-size: 16px; margin-bottom: 10px; resize: vertical;" placeholder="">{{ form.memo2.value|default_if_none:'' }}</textarea>
+
     <input type="submit" value="create" style="width: 80px; height: 30px; font-size: 16px;">
 </form>
 <!-- <ul style="display: flex; flex-direction: column; align-items: flex-start; width: 800px;"> -->
@@ -37,7 +41,7 @@
 
 <div id="hoverMenu">
   <a href="/" >TOP</a>
-  <a href="/wlist/list_mc" >メモ帳２編集</a>
+  <a href="/wlist/mc/list_mc" >メモ帳２編集</a>
   <a href="/accounts/login">LOG OUT</a>
 </div>
 

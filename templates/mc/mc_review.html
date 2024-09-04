@@ -103,14 +103,13 @@
 <div id="flashcard-container">
     {% for card in passed_records %}
     <div class="flashcard {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
-        <div class = 'upperpart' style="height:60%; font-size: 3em; ">{{ card.word }}</div>
-        <div class = 'underpart graystatus' style="height:12%; align-content:center;">{{ card.mean1 }}</div>
-        <div class = 'underpart graystatus' style="height:25%; align-content:top;">{{ card.mean2 }}</div>
+        <div class = 'upperpart' style="height:60%; font-size: 3em; ">{{ card.memo1 }}</div>
+        <div class = 'underpart graystatus' style="height:35%; align-content:center;">{{ card.memo2 }}</div>
     </div>
 
     {% empty %}
     <div class="no-data">
-        記録されている単語がありません。
+        記録されているメモがありません。
         <div>
         <a href="/" class="button">戻る</a>
         </div>
@@ -124,7 +123,7 @@
 
 <div id="hoverMenu">
     <a href="/" >TOP</a>
-    <a href="/wlist/list_mc" >英単語帳編集</a>
+    <a href="/wlist/mc/list_mc" >メモ帳２編集</a>
     <a href="/accounts/login">LOG OUT</a>
 </div>
 
