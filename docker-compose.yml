@@ -1,0 +1,47 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    container_name: compose1_sql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    user: "mysql:mysql"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql  # MySQLデータの永続化
+    networks:
+      - network1
+
+  web:
+    build: .
+    container_name: compose1
+    # command: gunicorn --bind 0.0.0.0:8000 config.wsgi:application  # 本番環境用
+    command: sh -c "
+      gunicorn --bind 0.0.0.0:${PORT:-8010} config.wsgi:application &&
+      python manage.py migrate"
+    
+    volumes:
+      - .:/wm_docker
+    ports:
+      - "${PORT:-8010}:${PORT:-8010}"
+      # - "8000:8000"
+    environment:
+      DB_HOST: compose1_sql
+      DB_NAME: wm_db
+      DB_USER: user1
+      DB_PASSWORD: hf&das$_yuicnbf31&fsaadd
+    depends_on:
+      - db
+    networks:
+      - network1
+      
+volumes:
+  mysql_data:
+networks:
+  network1:
+    driver: bridge
