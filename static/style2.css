@@ -4,7 +4,8 @@ body, html {
     margin: 0; /* マージンをリセット */
     display: flex;
     justify-content: center; /* 横方向に中央揃え */
-    align-items: center; /* 縦方向に中央揃え */
+    align-items: flex-start; /* 縦方向の中央揃えを解除 */
+    overflow: auto; /* スクロールを有効にする */
 }
 
 .container {
