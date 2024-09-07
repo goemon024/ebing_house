@@ -23,6 +23,7 @@
         padding: 2%; /* 内側の余白を設定 */
         box-sizing: border-box; /* 幅と高さにパディングとボーダーを含む */
         margin: 0 auto;
+        
     }
 
   /* ログインフォームのスタイル */
@@ -40,6 +41,7 @@
 
     h1 {
       font-size: 1.3rem; /* タイトルのフォントサイズを小さく */
+      color: red;
     }
 
     form {
@@ -60,17 +62,17 @@
 {% block content %}
 <!-- <div style="width:750px;"> -->
 <div class="container">
-<h1 style="margin-bottom: 1rem; margin-top: 15%; margin-left: 1rem;"> Ebing House 英単語帳＆メモ帳</h1>
+    <h1 style="margin-bottom: 1rem; margin-top: 15%; margin-left: 1rem;"> Ebing House 英単語帳＆メモ帳</h1>
     <div style="display: flex; justify-content: flex-end; width: 100%;">
         <a href ="{% url 'accounts:signup' %}" class="btn btn-secondary" 
         role="button" aria-disabled="true" style="margin-right: 5rem; margin-bottom:2rem;">sign up</a>
     </div>
-<form method="post" style="align-items: flex-start; margin-left: 4rem;">
+    <form method="post" style="align-items: flex-start; margin-left: 4rem;">
     <h5 style="margin-bottom: 1rem;"> ログイン</h5>
        {% csrf_token %}
         {{ form.as_p }}
     <button type ="submit" style="margin-top: 1rem;">ログイン</button>
-</form>
+    </form>
 </div>
 
 {% endblock %}
