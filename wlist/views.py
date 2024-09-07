@@ -71,15 +71,15 @@ class McList(LoginRequiredMixin,ListView):
 #     template_name = 'detail.html'
 #     model = WordsModel
 
-class WordsCreate(LoginRequiredMixin,CreateView):
-    template_name = 'word_create.html'
-    model = WordsModel
-    # fields = ('word',)
-    success_url = reverse_lazy('wlist:list_word')  # reverse_lazyは、データが保存された後に実行される。
+# class WordsCreate(LoginRequiredMixin,CreateView):
+#     template_name = 'word_create.html'
+#     model = WordsModel
+#     # fields = ('word',)
+#     success_url = reverse_lazy('wlist:list_word')  # reverse_lazyは、データが保存された後に実行される。
     
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
     
     
 class WordsDelete(LoginRequiredMixin,DeleteView):
@@ -101,15 +101,15 @@ class WordsUpdate(LoginRequiredMixin,UpdateView):
 
 ##################################
 
-class MemoCreate(LoginRequiredMixin,CreateView):
-    template_name = 'memo_create.html' 
-    model = MemoModel
-    form_class = MemoForm
-    success_url = reverse_lazy('wlist:list_memo')  # reverse_lazyは、データが保存された後に実行される。
+# class MemoCreate(LoginRequiredMixin,CreateView):
+#     template_name = 'memo_create.html' 
+#     model = MemoModel
+#     form_class = MemoForm
+#     success_url = reverse_lazy('wlist:list_memo')  # reverse_lazyは、データが保存された後に実行される。
     
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
     
 class MemoDelete(LoginRequiredMixin,DeleteView):
     template_name = 'memo_delete.html' ## wordと同じHTMLファイル
@@ -123,15 +123,15 @@ class MemoUpdate(LoginRequiredMixin,UpdateView):
     success_url = reverse_lazy('wlist:list_memo')
 
 ###############################################################
-class McCreate(LoginRequiredMixin,CreateView):
-    template_name = 'mc/mc_create.html'
-    model = McModel
-    form_class = MemoForm
-    success_url = reverse_lazy('wlist:list_mc')  # reverse_lazyは、データが保存された後に実行される。
+# class McCreate(LoginRequiredMixin,CreateView):
+#     template_name = 'mc/mc_create.html'
+#     model = McModel
+#     form_class = MemoForm
+#     success_url = reverse_lazy('wlist:list_mc')  # reverse_lazyは、データが保存された後に実行される。
     
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)    
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)    
     
 class McDelete(LoginRequiredMixin,DeleteView):
     template_name = 'mc/mc_delete.html'
@@ -166,6 +166,7 @@ class BaseRecordView(LoginRequiredMixin, CreateView, ListView):
         #     reg_date=today.date()
         # )
         context['form'] = self.get_form()
+        
         return context    
     
     def form_valid(self, form):
