@@ -7,19 +7,46 @@
 <link href="{% static 'style2.css' %}" rel="stylesheet">
 
 <style>
-    /* body, html {
-        width: 70%; 
+  .container {
+    max-width: 750px; /* 最大幅を750pxに制限 */
+    width: 100%; /* 画面幅に応じて可変にする */
+    margin: 0 auto; /* 中央寄せ */
+  }
+
+  /* ログインフォームのスタイル */
+  form {
+    margin-left: 0; /* 携帯画面では左側の余白をなくす */
+    padding: 10px;
+  }
+
+  /* メディアクエリでスマートフォン対応 */
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 90%; /* スマートフォンでは幅を90%にする */
+    }
+
+    h1 {
+      font-size: 1.3rem; /* タイトルのフォントサイズを小さく */
+    }
+
+    /* .btn {
+      margin-right: 0;
+      width: 100%; 
     } */
+  }
+
+
 </style>
 
 {% endblock head %}
 
 {% block content %}
-<div style="width:750px;">
+<!-- <div style="width:750px;"> -->
+<div class="container">
 <h1 style="margin-bottom: 20px; margin-top: -60px;"> エビングハウス 英単語帳＆メモ帳</h1>
     <div style="display: flex; justify-content: flex-end; width: 100%;">
-        <a href ="{% url 'accounts:signup' %}" class="btn btn-secondary" tabindex="-5" 
-        role="button" aria-disabled="true" style="margin-right: 270px; margin-bottom:60px;">sign up</a>
+        <a href ="{% url 'accounts:signup' %}" class="btn btn-secondary" 
+        role="button" aria-disabled="true" style="margin-right: 1rem; margin-bottom:2rem;">sign up</a>
     </div>
 <form method="post" style="align-items: flex-start; margin-left: 40px;">
     <h5 style="margin-bottom: 15px;"> ログイン</h5>

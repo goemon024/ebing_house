@@ -7,14 +7,27 @@
 <link href="{% static 'style2.css' %}" rel="stylesheet">
 
 <style>
-    /* body, html {
-        width: 70%; 
-    } */
+    @media screen and (max-width: 768px) {
+        .container {
+            width: 92%; /* スマートフォンでは90%幅 */
+        }
+
+        h2 {
+            font-size: 1.2rem; /* タイトルを少し小さく */
+        }
+
+        form {
+            width: 100%; /* フォームは画面幅に対応 */
+        }
+
+
+    }
 </style>
 
 {% endblock head %}
 
 {% block content %}
+<div class="container">
     <div style="display:flex; flex-direction: column; align-items: flex-start;">
     <h2>ユーザー登録</h2>
     <p style="color:rgb(255, 136, 0)">（E-mail addressは省略可です）</p>
@@ -24,4 +37,5 @@
         <button type="submit">ユーザー登録</button>
     </form>
     <div>
+</div>
 {% endblock %}
