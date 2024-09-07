@@ -33,7 +33,7 @@
      
   @media screen and (max-width: 768px) {
     .container {
-      width: 95%; /* スマートフォンでは幅を90%にする */
+      width: 50%; /* スマートフォンでは幅を90%にする */
       margin: 0;
       padding: 0;
     }
@@ -65,7 +65,7 @@
         <a href ="{% url 'accounts:signup' %}" class="btn btn-secondary" 
         role="button" aria-disabled="true" style="margin-right: 5rem; margin-bottom:2rem;">sign up</a>
     </div>
-<form method="post" style="align-items: flex-start; margin-left: 2rem;">
+<form method="post" style="align-items: flex-start; margin-left: 4rem;">
     <h5 style="margin-bottom: 1rem;"> ログイン</h5>
        {% csrf_token %}
         {{ form.as_p }}
