@@ -18,11 +18,15 @@
     margin-left: 0;
     padding: 10px;
   } */
+   
 
   /* メディアクエリでスマートフォン対応 */
   @media screen and (max-width: 768px) {
     .container {
       width: 98%; /* スマートフォンでは幅を90%にする */
+      margin: 0;
+      padding: 0;
+      overflow-x: auto;
     }
 
     h1 {
@@ -47,16 +51,16 @@
 {% block content %}
 <!-- <div style="width:750px;"> -->
 <div class="container">
-<h1 style="margin-bottom: 20px; margin-top: -60px;"> エビングハウス 英単語帳＆メモ帳</h1>
+<h1 style="margin-bottom: 1rem; margin-top: -5%;"> エビングハウス 英単語帳＆メモ帳</h1>
     <div style="display: flex; justify-content: flex-end; width: 100%;">
         <a href ="{% url 'accounts:signup' %}" class="btn btn-secondary" 
         role="button" aria-disabled="true" style="margin-right: 1rem; margin-bottom:2rem;">sign up</a>
     </div>
-<form method="post" style="align-items: flex-start; margin-left: 40px;">
-    <h5 style="margin-bottom: 15px;"> ログイン</h5>
+<form method="post" style="align-items: flex-start; margin-left: 2rem;">
+    <h5 style="margin-bottom: 1rem;"> ログイン</h5>
        {% csrf_token %}
         {{ form.as_p }}
-    <button type ="submit" style="margin-top: 20px;">ログイン</button>
+    <button type ="submit" style="margin-top: 1rem;">ログイン</button>
 </form>
 </div>
 
