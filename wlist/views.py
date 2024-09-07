@@ -156,20 +156,25 @@ class BaseRecordView(LoginRequiredMixin, CreateView, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        today = timezone.localtime(timezone.now())        
-        context['today_records'] = self.model.objects.filter(
+        today = timezone.localtime(timezone.now())
+        context['object_list'] = self.model.objects.filter(
             user=self.request.user,
             reg_date=today.date()
-        )
+        )        
+        # context['today_records'] = self.model.objects.filter(
+        #     user=self.request.user,
+        #     reg_date=today.date()
+        # )
         context['form'] = self.get_form()
         return context    
     
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-    
+
     def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
         # return super().form_invalid(form)
 
 class McRecord(BaseRecordView):
