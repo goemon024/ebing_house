@@ -8,26 +8,30 @@
 
 <style>
   .container {
-    max-width: 750px; /* 最大幅を750pxに制限 */
-    width: 100%; /* 画面幅に応じて可変にする */
-    margin: 0 auto; /* 中央寄せ */
+    /* max-width: 800px; */
+    width: 100%; 
+    margin: 0 auto;
   }
 
   /* ログインフォームのスタイル */
-  form {
-    margin-left: 0; /* 携帯画面では左側の余白をなくす */
+  /* form {
+    margin-left: 0;
     padding: 10px;
-  }
+  } */
 
   /* メディアクエリでスマートフォン対応 */
   @media screen and (max-width: 768px) {
     .container {
-      width: 90%; /* スマートフォンでは幅を90%にする */
+      width: 98%; /* スマートフォンでは幅を90%にする */
     }
 
     h1 {
       font-size: 1.3rem; /* タイトルのフォントサイズを小さく */
     }
+
+    form {
+            width: 100%; /* フォームは画面幅に対応 */
+        }
 
     /* .btn {
       margin-right: 0;
