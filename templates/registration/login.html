@@ -22,37 +22,27 @@
         max-width: 650px; /* 最大幅を設定 */
         padding: 2%; /* 内側の余白を設定 */
         box-sizing: border-box; /* 幅と高さにパディングとボーダーを含む */
-        margin: 0 auto;
-        
-    }
-
-  /* ログインフォームのスタイル */
-  /* form {
-    margin-left: 0;
-    padding: 10px;
-  } */
-     
-  @media screen and (max-width: 768px) {
-    .container {
-      width: 50%; /* スマートフォンでは幅を90%にする */
-      margin: 0;
-      padding: 0;
+        margin: 0 auto;   
     }
 
     h1 {
-      font-size: 1.3rem; /* タイトルのフォントサイズを小さく */
-      color: green;
+      white-space: nowrap;
+    }
+     
+    a {
+      margin-right: 5rem;
     }
 
-    form {
-            width: 100%; /* フォームは画面幅に対応 */
-        }
+  @media screen and (max-width: 576px) {
+    h1 {
+      font-size: 1.5rem;
+      color:red;
+    }
+    a{
+      margin-right: 1rem;
+    }
 
-    /* .btn {
-      margin-right: 0;
-      width: 100%; 
-    } */
-  }
+}
 
 
 </style>
@@ -62,10 +52,10 @@
 {% block content %}
 <!-- <div style="width:750px;"> -->
 <div class="container">
-    <h1 style="margin-bottom: 1rem; margin-top: 15%; margin-left: 1rem; color: red;"> Ebing House 英単語帳＆メモ帳</h1>
+    <h1 style="margin-bottom: 1rem; margin-top: 15%; margin-left: 1rem;"> Ebing House 英単語帳＆メモ帳</h1>
     <div style="display: flex; justify-content: flex-end; width: 100%;">
         <a href ="{% url 'accounts:signup' %}" class="btn btn-secondary" 
-        role="button" aria-disabled="true" style="margin-right: 5rem; margin-bottom:2rem;">sign up</a>
+        role="button" aria-disabled="true" style=" margin-bottom:2rem;">sign up</a>
     </div>
     <form method="post" style="align-items: flex-start; margin-left: 4rem;">
     <h5 style="margin-bottom: 1rem;"> ログイン</h5>
