@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-<link href="{% static 'style.css' %}" rel="stylesheet">
+<link href="{% static 'style2.css' %}" rel="stylesheet">
 {% block header %}
 
 <div class="jumbotron jumbotron-fluid">
@@ -10,6 +10,10 @@
   </div>
 
 <style>
+.html {
+    font-size:16px; 
+}
+
  .date {
     flex: 0 0 60; 
     overflow: hidden; /* テキストが長すぎる場合は隠す */
@@ -17,24 +21,46 @@
     padding-left: 10px; /* 少しの間隔を設定 */
 }
 
-  #hoverMenu {
-        position: fixed;
-        width: 100px;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: #333;
-        color: white;
+#hoverMenu {
+    position: fixed;
+    width: 100px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #333;
+    color: white;
 
-        text-align: center;
-        overflow: hidden; 
-        transition: width 0.2s ease;
+    text-align: center;
+    overflow: hidden; 
+    transition: width 0.2s ease;
+}
+
+#hoverMenu a {
+    margin-bottom: 20px ;
+    display:block;
+}
+
+
+@media (max-width: 576px) {
+    #hoverMenu {
+        position: fixed; /* 最上部に固定 */
+        top: 0;          /* 画面の一番上に */
+        left: 0;         /* 左に固定 */
+        width: 100%;     /* 幅を100%に */
+        height: 6%;    /* 高さは自動調整 */
+        background-color: #333;
     }
 
+    /* メニュー内のリンクを横並びに */
     #hoverMenu a {
-        margin-bottom: 20px ;
-        display:block;
+        display: inline-block;
+        width: auto;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        margin-bottom: 0px ;
     }
+}
+
 
 </style>
 
@@ -70,12 +96,14 @@
   document.addEventListener('DOMContentLoaded', () => {
       const hoverMenu = document.getElementById('hoverMenu');
       
+      if (window.innerWidth > 576) {
       window.addEventListener('mousemove', function(e) {
           if (e.clientX < 100) {
               hoverMenu.style.width = '100px'; 
           } else {
               hoverMenu.style.width = '0';             }
       });
+    }
   });
 </script>
 
