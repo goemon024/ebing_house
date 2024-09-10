@@ -9,7 +9,7 @@
     }
 
     body, html {
-        height: 100vh; /* 全体の高さを設定 */
+        height: 100vh;
         width:100vw; 
         margin: 0; /* マージンをリセット */
         display: flex;
@@ -21,7 +21,7 @@
         width: 100%; /* 横方向に中央揃え */
         /* overflow-y: auto; */
         overflow-x: auto;
-        height: 100vh; /* 画面全体の高さに合わせる */
+        height: 100vh; 
         overflow-y: hidden; 
     }
 
@@ -45,7 +45,6 @@
         /* /* display: flex; */
         /* flex-direction: column; */
         gap: 2rem;
-
     }
 
     .container {
@@ -83,6 +82,10 @@
         margin: 0.3em;
     }
 
+    .media-small {
+            display:none;
+    }
+
     @media (max-width: 768px) {
         .content-container {
             overflow-y: auto;
@@ -100,15 +103,34 @@
     }
 
     @media (max-width:576px){
+        .media-small {
+            display:block;
+        }
+        .media-large {
+            display:none;
+        }
+ 
         .main-container {
             display: flex;
             flex-direction: column-reverse;
             gap: 0rem;
-            width: 100%; /* 横方向に中央揃え */
-            /* overflow-y: auto; */
+            width: 100%;
             overflow-x: auto;
-            height: 100vh; /* 画面全体の高さに合わせる */
-            overflow-y: auto; 
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .content-container {
+            overflow-y: visible;
+        }
+        
+        .menu-container {
+            overflow-y: visible;
+            height: auto;
+        }
+
+        #menu1,#menu2{
+            width:75vw;
         }
     }
 </style>
@@ -126,11 +148,10 @@
 <div class="main-container">
 
     <div class = "menu-container">
-        <a href ="{% url 'wlist:tutorial' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:5em">チュートリアル</a>
-        <a href ="{% url 'wlist:list_word' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:3em">英単語帳編集</a>
-        <a href ="{% url 'wlist:list_memo' %}" class="btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳編集</a>
-        <a href ="{% url 'wlist:list_mc' %}"   class="btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳２編集</a>
-
+        <a href ="{% url 'wlist:tutorial' %}" class="media-large btn btn-secondary mb-2" role="button" style="margin-top:5em">チュートリアル</a>
+        <a href ="{% url 'wlist:list_word' %}" class="media-large btn btn-secondary mb-2" role="button" style="margin-top:3em">英単語帳編集</a>
+        <a href ="{% url 'wlist:list_memo' %}" class="media-large btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳編集</a>
+        <a href ="{% url 'wlist:list_mc' %}"   class="media-large btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳２編集</a>
 
         <div style="border: 2px solid #8FBC8F; border-radius: 10px; padding:5%;">
         <form method="get" action="{% url 'wlist:word_drill' %}" >
@@ -180,6 +201,16 @@
         </form>
         </div>
 
+        <a href ="{% url 'wlist:tutorial' %}" class="media-small btn btn-secondary mb-2" role="button" style="margin-top:3rem">チュートリアル</a>
+        <a href ="{% url 'wlist:list_word' %}" class="media-small btn btn-secondary mb-2" role="button" style="margin-top:0.5rem">英単語帳編集</a>
+        <a href ="{% url 'wlist:list_memo' %}" class="media-small btn btn-secondary mb-2" role="button" style="margin-top:0.5rem">メモ帳編集</a>
+        <a href ="{% url 'wlist:list_mc' %}"   class="media-small btn btn-secondary mb-2" role="button" style="margin-top:0.5rem">メモ帳２編集</a>
+
+        <form method="post" class="media-small" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class='btn btn-outline-light block' type="submit" style="width:10%; min-width:100px; float: left;">ログアウト</button>
+        </form>
+
     </div>
 
     <div class="content-container">
@@ -202,15 +233,14 @@
                 <h3>メモ帳２</h3>
                 <a href ="{% url 'wlist:mc_record' %}" class="btn btn-light mb-2" role="button">今日のインプット</a>
                 <a href ="{% url 'wlist:mc_review' %}" class="btn btn-light mb-2" role="button">復習（1,7,28日前）</a>
-            </div>  
-
-
+            </div> 
         </div>
     
-        <form method="post" action="{% url 'logout' %}">
+        <form class="media-large" method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button class='btn btn-outline-dark block' type="submit" style="width:10%; min-width:100px; float: left; margin:20px;">ログアウト</button>
         </form>
+
     </div>
 
 
