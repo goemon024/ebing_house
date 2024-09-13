@@ -3,6 +3,8 @@ import dropbox
 from subprocess import Popen, PIPE
 from dotenv import load_dotenv
 import logging
+import dj_database_url
+from urllib.parse import urlparse
 
 load_dotenv()
 
@@ -22,6 +24,14 @@ def create_mysql_backup():
         user=os.getenv('DB_USER')
         password=os.getenv('DB_PASSWORD')
         database=os.getenv('DB_NAME')
+        
+        DATABASE_URL = os.getenv('JAWSDB_URL')
+        if DATABASE_URL:
+            url = urlparse(DATABASE_URL)
+            host = url.hostname       
+            user = url.username       
+            password = url.password   
+            database = url.path[1:]
         
         dump_command = f"mysqldump -h {host} -u {user} -p{password} {database}"
         with open("backup.sql", 'w') as f:
