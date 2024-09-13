@@ -65,8 +65,8 @@ def upload_to_dropbox(file_path):
 
 
     except Exception as e:
-        logging.info(f"Error during uploading to Dropbox.")  
-        print(f"Error during uploading to Dropbox.") 
+        logging.info(f"Error during uploading to Dropbox:{str(e)}")  
+        print(f"Error during uploading to Dropbox:{str(e)}") 
         # print(f"Error during making MySQL backup file : {str(e)}")
 
         
