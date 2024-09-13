@@ -40,6 +40,7 @@ def update_data_mysql(tbl,user_id1,user_id2):
         cursor.execute(delete_query, (user_id1,))
 
         logging.info(f"User_id={user_id1} のデータを削除しました: {cursor.rowcount} 件")
+        print(f"User_id={user_id1} のデータを削除しました: {cursor.rowcount} 件")
 
         # Step 2: user_id1 のデータを複製し、user_id2 として挿入
         insert_query = f"""
@@ -57,18 +58,24 @@ def update_data_mysql(tbl,user_id1,user_id2):
         
         conn.commit()
         logging.info(f"User_id={user_id1} のデータを user_id={user_id2} から複製しました: {cursor.rowcount} 件")
+        print(f"User_id={user_id1} のデータを user_id={user_id2} から複製しました: {cursor.rowcount} 件")
+
     
     except mysql.connector.Error as err:
         conn.rollback()  # ロールバック
         logging.error(f"MySQLエラーが発生しました: {err}")
+        print(f"MySQLエラーが発生しました: {err}")
     
     except Exception as e:
         conn.rollback()  # ロールバック
         logging.error(f"予期しないエラーが発生しました: {e}")
+        print(f"予期しないエラーが発生しました: {e}")
     
     except Exception as e:
         conn.rollback()  # ロールバック
         logging.error(f"予期しないエラーが発生しました: {e}")
+        print(f"予期しないエラーが発生しました: {e}")
+    
     finally:
         # カーソルと接続をクローズ
         if cursor:
