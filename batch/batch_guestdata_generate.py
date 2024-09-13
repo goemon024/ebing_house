@@ -5,7 +5,7 @@ import django
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import date,timedelta
-
+from urllib.parse import urlparse
 
 load_dotenv()
 IS_DOCKER = os.path.exists('/.dockerenv')
@@ -21,12 +21,20 @@ logging.basicConfig(
 def update_data_mysql(tbl,user_id1,user_id2):
     try:
         # MySQLに接続
-        conn = mysql.connector.connect(
-            host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            database=os.getenv('DB_NAME')
-        )
+        host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD'),
+        database=os.getenv('DB_NAME')
+
+        DATABASE_URL = os.getenv('JAWSDB_URL')
+        if DATABASE_URL:
+            url = urlparse(DATABASE_URL)
+            host = url.hostname       
+            user = url.username       
+            password = url.password   
+            database = url.path[1:]
+  
+        conn = mysql.connector.connect(host,user,password,database)      
         cursor = conn.cursor()
         
         # 最新の日付を取得
