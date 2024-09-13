@@ -22,3 +22,6 @@
 2024-09-13 03:32:19,133 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
 2024-09-13 03:39:44,864 - INFO - User_id=7 のデータを削除しました: 140 件
 2024-09-13 03:39:44,877 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 23:11:10,392 - INFO - Backup file created successfully.
+2024-09-13 23:11:10,397 - INFO - Request to files/upload
+2024-09-13 23:11:11,737 - INFO - File uploaded to Dropbox successfully.

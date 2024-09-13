@@ -1,12 +1,9 @@
 import mysql.connector
-# from google.oauth2 import service_account
-# from googleapiclient.discovery import build
 import os
 import logging
 import django
 from pathlib import Path
 from dotenv import load_dotenv
-# from django.utils import timezone
 from datetime import date,timedelta
 
 
@@ -79,39 +76,9 @@ def update_data_mysql(tbl,user_id1,user_id2):
         if conn:
             conn.close()
 
-
-
-
-# Google Sheetsにデータを書き込む
-def write_to_google_sheets(data):
-    SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-    SERVICE_ACCOUNT_FILE = 'path/to/your-service-account.json'
-
-    credentials = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-
-    service = build('sheets', 'v4', credentials=credentials)
-
-    SPREADSHEET_ID = 'your-spreadsheet-id'
-    RANGE_NAME = 'Sheet1!A1:D5'
-
-    # Google Sheetsに書き込むデータを整形
-    values = [list(row) for row in data]
-    body = {
-        'values': values
-    }
-
-    result = service.spreadsheets().values().update(
-        spreadsheetId=SPREADSHEET_ID, range=RANGE_NAME,
-        valueInputOption="RAW", body=body).execute()
-
-    print(f"{result.get('updatedCells')} cells updated.")
-
 # メイン処理
 if __name__ == '__main__':
     tbl = os.getenv('BATCH_CHECK_TABLE')
     user_id1 = "7"
     user_id2 = "6"
     update_data_mysql(tbl,user_id1,user_id2)
-    # write_to_google_sheets(data)
-    # print(data)
