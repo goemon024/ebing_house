@@ -31,11 +31,13 @@ def create_mysql_backup():
                 print(f"mysqldump failed: {error.decode()}")
                 return False
         
-        logging.info(f"Backup file created successfully.")  
+        logging.info("Backup file created successfully.")  
+        print("Backup file created successfully.")
         # print(f"Backup file created successfully.")
         return True
     except Exception as e:
-        logging.info(f"Error during making MySQL backup file : {str(e)}")  
+        logging.info(f"Error during making MySQL backup file : {str(e)}")
+        print(f"Error during making MySQL backup file : {str(e)}")
         # print(f"Error during making MySQL backup file : {str(e)}")
         return False
         
@@ -46,10 +48,13 @@ def upload_to_dropbox(file_path):
             # Dropboxにファイルをアップロード
             dbx.files_upload(f.read(), f'/{file_path}', mode=dropbox.files.WriteMode.overwrite)
         # print(f"File uploaded to Dropbox successfully.")
-        logging.info(f"File uploaded to Dropbox successfully.")  
+        logging.info(f"File uploaded to Dropbox successfully.")
+        print(f"File uploaded to Dropbox successfully.")  
+
 
     except Exception as e:
         logging.info(f"Error during uploading to Dropbox.")  
+        print(f"Error during uploading to Dropbox.") 
         # print(f"Error during making MySQL backup file : {str(e)}")
 
         
