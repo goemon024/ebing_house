@@ -21,9 +21,9 @@ logging.basicConfig(
 def update_data_mysql(tbl,user_id1,user_id2):
     try:
         # MySQLに接続
-        host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
+        host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST')
+        user=os.getenv('DB_USER')
+        password=os.getenv('DB_PASSWORD')
         database=os.getenv('DB_NAME')
 
         DATABASE_URL = os.getenv('JAWSDB_URL')
@@ -34,7 +34,8 @@ def update_data_mysql(tbl,user_id1,user_id2):
             password = url.password   
             database = url.path[1:]
   
-        conn = mysql.connector.connect(host,user,password,database)      
+        conn = mysql.connector.connect(host=host,user=user,
+                                       password=password,database=database)      
         cursor = conn.cursor()
         
         # 最新の日付を取得
