@@ -21,13 +21,13 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
-class CustomHomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'home.html'
+# class CustomHomeView(LoginRequiredMixin, TemplateView):
+#     template_name = 'home.html'
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['today_date'] = timezone.now().date()
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['today_date'] = timezone.now().date()
+#         return context
 
 class Tutorial(LoginRequiredMixin,TemplateView):
     template_name= 'tutorial.html'
@@ -245,6 +245,7 @@ class BaseDrill(LoginRequiredMixin, ListView):
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
         form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
         if form.is_valid():
             start_date = form.cleaned_data['start_date']

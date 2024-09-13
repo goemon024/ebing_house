@@ -1,0 +1,27 @@
+2024-09-13 02:39:50,581 - ERROR - 予期しないエラーが発生しました: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{tbl} WHERE user_id = '7'' at line 1
+2024-09-13 02:46:09,504 - ERROR - MySQLエラーが発生しました: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{tbl} WHERE user_id = '7'' at line 1
+2024-09-13 02:47:48,170 - INFO - User_id=7 のデータを削除しました: 89 件
+2024-09-13 02:47:48,184 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 03:11:43,403 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-13 03:11:43,421 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 03:14:46,462 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2024-09-13 03:18:31,672 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2024-09-13 03:18:49,376 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2024-09-13 03:19:30,871 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2024-09-13 03:27:51,791 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-13 03:27:51,803 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 03:28:19,306 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-13 03:28:19,321 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 03:28:48,938 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-13 03:28:48,952 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 03:29:00,194 - ERROR - 予期しないエラーが発生しました: unsupported operand type(s) for -: 'datetime.timedelta' and 'int'
+2024-09-13 03:29:18,520 - ERROR - 予期しないエラーが発生しました: unsupported operand type(s) for -: 'datetime.date' and 'int'
+2024-09-13 03:32:00,931 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-13 03:32:00,943 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 03:32:19,118 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-13 03:32:19,133 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 03:39:44,864 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-13 03:39:44,877 - INFO - User_id=7 のデータを user_id=6 として複製しました: 140 件
+2024-09-13 23:11:10,392 - INFO - Backup file created successfully.
+2024-09-13 23:11:10,397 - INFO - Request to files/upload
+2024-09-13 23:11:11,737 - INFO - File uploaded to Dropbox successfully.
