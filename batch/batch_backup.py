@@ -32,6 +32,8 @@ def create_mysql_backup():
             user = url.username       
             password = url.password   
             database = url.path[1:]
+            
+        print(url,host,user,password)
         
         dump_command = f"mysqldump -h {host} -u {user} -p{password} {database}"
         with open("backup.sql", 'w') as f:
