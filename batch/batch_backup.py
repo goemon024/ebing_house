@@ -18,7 +18,8 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',  # ログのフォーマット
 )
 
-def create_mysql_backup():
+def create_mysql_backup(backupfile):
+    """ JAWS sql server のデータをバックアップ"""
     try:
         host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST')
         user=os.getenv('DB_USER')
@@ -32,11 +33,9 @@ def create_mysql_backup():
             user = url.username       
             password = url.password   
             database = url.path[1:]
-            
-        print(url,host,user,password)
         
         dump_command = f"mysqldump -h {host} -u {user} -p{password} {database}"
-        with open("backup.sql", 'w') as f:
+        with open(backupfile, 'w') as f:
             process = Popen(dump_command.split(), stdout=f, stderr=PIPE)
             _, error = process.communicate()
             if process.returncode != 0:
@@ -55,6 +54,7 @@ def create_mysql_backup():
         
 
 def upload_to_dropbox(file_path):
+    """ 無料版では困難だったため使わない"""
     try:
         with open(file_path, 'rb') as f:
             # Dropboxにファイルをアップロード
@@ -72,5 +72,6 @@ def upload_to_dropbox(file_path):
         
 if __name__ == "__main__":
     BACKUP_FILE = 'backup.sql'
-    if create_mysql_backup():
-        upload_to_dropbox(BACKUP_FILE)
+    create_mysql_backup(BACKUP_FILE)
+    # if create_mysql_backup():
+    #     upload_to_dropbox(BACKUP_FILE)
