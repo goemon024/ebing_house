@@ -25,3 +25,14 @@
 2024-09-13 23:11:10,392 - INFO - Backup file created successfully.
 2024-09-13 23:11:10,397 - INFO - Request to files/upload
 2024-09-13 23:11:11,737 - INFO - File uploaded to Dropbox successfully.
+2024-09-14 02:15:52,430 - INFO - Error during making MySQL backup file : local variable 'url' referenced before assignment
+2024-09-14 02:17:12,298 - INFO - Backup file created successfully.
+2024-09-14 02:17:12,303 - INFO - Request to files/upload
+2024-09-14 02:17:12,555 - INFO - ExpiredCredentials status_code=401: Refreshing and Retrying
+2024-09-14 02:17:12,555 - WARNING - Unable to refresh access token without                 refresh token and app key
+2024-09-14 02:17:12,556 - INFO - Request to files/upload
+2024-09-14 02:17:12,815 - INFO - Error during uploading to Dropbox:AuthError('48a98fd149b648c8a06bdbce80249691', AuthError('expired_access_token', None))
+2024-09-14 15:43:21,950 - INFO - Backup file created successfully.
+2024-09-14 15:44:09,577 - INFO - Backup file created successfully.
+2024-09-14 15:44:31,812 - INFO - User_id=7 のデータを削除しました: 140 件
+2024-09-14 15:44:31,831 - INFO - User_id=7 のデータを user_id=6 から複製しました: 140 件
