@@ -5,6 +5,11 @@
 <link href="{% static 'style2.css' %}" rel="stylesheet">
 
 <style>
+    body, html {
+      align-items: center;
+      overflow-x: auto;
+    }
+
     .btn-custom {
         display: inline-flex;
         align-items: center;
@@ -25,7 +30,7 @@
 {% block content %}
 <form action = '' method='POST'> {% csrf_token %}
     <p>本当に削除しますか？</p>
-<div class ='container'>
+<div class ='container' style="display: flex; gap: 0.5rem;">
 <input type='submit' value='delete' class="btn-custom">
 <a href ="{% url 'wlist:list_memo' %}" class="btn btn-outline-dark block btn-custom"  role="button" aria-disabled="true"  >戻る</a>
 </div>

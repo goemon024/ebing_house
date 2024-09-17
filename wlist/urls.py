@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path,include
 from .views import WordsList, MemoList, WordMemoList, McList,\
-WordsCreate,WordsDelete, WordsUpdate,WordsRecord, WordsReview,\
-MemoCreate, MemoDelete, MemoUpdate,  MemoRecord, MemoReview,\
-McCreate, McDelete, McUpdate, McRecord, McReview,\
+WordsDelete, WordsUpdate,WordsRecord, WordsReview,\
+MemoDelete, MemoUpdate,  MemoRecord, MemoReview,\
+McDelete, McUpdate, McRecord, McReview,\
 WordsDrill, MemoDrill, McDrill, Tutorial, send_email_view
 
 app_name = 'wlist'
@@ -14,7 +14,7 @@ urlpatterns = [
     path('list_top/', WordMemoList.as_view(), name='list_top'),  ## ？不使用？
     # path('detail/<int:pk>', TodoDetail.as_view(), name='detail'),
     
-    path('word_create/', WordsCreate.as_view(), name='create'),
+    # path('word_create/', WordsCreate.as_view(), name='create'),
     path('word_delete/<int:pk>', WordsDelete.as_view(), name='word_delete'),
     path('word_update/<int:pk>', WordsUpdate.as_view(), name='word_update'),
     path('word_record/', WordsRecord.as_view(), name='word_record'),
@@ -26,13 +26,13 @@ urlpatterns = [
     
     path('memo_record/', MemoRecord.as_view(), name='memo_record'),
     path('memo_review/', MemoReview.as_view(), name='memo_review'),    
-    path('memo_create/', MemoCreate.as_view(), name='memo_create'),
+    # path('memo_create/', MemoCreate.as_view(), name='memo_create'),
     path('memo_delete/<int:pk>', MemoDelete.as_view(), name='memo_delete'),
     path('memo_update/<int:pk>', MemoUpdate.as_view(), name='memo_update'),
 
     path('mc/mc_record/', McRecord.as_view(), name='mc_record'),
     path('mc/mc_review/', McReview.as_view(), name='mc_review'),    
-    path('mc/mc_create/', McCreate.as_view(), name='mc_create'),
+    # path('mc/mc_create/', McCreate.as_view(), name='mc_create'),
     path('mc/mc_delete/<int:pk>', McDelete.as_view(), name='mc_delete'),
     path('mc/mc_update/<int:pk>', McUpdate.as_view(), name='mc_update'),
 
