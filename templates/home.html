@@ -9,7 +9,7 @@
     }
 
     body, html {
-        height: 100vh; /* 全体の高さを設定 */
+        height: 100vh;
         width:100vw; 
         margin: 0; /* マージンをリセット */
         display: flex;
@@ -20,36 +20,41 @@
         gap: 0em;
         width: 100%; /* 横方向に中央揃え */
         /* overflow-y: auto; */
-
-        height: 100vh; /* 画面全体の高さに合わせる */
-        overflow: hidden; 
+        overflow-x: auto;
+        height: 100vh; 
+        overflow-y: hidden; 
     }
 
     .menu-container {
         flex: 1 1 auto;  /* メニュー部分の幅 */
-        padding: 2em;
+        padding: 2rem;
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: 1rem;
         background: #333;
         color: white;
 
-        min-width: 300px;
+        min-width: 250px;
         height: 100%;
         overflow-y: auto; 
     }
 
     .content-container {
         flex: 4 1 auto ;  /* コンテンツ部分の幅 */
-        padding: 1em;
+        padding: 1rem;
         /* /* display: flex; */
         /* flex-direction: column; */
-        gap: 2em;
+        gap: 2rem;
     }
 
     .container {
-        display: block; /* 通常のブロック要素として縦に並べる */
-        margin-bottom: 1em; /* 各要素の間にスペースを追加 */
+        /* display: block; 通常のブロック要素として縦に並べる */
+
+        display: flex;
+        justify-content: flex-start;
+        margin:3vw;
+        gap:2vw;
+        margin-bottom: 1rem; /* 各要素の間にスペースを追加 */
     }
 
     #menu1, #menu2 {
@@ -77,6 +82,57 @@
         margin: 0.3em;
     }
 
+    .media-small {
+            display:none;
+    }
+
+    @media (max-width: 768px) {
+        .content-container {
+            overflow-y: auto;
+        }
+
+        .container {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #menu1,#menu2{
+            width:40vw;
+            min-width:200px;
+        }
+    }
+
+    @media (max-width:576px){
+        .media-small {
+            display:block;
+        }
+        .media-large {
+            display:none;
+        }
+ 
+        .main-container {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 0rem;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .content-container {
+            overflow-y: visible;
+        }
+        
+        .menu-container {
+            overflow-y: visible;
+            height: auto;
+        }
+
+        #menu1,#menu2{
+            width:75vw;
+        }
+    }
 </style>
 
 {% endblock head %}
@@ -92,11 +148,10 @@
 <div class="main-container">
 
     <div class = "menu-container">
-        <a href ="{% url 'wlist:tutorial' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:5em">チュートリアル</a>
-        <a href ="{% url 'wlist:list_word' %}" class="btn btn-secondary mb-2" role="button" style="margin-top:3em">英単語帳編集</a>
-        <a href ="{% url 'wlist:list_memo' %}" class="btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳編集</a>
-        <a href ="{% url 'wlist:list_mc' %}"   class="btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳２編集</a>
-
+        <a href ="{% url 'wlist:tutorial' %}" class="media-large btn btn-secondary mb-2" role="button" style="margin-top:5em">チュートリアル</a>
+        <a href ="{% url 'wlist:list_word' %}" class="media-large btn btn-secondary mb-2" role="button" style="margin-top:3em">英単語帳編集</a>
+        <a href ="{% url 'wlist:list_memo' %}" class="media-large btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳編集</a>
+        <a href ="{% url 'wlist:list_mc' %}"   class="media-large btn btn-secondary mb-2" role="button" style="margin-bottom:3em">メモ帳２編集</a>
 
         <div style="border: 2px solid #8FBC8F; border-radius: 10px; padding:5%;">
         <form method="get" action="{% url 'wlist:word_drill' %}" >
@@ -146,14 +201,24 @@
         </form>
         </div>
 
+        <a href ="{% url 'wlist:tutorial' %}" class="media-small btn btn-secondary mb-2" role="button" style="margin-top:3rem">チュートリアル</a>
+        <a href ="{% url 'wlist:list_word' %}" class="media-small btn btn-secondary mb-2" role="button" style="margin-top:0.5rem">英単語帳編集</a>
+        <a href ="{% url 'wlist:list_memo' %}" class="media-small btn btn-secondary mb-2" role="button" style="margin-top:0.5rem">メモ帳編集</a>
+        <a href ="{% url 'wlist:list_mc' %}"   class="media-small btn btn-secondary mb-2" role="button" style="margin-top:0.5rem">メモ帳２編集</a>
+
+        <form method="post" class="media-small" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class='btn btn-outline-light block' type="submit" style="width:10%; min-width:100px; float: left;">ログアウト</button>
+        </form>
+
     </div>
 
     <div class="content-container">
-        <div class="container" style="margin:20px">
+        <div class="container" style="display: block; margin:20px">
             <h2>エビングハウス 英単語帳＆メモ帳</h2>
             <p>{{ user.get_username }} さん</p>    
         </div>
-        <div class="container" style="display: flex; justify-content: flex-start; margin:3vw; gap:2vw ;">
+        <div class="container">
             <div id="menu1" style=" border:8px solid greenyellow; background-color: lightgreen;">
                 <h3>英単語帳</h3>
                 <a href ="{% url 'wlist:word_record' %}" class="btn btn-success mb-2" role="button">今日のインプット</a>
@@ -168,15 +233,14 @@
                 <h3>メモ帳２</h3>
                 <a href ="{% url 'wlist:mc_record' %}" class="btn btn-light mb-2" role="button">今日のインプット</a>
                 <a href ="{% url 'wlist:mc_review' %}" class="btn btn-light mb-2" role="button">復習（1,7,28日前）</a>
-            </div>  
-
-
+            </div> 
         </div>
     
-        <form method="post" action="{% url 'logout' %}">
+        <form class="media-large" method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button class='btn btn-outline-dark block' type="submit" style="width:10%; float: left; margin:20px;">ログアウト</button>
+            <button class='btn btn-outline-dark block' type="submit" style="width:10%; min-width:100px; float: left; margin:20px;">ログアウト</button>
         </form>
+
     </div>
 
 

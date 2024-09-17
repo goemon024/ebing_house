@@ -24,9 +24,9 @@
         display: block;
         justify-content: center;
         align-items: center;
-        font-size: 2em;
+        /* font-size: 2em; */
         text-align: center;
-        background: #f0f0f0;
+        background: whitesmoke;
         border: 1px solid #ccc;
         border-radius: 10px;
         transition: transform 0.5s ease-in-out;
@@ -38,16 +38,17 @@
     .upperpart {
         align-content: center;
         background: #f0f0f0;
-        font-size: 5em; 
+        font-size: 10rem; 
     }
 
     .underpart {
         background: whitesmoke;
-        font-size: 1em; 
+        font-size: 2rem; 
     }
 
     .graystatus {
-        color:#f0f0f0 ;;
+        opacity: 0;
+        /* color:#f0f0f0 ;; */
     }
 
     #hoverMenu {
@@ -64,6 +65,11 @@
         transition: width 0.2s ease;
     }
 
+    #hoverMenu a {
+        margin-bottom: 20px ;
+        display:block;
+    }
+
     .no-data {
         display: flex;
         flex-direction: column;
@@ -75,17 +81,49 @@
         text-align: center;
     }
 
+    @media (max-width: 576px){
+    #hoverMenu {
+        position: fixed; /* 最上部に固定 */
+        top: 0;          /* 画面の一番上に */
+        left: 0;         /* 左に固定 */
+        width: 100%;     /* 幅を100%に */
+        height: 6%;    /* 高さは自動調整 */
+        background-color: #333;
+    }
+    #hoverMenu a {
+        display: inline-block;
+        width: auto;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        margin-bottom: 0px ;
+    }
+    a.mobile-hide {
+        display: none;
+    }
+    .upperpart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4rem;
+    }
+    .underpart {
+        font-size: 1.5rem;
+    }
+  }
+
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const hoverMenu = document.getElementById('hoverMenu');
         
+        if (window.innerWidth > 576){     
         window.addEventListener('mousemove', function(e) {
             if (e.clientX < 100) {
                 hoverMenu.style.width = '100px'; 
             } else {
                 hoverMenu.style.width = '0';             }
         });
+    }
     });
 
 </script>
@@ -98,7 +136,7 @@
 <div id="flashcard-container">
     {% for card in drill_records %}
     <div class="flashcard {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
-        <div class = 'upperpart' style="height:60%; font-size: 3em; ">{{ card.memo1 }}</div>
+        <div class = 'upperpart' style="height:60%;">{{ card.memo1 }}</div>
         <div class = 'underpart graystatus' style="height:35%; align-content:center;">{{ card.memo2 }}</div>
     </div>
 
@@ -120,7 +158,7 @@
 <div id="hoverMenu">
     <a href="/" >TOP</a>
     <a href="/wlist/mc/list_mc" >メモ帳２編集</a>
-    <a href="/accounts/login">LOG OUT</a>
+    <a href="/accounts/login" class="mobile-hide">LOG OUT</a>
 </div>
 
 {% endblock content %}
