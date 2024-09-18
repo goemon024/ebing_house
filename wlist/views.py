@@ -242,11 +242,18 @@ class BaseDrill(LoginRequiredMixin, ListView):
     model = None
     context_object_name = 'drill_records'
     success_url = None
+    is_all = False
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
-        form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+        if self.is_all:
+            drill_list = list(self.model.objects.filter(user=self.request.user))
+            random.shuffle(drill_list)
+            context['drill_records'] = drill_list
+            return context
+
+        form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得        
         if form.is_valid():
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
@@ -273,6 +280,13 @@ class McDrill(BaseDrill):
     model = McModel
     # context_object_name = 'drill_records'
     success_url = reverse_lazy('wlist:mc_drill')
+    
+class McAll(BaseDrill):
+    template_name = 'mc/mc_drill.html'
+    model = McModel
+    # context_object_name = 'drill_records'
+    success_url = reverse_lazy('wlist:mc_drill')
+    is_all = True
 
 ###################################################################
 
