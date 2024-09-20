@@ -4,7 +4,7 @@ from .views import WordsList, MemoList, WordMemoList, McList,\
 WordsDelete, WordsUpdate,WordsRecord, WordsReview,\
 MemoDelete, MemoUpdate,  MemoRecord, MemoReview,\
 McDelete, McUpdate, McRecord, McReview,\
-WordsDrill, MemoDrill, McDrill, Tutorial, send_email_view
+WordsDrill, MemoDrill, McDrill, McAll, Tutorial, send_email_view
 
 app_name = 'wlist'
 
@@ -23,6 +23,8 @@ urlpatterns = [
     path('word_drill/', WordsDrill.as_view(), name='word_drill'),
     path('memo_drill/', MemoDrill.as_view(), name='memo_drill'),
     path('mc/mc_drill/', McDrill.as_view(), name='mc_drill'),
+    path('mc/mc_all/', McAll.as_view(), name='mc_all'),
+
     
     path('memo_record/', MemoRecord.as_view(), name='memo_record'),
     path('memo_review/', MemoReview.as_view(), name='memo_review'),    

@@ -282,10 +282,10 @@ class McDrill(BaseDrill):
     success_url = reverse_lazy('wlist:mc_drill')
     
 class McAll(BaseDrill):
-    template_name = 'mc/mc_drill.html'
+    template_name = 'mc/mc_all.html'
     model = McModel
     # context_object_name = 'drill_records'
-    success_url = reverse_lazy('wlist:mc_drill')
+    success_url = reverse_lazy('wlist:mc_all')
     is_all = True
 
 ###################################################################
