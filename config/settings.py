@@ -51,6 +51,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'wlist.apps.WlistConfig',
+    ##追加
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api_user.apps.ApiUserConfig',
+    'api_word.apps.ApiWordConfig',
+    'api_memo1.apps.ApiMemo1Config',
+    'api_memo2.apps.ApiMemo2Config',
 ]
 
 LOGIN_REDIRECT_URL = 'home'
@@ -157,7 +164,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
