@@ -80,7 +80,12 @@ class McList(LoginRequiredMixin,ListView):
 #     def form_valid(self, form):
 #         form.instance.user = self.request.user
 #         return super().form_valid(form)
-    
+
+class WordsCheck(LoginRequiredMixin,UpdateView):
+    template_name = 'word_check.html'
+    model = WordsModel
+    fields = ('user','word','reg_date','fusen')
+    success_url = reverse_lazy('wlist:list_word')
     
 class WordsDelete(LoginRequiredMixin,DeleteView):
     template_name = 'word_delete.html'
@@ -90,8 +95,16 @@ class WordsDelete(LoginRequiredMixin,DeleteView):
 class WordsUpdate(LoginRequiredMixin,UpdateView):
     template_name = 'word_update.html'
     model = WordsModel
-    fields = ('user','word','mean1','mean2','reg_date')
+    fields = ('user','word','mean1','mean2','reg_date','fusen')
     success_url = reverse_lazy('wlist:list_word')
+
+    def form_valid(self, form):
+        # ラジオボタンで送られた"True"/"False"をBooleanに変換
+        fusen_value = self.request.POST.get('fusen')
+        print(fusen_value)
+        form.instance.fusen = (fusen_value == 'True')
+        print(form.instance.fusen)
+        return super().form_valid(form)
 
     # def form_valid(self, form):
     #     instance = form.save(commit=False)
@@ -259,8 +272,24 @@ class BaseDrill(LoginRequiredMixin, ListView):
 class WordsDrill(BaseDrill):
     template_name = 'word_drill.html'
     model = WordsModel
-    # context_object_name = 'drill_records'
     success_url = reverse_lazy('wlist:word_drill')
+
+class WordsCheckDrill(BaseDrill):
+    template_name = 'word_check_drill.html'
+    model = WordsModel
+    success_url = reverse_lazy('wlist:word_check_drill')
+    
+    def get_context_data(self, **kwargs):
+        # BaseDrillから再オーバーライド
+        context = super().get_context_data(**kwargs)
+        # form = DateRangeForm(self.request.GET or None)  # GETリクエストからフォームデータを取得
+        # if form.is_valid():
+        drill_list = list(self.model.objects.filter(user=self.request.user,
+                                fusen=True))
+        random.shuffle(drill_list)
+        context['drill_records'] = drill_list
+        return context
+    
 
 class MemoDrill(BaseDrill):    
     template_name = 'memo_drill.html'
@@ -273,6 +302,13 @@ class McDrill(BaseDrill):
     model = McModel
     # context_object_name = 'drill_records'
     success_url = reverse_lazy('wlist:mc_drill')
+    
+class McAll(BaseDrill):
+    template_name = 'mc/mc_all.html'
+    model = McModel
+    # # context_object_name = 'drill_records'
+    success_url = reverse_lazy('wlist:mc_all')
+    is_all = True
 
 ###################################################################
 
