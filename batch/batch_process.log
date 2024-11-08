@@ -44,3 +44,64 @@
 2024-11-08 00:48:51,301 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2024-11-08 00:49:05,245 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2024-11-08 00:49:19,008 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:09:43,018 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-11-08 15:14:48,174 - INFO - 
+2024-11-08 15:16:07,321 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-11-08 15:16:52,359 - INFO - 
+2024-11-08 15:19:04,448 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-11-08 15:20:15,159 - INFO - 
+2024-11-08 15:20:40,857 - INFO - 
+2024-11-08 15:21:11,011 - INFO - 
+2024-11-08 15:21:24,726 - INFO - 
+2024-11-08 15:22:15,464 - INFO - 
+2024-11-08 15:23:59,482 - INFO - 
+2024-11-08 15:28:20,281 - ERROR - MySQLエラーが発生しました: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== 'images/default.webp'' at line 2
+2024-11-08 15:28:41,854 - ERROR - MySQLエラーが発生しました: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== images/default.webp' at line 2
+2024-11-08 15:29:00,350 - ERROR - MySQLエラーが発生しました: 1054 (42S22): Unknown column 'images' in 'where clause'
+2024-11-08 15:29:16,845 - ERROR - MySQLエラーが発生しました: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== images/default.webp' at line 2
+2024-11-08 15:29:29,463 - INFO - 
+2024-11-08 15:30:38,034 - INFO - 
+2024-11-08 15:30:46,175 - INFO - 
+2024-11-08 15:31:06,391 - ERROR - MySQLエラーが発生しました: 1054 (42S22): Unknown column 'images' in 'where clause'
+2024-11-08 15:31:24,332 - INFO - 
+2024-11-08 15:31:31,981 - ERROR - MySQLエラーが発生しました: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== 'images/default.webp'' at line 3
+2024-11-08 15:32:40,428 - INFO - 
+2024-11-08 15:36:39,876 - INFO - 
+2024-11-08 15:40:15,497 - INFO - 
+2024-11-08 15:40:28,353 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:40:42,055 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:43:32,534 - INFO - 
+2024-11-08 15:43:44,103 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:43:56,867 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:44:09,406 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:44:21,107 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:44:34,206 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:44:49,402 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:45:01,672 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:45:13,531 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:45:24,744 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:45:38,934 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:45:48,951 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:46:00,158 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:46:10,878 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:46:23,861 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:46:37,004 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:46:48,133 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:47:00,796 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:47:12,637 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:47:25,472 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:47:36,883 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:47:48,281 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:47:59,195 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:48:01,445 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 429 Too Many Requests"
+2024-11-08 15:48:01,445 - INFO - Retrying request to /images/generations in 0.490093 seconds
+2024-11-08 15:48:13,351 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:48:27,828 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:48:41,715 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:48:51,531 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 400 Bad Request"
+2024-11-08 15:49:01,591 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:49:15,793 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:49:29,252 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:49:40,670 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:49:54,098 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-11-08 15:50:10,691 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"

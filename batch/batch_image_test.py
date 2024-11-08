@@ -19,13 +19,15 @@ load_dotenv()
 output_folder = "media/images"
 
 tbl = os.getenv('BATCH_CHECK_TABLE')
-username="6"
+print(tbl)
+username="12"
 word_list = get_target_mysql(tbl,username)
 
-for i in range(3):
-  prompt = f"{word_list[i+2]}という言葉からアメリカ人が抱くイメージを、画像化してください。多様なイメージが抱かれる場合は、各イメージが１枚の画像に含まれるようにしてください。"
-  output_filename = f"{word_list[i+2]}_various.webp"
-#   print(prompt)
+for i in range(len(word_list)):
+  # 多様なイメージが抱かれる場合は、各イメージが１枚の画像に含まれるようにしてください。
+  prompt = f"{word_list[i]}という言葉からアメリカ人が抱くイメージを、画像化してください。"
+  output_filename = f"{word_list[i]}.webp"
+  print(prompt)
   
   client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
 

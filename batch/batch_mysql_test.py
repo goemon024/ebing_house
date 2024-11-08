@@ -44,9 +44,10 @@ def get_target_mysql(tbl,username):
                                        password=password,database=database)      
         cursor = conn.cursor()
         
-        # user_id = 6 : super1  # 検索したいユーザーのID
+        # user_id = 12 : super1  # 検索したいユーザーのID
         query = f"""SELECT word FROM  {tbl} WHERE user_id = %s 
-        AND mean2 !='-----------------------------'"""
+        AND mean2 !='-----------------------------'
+        AND img = 'images/default.webp'"""
                 
         cursor.execute(query, (username,))
         
@@ -59,7 +60,7 @@ def get_target_mysql(tbl,username):
         
         conn.commit()
         logging.info("")
-        print("")
+        print(len(word_list))
     
     except mysql.connector.Error as err:
         conn.rollback()  # ロールバック
@@ -88,5 +89,7 @@ def get_target_mysql(tbl,username):
 # メイン処理
 if __name__ == '__main__':
     tbl = os.getenv('BATCH_CHECK_TABLE')
-    username="6"
+    tbl = 'wlist_wordsmodel'
+    username="12"
+
     get_target_mysql(tbl,username)
