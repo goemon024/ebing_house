@@ -6,6 +6,8 @@ MemoDelete, MemoUpdate,  MemoRecord, MemoReview,\
 McDelete, McUpdate, McRecord, McReview,\
 WordsDrill, WordsCheckDrill, MemoDrill, McDrill, McAll, Tutorial, send_email_view
 
+
+
 app_name = 'wlist'
 
 urlpatterns = [
@@ -46,3 +48,4 @@ urlpatterns = [
     #不使用
     path('send_email/', send_email_view, name='send_email'),
 ]
+
