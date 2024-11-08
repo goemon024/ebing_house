@@ -25,8 +25,7 @@ class WordsModel(models.Model):
     
     ## 追加
     fusen = models.BooleanField(default=False)
-    img = models.ImageField(upload_to='images/', null=True, blank=True)
-    
+    img = models.ImageField(upload_to='images/', default='images/default.webp', null=True, blank=True)
     
     def __str__(self):
         return self.word
@@ -49,7 +48,6 @@ class WordsModel(models.Model):
             original = WordsModel.objects.get(pk=self.pk)
             self.user = original.user
             self.reg_date = original.reg_date
-  
 
         super(WordsModel, self).save(*args, **kwargs)
         
