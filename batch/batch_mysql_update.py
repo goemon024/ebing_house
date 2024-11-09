@@ -46,7 +46,7 @@ def image_update_mysql(tbl):
                                        password=password,database=database)      
         cursor = conn.cursor()
         
-        # user_id = 12 関係なしの一律処理。
+        # default.webpを変更
         default_list = []
         query1 = f"""SELECT word FROM  {tbl} WHERE img = 'images/default.webp'"""
                 
@@ -55,14 +55,30 @@ def image_update_mysql(tbl):
         
         for row in records:
             default_list.append(row[0])
-            print(row[0])
+        print(len(default_list))
             
         for wd in default_list:
             query2 = f"""UPDATE {tbl} SET img = 'images/{wd}.webp' WHERE word = '{wd}'"""
             cursor.execute(query2)
 
+        # nullを変更
+        null_list = []
+        query3 = f"""SELECT word FROM  {tbl} WHERE img in null"""
+                
+        cursor.execute(query3)
+        records = cursor.fetchall()
+
+        for row in records:
+            null_list.append(row[0])
+        print(len(null_list))
+            
+        for wd in null_list:
+            query4 = f"""UPDATE {tbl} SET img = 'images/{wd}.webp' WHERE word = '{wd}'"""
+            cursor.execute(query4)
+
+
         conn.commit()
-        logging.info("")
+        logging.info("img field update")
     
     except mysql.connector.Error as err:
         conn.rollback()  # ロールバック
