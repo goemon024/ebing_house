@@ -55,7 +55,7 @@ def image_update_mysql(tbl):
         
         for row in records:
             default_list.append(row[0])
-            # print(row[0])
+            print(row[0])
             
         for wd in default_list:
             query2 = f"""UPDATE {tbl} SET img = 'images/{wd}.webp' WHERE word = '{wd}'"""
