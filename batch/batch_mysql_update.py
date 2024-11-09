@@ -63,7 +63,7 @@ def image_update_mysql(tbl):
 
         # nullを変更
         null_list = []
-        query3 = f"""SELECT word FROM  {tbl} WHERE img in null"""
+        query3 = f"""SELECT word FROM  {tbl} WHERE img IS NULL"""
                 
         cursor.execute(query3)
         records = cursor.fetchall()
