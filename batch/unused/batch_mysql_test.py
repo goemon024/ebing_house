@@ -7,9 +7,9 @@ from dotenv import load_dotenv
 from datetime import date,timedelta
 from urllib.parse import urlparse
 
-# load_dotenv()
-# IS_DOCKER = os.path.exists('/.dockerenv')
-# IS_HEROKU = os.getenv('DYNO') is not None
+load_dotenv()
+IS_DOCKER = os.path.exists('/.dockerenv')
+IS_HEROKU = os.getenv('DYNO') is not None
 
 logging.basicConfig(
     filename='batch/batch_process.log',  # ログファイルの名前
@@ -20,9 +20,9 @@ logging.basicConfig(
 # MySQLに接続してデータを取得
 def get_target_mysql(tbl,username):
     
-    load_dotenv()
-    IS_DOCKER = os.path.exists('/.dockerenv')
-    IS_HEROKU = os.getenv('DYNO') is not None
+    # load_dotenv()
+    # IS_DOCKER = os.path.exists('/.dockerenv')
+    # IS_HEROKU = os.getenv('DYNO') is not None
 
     
     try:
@@ -44,12 +44,14 @@ def get_target_mysql(tbl,username):
                                        password=password,database=database)      
         cursor = conn.cursor()
         
-        # user_id = 12 : super1  # 検索したいユーザーのID
+        user_id = 12         #: super1  # 検索したいユーザーのID
         query = f"""SELECT word FROM  {tbl} WHERE user_id = %s 
-        AND mean2 !='-----------------------------'
-        AND img = 'images/default.webp'"""
-                
-        cursor.execute(query, (username,))
+        AND mean2 !='-----------------------------'"""
+        # AND img = 'images/default.webp'"""
+        print(query)
+        # cursor.execute(query, user_id)
+        cursor.execute(query, (user_id,))
+
         
         # 結果を取得
         records = cursor.fetchall()
