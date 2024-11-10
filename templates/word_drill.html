@@ -201,11 +201,12 @@
         <div class = 'upperpart p1'>{{ card.word }}</div>
         <div class = 'underpart mean1 p1' style="align-content:center;">
             <span class="gray1">{{ card.mean1 }}</span>
-            {% if card.img %}
-            <img class="gray2" src="{{ card.img.url }}" style="height:100%;margin:auto;">
-            {% else %}
-            <img class="gray2" src="/media/images/default.webp" style="height:100%;margin:auto;">
-            {% endif %}
+            <!-- {% if card.img %} -->
+            <img class="gray2" src="{{ card.img.url }}" style="height:100%;margin:auto;"
+            onerror="this.onerror=null; this.src='/media/images/default.webp';">
+            <!-- {% else %} -->
+            <!-- <img class="gray2" src="/media/images/default.webp" style="height:100%;margin:auto;">
+            {% endif %} -->
         </div>
             <div class = 'underpart mean2 p1' style="align-content:top;">
             <span class ="gray1">{{ card.mean2 }}</span>
