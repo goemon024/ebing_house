@@ -112,7 +112,7 @@ def resize_and_compress_image(input_path, output_path, new_size=(512, 512), qual
 
 def image_generate(default_list):
     
-    output_folder0 = '/tmp/images0'  # 圧縮前の画像を保存するフォルダ
+    output_folder0 = '/tmp'  # 圧縮前の画像を保存するフォルダ
     output_folder  = 'media/images'   # 圧縮後の画像を保存するフォルダ
     os.makedirs(output_folder0, exist_ok=True)
     os.makedirs(output_folder, exist_ok=True)
