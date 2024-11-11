@@ -30,10 +30,41 @@ $(document).ready(function() {
             currentIndex = nextIndex; // インデックスを更新
         }, 400); // スライドの時間と一致させる
     }
+
+
+    function slideToPreviousCard() {
+        console.log(currentIndex);
+        if (currentIndex >=1){
+        const preIndex = (currentIndex - 1) % $flashcards.length;
+        $flashcards.eq(currentIndex).css('transform', 'translateX(100%)'); // 現在のカードを右にスライド
+        $flashcards.eq(preIndex).css('transform', 'translateX(-100%)'); // 次のカードを左からスライド
+
+        setTimeout(() => {
+            $flashcards.eq(currentIndex).addClass('hidden'); // 前のカードを非表示にする
+        }, 400); // スライドのアニメーションが終わった後に前のカードを非表示にする
+
+        setTimeout(() => {
+            $flashcards.eq(preIndex).removeClass('hidden')
+            $flashcards.eq(preIndex).css('transform', 'translateX(0px)'); // 次のカードを表示
+            currentIndex = preIndex; // インデックスを更新
+        }, 400); // スライドの時間と一致させる
+    }
+    }
     
     showFlashcard(currentIndex);
 
-    $('.upperpart').click(function() 
+    $('.left-upper').click(function() 
+    {
+        slideToPreviousCard();
+        $upperpart.attr('class', 'upperpart p1');
+        $underpart1.attr('class', 'underpart mean1 p1');
+        $underpart2.attr('class', 'underpart mean2 p1');
+        $('.underpart img').attr('class', 'gray2')
+        $('.underpart span').attr('class','gray1');
+        phaseStatus = 0;
+    });
+
+    $('.right-upper').click(function() 
     {
         slideToNextCard();
         $upperpart.attr('class', 'upperpart p1');
@@ -41,9 +72,10 @@ $(document).ready(function() {
         $underpart2.attr('class', 'underpart mean2 p1');
         $('.underpart img').attr('class', 'gray2')
         $('.underpart span').attr('class','gray1');
-
         phaseStatus = 0;
     });
+
+
 
     $('.underpart').click(function() {
         if (phaseStatus==0){
