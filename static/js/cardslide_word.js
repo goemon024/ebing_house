@@ -41,13 +41,13 @@ $(document).ready(function() {
 
         setTimeout(() => {
             $flashcards.eq(currentIndex).addClass('hidden'); // 前のカードを非表示にする
-        }, 400); // スライドのアニメーションが終わった後に前のカードを非表示にする
+        }, 600); // スライドのアニメーションが終わった後に前のカードを非表示にする
 
         setTimeout(() => {
             $flashcards.eq(preIndex).removeClass('hidden')
             $flashcards.eq(preIndex).css('transform', 'translateX(0px)'); // 次のカードを表示
             currentIndex = preIndex; // インデックスを更新
-        }, 400); // スライドの時間と一致させる
+        }, 600); // スライドの時間と一致させる
     }
     }
     
@@ -77,7 +77,7 @@ $(document).ready(function() {
 
 
 
-    $('.underpart').click(function() {
+    $('.right-under').click(function() {
         if (phaseStatus==0){
             console.log($underpart1)
     
@@ -125,4 +125,59 @@ $(document).ready(function() {
         }
 
     });
+
+    $('.left-under').click(function() {
+        if (phaseStatus==0){
+            console.log($underpart1)
+    
+            $upperpart.removeClass('p1');
+            $underpart1.removeClass('p1');
+            $underpart2.removeClass('p1');
+            $('.underpart img').removeClass('gray2')
+
+            $upperpart.addClass('p2');
+            $underpart1.addClass('p2');
+            $underpart2.addClass('p2');
+            // $underpart1.append(`<img src=${imagePath} class="image"/>`);
+
+            // console.log($underpart1.html());
+            // console.log(staticPath)
+            // console.log($underpart1)
+            // console.log($underpart1.length)
+
+            phaseStatus += 1 ;
+
+        }else if(phaseStatus==1){
+            $upperpart.removeClass('p2');
+            $underpart1.removeClass('p2');
+            $underpart2.removeClass('p2');
+
+            $upperpart.addClass('p1');
+            $underpart1.addClass('p1');
+            $underpart2.addClass('p1');
+            $('.underpart img').addClass('gray2');
+
+            // $underpart1.find('.image').remove();
+        
+            phaseStatus -= 1 ;
+
+        }else if(phaseStatus==2){
+
+            $upperpart.removeClass('p3');
+            $underpart1.removeClass('p3');
+            $underpart2.removeClass('p3');
+            $('.underpart img').removeClass('gray2')
+
+            $upperpart.addClass('p2');
+            $underpart1.addClass('p2');
+            $underpart2.addClass('p2');
+            $('.underpart span').addClass('gray1')
+
+            phaseStatus -= 1 ;
+
+        }
+
+    });
+
+
 });
