@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, authentication, permissions
 
-from .serializers import Memo1Serializer
+from .serializers import WordsSerializer
 from wlist.models import WordsModel
 from django.db.models import Q
 from rest_framework import viewsets
