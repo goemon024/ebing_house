@@ -23,6 +23,10 @@ class WordsModel(models.Model):
     mean2 = models.CharField(max_length=200,blank=True,null=True)
     reg_date = models.DateField(blank=True,null=True)
     
+    ## 追加
+    fusen = models.BooleanField(default=False)
+    img = models.ImageField(upload_to='images/', default='images/default.webp', null=True, blank=True)
+    
     def __str__(self):
         return self.word
     

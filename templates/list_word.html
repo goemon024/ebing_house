@@ -21,6 +21,11 @@
     padding-left: 10px; /* 少しの間隔を設定 */
 }
 
+ .check{
+  color: red;
+  text-decoration: underline;
+}
+
 #hoverMenu {
     position: fixed;
     width: 100px;
@@ -40,7 +45,9 @@
     display:block;
 }
 
-
+.btn{
+    white-space: nowrap;
+}
 @media (max-width: 576px) {
     #hoverMenu {
         position: fixed; /* 最上部に固定 */
@@ -72,12 +79,13 @@
 <div class="container">
   {% for item in object_list %}
   <div class="word-and-buttons">
-    <span class="word">{{ item.word }}</span>
-    <span class="mean1">{{ item.mean1 }}</span>
-    <span class="mean2">{{ item.mean2 }}</span>
-    <span class="date">{{ item.reg_date | date:"n月j日"}}</span>
+    <span class="word {% if item.fusen %}check{% endif %}">{{ item.word }}</span>
+    <span class="mean1 {% if item.fusen %}check{% endif %}">{{ item.mean1 }}</span>
+    <span class="mean2 {% if item.fusen %}check{% endif %}">{{ item.mean2 }}</span>
+    <span class="date {% if item.fusen %}check{% endif %}">{{ item.reg_date | date:"n月j日"}}</span>
+
     <div class="buttons">
-    <a href ="{% url 'wlist:word_update' item.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集</a>
+    <a href ="{% url 'wlist:word_update' item.pk %}" class="btn btn-info" tabindex="-1" role="button" aria-disabled="true">編集 付箋</a>
     <a href ="{% url 'wlist:word_delete' item.pk %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">削除</a>
     </div>
   </div>
