@@ -7,7 +7,7 @@ class Memo1Serializer(serializers.ModelSerializer):
     
     class Meta:
         model = MemoModel
-        fields = ('user','memo','reg_date')
+        fields = ('id','user','memo','reg_date')
         extra_kwargs = {'user':{ 'read_only':True}}
 
 
