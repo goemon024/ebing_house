@@ -7,7 +7,7 @@ class WordsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = WordsModel
-        fields = ('user','word','mean1','mean2','reg_date','img')
+        fields = ('id','user','word','mean1','mean2','reg_date','img')
         extra_kwargs = {'user':{ 'read_only':True}}
 
 
