@@ -3,14 +3,21 @@ from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from wlist.models import MemoModel
 
+from datetime import datetime
+
 class Memo1Serializer(serializers.ModelSerializer):
-    
+    # reg_date = serializers.DateField() 
+    reg_date = serializers.DateField(required=False, allow_null=True)
     class Meta:
         model = MemoModel
         fields = ('id','user','memo','reg_date')
         extra_kwargs = {'user':{ 'read_only':True}}
 
-
+# 特定のフィールドのバリデーションが行われる際に自動的に呼び出されます。
+    # def validate_reg_date(self, value):
+    #     if isinstance(value, datetime):
+    #         return value.date()  # datetimeをdateに変換
+    #     return value
 
 # class MemoModel(models.Model):
 #     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)

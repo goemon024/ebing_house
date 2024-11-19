@@ -94,7 +94,7 @@ class MemoModel(models.Model):
             self.user = user1
         
         if not self.pk:
-            self.reg_date = timezone.now()    
+            self.reg_date = timezone.now().date() 
         else:  # 更新時
             original = MemoModel.objects.get(pk=self.pk)
             self.user = original.user
