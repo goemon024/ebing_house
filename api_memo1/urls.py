@@ -5,7 +5,7 @@ from .views import Memo1ViewSet
 app_name = 'api_memo1'
 
 router = DefaultRouter()
-router.register('memo1', Memo1ViewSet, basename='memo1')
+router.register(r'memo1', Memo1ViewSet, basename='memo1')
 
 urlpatterns = [
     path('',include(router.urls))
