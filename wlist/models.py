@@ -80,7 +80,9 @@ class WordsModel(models.Model):
 class MemoModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     memo = models.TextField()
-    reg_date = models.DateField(blank=True,null=True)
+    # reg_date = models.DateField(blank=True,null=True)
+    reg_date = models.DateField(default=timezone.now, blank=True, null=True)
+
            
     def __str__(self):
         if len(self.memo) > 50:
@@ -93,9 +95,10 @@ class MemoModel(models.Model):
         if user1:
             self.user = user1
         
-        if not self.pk:
-            self.reg_date = timezone.now().date() 
-        else:  # 更新時
+        # if not self.pk:
+        #     self.reg_date = timezone.now().date() 
+
+        if self.pk:
             original = MemoModel.objects.get(pk=self.pk)
             self.user = original.user
             self.reg_date = original.reg_date
