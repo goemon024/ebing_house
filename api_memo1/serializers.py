@@ -12,6 +12,11 @@ class Memo1Serializer(serializers.ModelSerializer):
         model = MemoModel
         fields = ('id','user','memo','reg_date')
         extra_kwargs = {'user':{ 'read_only':True}}
+        
+    def create(self, validated_data):
+        # リクエストのuserを取得
+        user = self.context['request'].user
+        return MemoModel.objects.create(user=user, **validated_data)
 
 # 特定のフィールドのバリデーションが行われる際に自動的に呼び出されます。
     # def validate_reg_date(self, value):
