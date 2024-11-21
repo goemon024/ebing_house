@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
 from .views import WordsList, MemoList, WordMemoList, McList,\
-WordsDelete, WordsUpdate,WordsRecord, WordsReview, WordsCheck,\
+WordsDelete, WordsUpdate,WordsRecord, WordsReview, WordsCheckDrill, WordsAll,\
 MemoDelete, MemoUpdate,  MemoRecord, MemoReview,\
 McDelete, McUpdate, McRecord, McReview,\
 WordsDrill, WordsCheckDrill, MemoDrill, McDrill, McAll, Tutorial, send_email_view
@@ -25,6 +25,8 @@ urlpatterns = [
     
     path('word_drill/', WordsDrill.as_view(), name='word_drill'),
     path('word_check_drill', WordsCheckDrill.as_view(), name='word_check_drill'),
+    path('word_all', WordsAll.as_view(), name='word_all'),
+
     path('memo_drill/', MemoDrill.as_view(), name='memo_drill'),
     path('mc/mc_drill/', McDrill.as_view(), name='mc_drill'),
     path('mc/mc_all/', McAll.as_view(), name='mc_all'),
