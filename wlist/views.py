@@ -297,7 +297,7 @@ class WordsAll(BaseDrill):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        all_list = list(self.model.objects.all())
+        all_list = list(self.model.objects.filter(user=self.request.user))
         random.shuffle(all_list)
         context['all_records'] = all_list
         return context
