@@ -290,6 +290,18 @@ class WordsCheckDrill(BaseDrill):
         context['drill_records'] = drill_list
         return context
     
+class WordsAll(BaseDrill):
+    template_name = 'word_all.html'
+    model = WordsModel
+    success_url = reverse_lazy('wlist:word_all')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_list = list(self.model.objects.filter(user=self.request.user))
+        random.shuffle(all_list)
+        context['all_records'] = all_list
+        return context
+
 
 class MemoDrill(BaseDrill):    
     template_name = 'memo_drill.html'
