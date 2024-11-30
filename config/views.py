@@ -8,6 +8,11 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
+## logout
+from django.contrib.auth import logout
+from django.http import JsonResponse
+
+
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
 
@@ -28,3 +33,8 @@ class CustomAuthToken(ObtainAuthToken):
             'token': token.key,          # トークン
             'username': user.username,  # ユーザー名を追加
         })
+        
+
+def logout_view(request):
+    logout(request)
+    return JsonResponse({'message': 'Logged out successfully'})

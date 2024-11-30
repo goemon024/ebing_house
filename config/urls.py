@@ -11,6 +11,9 @@ from django.conf import settings
 
 from django.contrib.auth.views import LogoutView
 
+from .views import logout_view  # config/views.py にある logout_view をインポート
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wlist/', include('wlist.urls')),
@@ -28,6 +31,7 @@ urlpatterns = [
     path('api_memo2/',include('api_memo2.urls')),
     
     path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
+    path('api/logout/', logout_view, name='logout'),  # logout_view をルートに追加
 
 ]
 
