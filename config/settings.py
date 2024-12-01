@@ -74,13 +74,13 @@ LOGOUT_REDIRECT_URL = '/'
 # MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
 MIDDLEWARE = [
-    #  ## 追加1201
-    # 'corsheaders.middleware.CorsMiddleware',
-    
+    #  ## 追加1201    
+    "corsheaders.middleware.CorsMiddleware",
+    'django.middleware.common.CommonMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -89,7 +89,7 @@ MIDDLEWARE = [
 
 ]
 
-MIDDLEWARE += ["corsheaders.middleware.CorsMiddleware"]
+# MIDDLEWARE += ["corsheaders.middleware.CorsMiddleware"]
 
 ## 追加1201
 CORS_ALLOW_CREDENTIALS = True
