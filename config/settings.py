@@ -62,8 +62,14 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+
+# LOGIN_REDIRECT_URL = 'home'
+# LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 # MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
