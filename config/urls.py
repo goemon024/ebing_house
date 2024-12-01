@@ -30,7 +30,7 @@ urlpatterns = [
     path('api_memo1/',include('api_memo1.urls')),
     path('api_memo2/',include('api_memo2.urls')),
     
-    path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
+    # path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('api/logout/', logout_view, name='logout'),  # logout_view をルートに追加
 
 ]
