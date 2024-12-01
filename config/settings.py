@@ -90,10 +90,16 @@ MIDDLEWARE = [
 ]
 
 ## 追加1201
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # ReactアプリのURL
     'https://front-rho-red.vercel.app',  # 本番のReactアプリURL
+]
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+    'X-CSRFToken',
 ]
 
 ROOT_URLCONF = 'config.urls'
