@@ -91,8 +91,8 @@ MIDDLEWARE = [
 
 ## 追加1201
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # ReactアプリのURL
-    "https://vercel-app",  # 本番のReactアプリURL
+    'http://localhost:3000',  # ReactアプリのURL
+    'https://front-rho-red.vercel.app',  # 本番のReactアプリURL
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -205,7 +205,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://'+ os.getenv('HEROKU_APP_COM'),
                         'http://localhost:3000',  # ReactアプリのURL
-                        'https://your-production-url',  # 本番URL
+                        'https://front-rho-red.vercel.app',
                         ]
 
 ##################'
