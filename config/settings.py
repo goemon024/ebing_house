@@ -74,8 +74,8 @@ LOGOUT_REDIRECT_URL = '/'
 # MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
 MIDDLEWARE = [
-     ## 追加1201
-    'corsheaders.middleware.CorsMiddleware',
+    #  ## 追加1201
+    # 'corsheaders.middleware.CorsMiddleware',
     
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -88,6 +88,8 @@ MIDDLEWARE = [
     'livereload.middleware.LiveReloadScript',
 
 ]
+
+MIDDLEWARE += ["corsheaders.middleware.CorsMiddleware"]
 
 ## 追加1201
 CORS_ALLOW_CREDENTIALS = True
