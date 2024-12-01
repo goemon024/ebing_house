@@ -58,13 +58,19 @@ INSTALLED_APPS = [
     'api_word.apps.ApiWordConfig',
     'api_memo1.apps.ApiMemo1Config',
     'api_memo2.apps.ApiMemo2Config',
+    ## 追加1201
+    'corsheaders',
 ]
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
-MIDDLEWARE = [
+# MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
+MIDDLEWARE = [
+     ## 追加1201
+    'corsheaders.middleware.CorsMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -75,6 +81,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'livereload.middleware.LiveReloadScript',
 
+]
+
+## 追加1201
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # ReactアプリのURL
+    "https://vercel-app",  # 本番のReactアプリURL
 ]
 
 ROOT_URLCONF = 'config.urls'
