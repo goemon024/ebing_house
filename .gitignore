@@ -2,7 +2,7 @@ __pycache__
 dg1_env
 db.sqlite3
 .env
-# *.json
+*.json
 .livereloadignore
 *.sql
 *.log

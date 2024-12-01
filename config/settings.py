@@ -197,7 +197,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://'+ os.getenv('HEROKU_APP_COM')]
+CSRF_TRUSTED_ORIGINS = ['https://'+ os.getenv('HEROKU_APP_COM'),
+                        'http://localhost:3000',  # ReactアプリのURL
+                        'https://your-production-url',  # 本番URL
+                        ]
 
 ##################'
 # Email settings #
