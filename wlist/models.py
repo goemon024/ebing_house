@@ -21,7 +21,7 @@ class WordsModel(models.Model):
     word = models.CharField(max_length=20)
     mean1 = models.CharField(max_length=15,blank=True,null=True)
     mean2 = models.CharField(max_length=200,blank=True,null=True)
-    reg_date = models.DateField(blank=True,null=True)
+    reg_date = models.DateField(default=timezone.now, blank=True,null=True)
     
     ## 追加
     fusen = models.BooleanField(default=False)
@@ -35,8 +35,9 @@ class WordsModel(models.Model):
         if user1:
             self.user = user1
         
+        # if not self.pk:
+        #     self.reg_date = timezone.now()
         if not self.pk:
-            self.reg_date = timezone.now()
             self.mean1 = self.api_meanings(self.word)
             self.mean2 = self.scrape_meanings(self.word)
             if len(self.mean1) > 15:
@@ -80,7 +81,9 @@ class WordsModel(models.Model):
 class MemoModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     memo = models.TextField()
-    reg_date = models.DateField(blank=True,null=True)
+    # reg_date = models.DateField(blank=True,null=True)
+    reg_date = models.DateField(default=timezone.now, blank=True, null=True)
+
            
     def __str__(self):
         if len(self.memo) > 50:
@@ -93,9 +96,10 @@ class MemoModel(models.Model):
         if user1:
             self.user = user1
         
-        if not self.pk:
-            self.reg_date = timezone.now()    
-        else:  # 更新時
+        # if not self.pk:
+        #     self.reg_date = timezone.now().date() 
+
+        if self.pk:
             original = MemoModel.objects.get(pk=self.pk)
             self.user = original.user
             self.reg_date = original.reg_date
@@ -107,7 +111,7 @@ class McModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     memo1 = models.CharField(max_length=50)    
     memo2 = models.TextField(blank=True,null=True)
-    reg_date = models.DateField(blank=True,null=True)
+    reg_date = models.DateField(default=timezone.now,blank=True,null=True)
            
     def __str__(self):
         if len(self.memo1) > 50:
@@ -120,12 +124,13 @@ class McModel(models.Model):
         if user1:
             self.user = user1
         
-        if not self.pk:
-            self.reg_date = timezone.now()    
-        else:  # 更新時
+        # if not self.pk:
+        #     self.reg_date = timezone.now()    
+        # else:  # 更新時
+        
+        if self.pk:
             original = McModel.objects.get(pk=self.pk)
             self.user = original.user
             self.reg_date = original.reg_date
 
         super(McModel, self).save(*args, **kwargs)
-        

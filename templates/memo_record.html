@@ -10,6 +10,16 @@
       overflow-x: auto;
   }
   
+  .center-container {
+  justify-content: center;
+  padding: "100px 20px 5px";
+}
+
+  .flex-start-container {
+  justify-content: flex-start;
+  padding: 5%;
+}
+
   #memo{
     width: 400px;
     height: 150px; 
@@ -73,7 +83,13 @@
 {% block content %}
 
 
-<div style="display: flex; flex-direction: column; align-items: center; width: 900px;">
+<!-- <div style="display: flex; flex-direction: column; align-items: center; width: 900px;"> -->
+<div class="{% if object_list|length > 7 %}flex-start-container{% else %}center-container{% endif %}"
+    style="display: flex; flex-direction: column; align-items: center; width: 1000px; overflow-Y: auto;
+    height:100vh;">
+    
+
+
 <form action='' method='POST' style="margin-bottom: 50px; display: flex; flex-direction: column; align-items: flex-start; width: 300px;">
     {% csrf_token %}
     <label style="margin-bottom: 10px;">New Memo:</label>

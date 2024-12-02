@@ -51,23 +51,57 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'wlist.apps.WlistConfig',
+    ##追加
+    'rest_framework',
+    'rest_framework.authtoken',
+    'api_user.apps.ApiUserConfig',
+    'api_word.apps.ApiWordConfig',
+    'api_memo1.apps.ApiMemo1Config',
+    'api_memo2.apps.ApiMemo2Config',
+    ## 追加1201
+    'corsheaders',
 ]
 
+
+# LOGIN_REDIRECT_URL = 'home'
+# LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+# MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
 MIDDLEWARE = [
+    #  ## 追加1201    
+    "corsheaders.middleware.CorsMiddleware",
+    'django.middleware.common.CommonMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'livereload.middleware.LiveReloadScript',
 
+]
+
+# MIDDLEWARE += ["corsheaders.middleware.CorsMiddleware"]
+
+## 追加1201
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # ReactアプリのURL
+    'https://front-rho-red.vercel.app',  # 本番のReactアプリURL
+]
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+    'X-CSRFToken',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -157,7 +191,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
@@ -179,7 +212,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://'+ os.getenv('HEROKU_APP_COM')]
+CSRF_TRUSTED_ORIGINS = ['https://'+ os.getenv('HEROKU_APP_COM'),
+                        'http://localhost:3000',  # ReactアプリのURL
+                        'https://front-rho-red.vercel.app',
+                        ]
 
 ##################'
 # Email settings #
@@ -236,3 +272,5 @@ CACHES = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+

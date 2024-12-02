@@ -219,11 +219,12 @@
             <p>{{ user.get_username }} さん</p>    
         </div>
         <div class="container">
-            <div id="menu1" style=" border:8px solid greenyellow; background-color: lightgreen;">
+            <div id="menu1" style="height:50vh; border:8px solid greenyellow; background-color: lightgreen;">
                 <h3>英単語帳</h3>
                 <a href ="{% url 'wlist:word_record' %}" class="btn btn-success mb-2" role="button">今日のインプット</a>
                 <a href ="{% url 'wlist:word_review' %}" class="btn btn-success mb-2" role="button">復習（1,7,28日前）</a>
                 <a href ="{% url 'wlist:word_check_drill' %}" class="btn btn-success mb-2" role="button">チェックドリル</a>
+                <a href ="{% url 'wlist:word_all' %}"  class="btn btn-success mb-2" role="button"> ＡＬＬ </a>
 
             </div>  
             <div id="menu2" style=" border:8px solid #00bfff; background-color: lightblue;">
