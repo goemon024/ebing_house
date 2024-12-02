@@ -5,6 +5,7 @@
 <link href="{% static 'style2.css' %}" rel="stylesheet">
 
 <style>
+
     body {
         margin: 0;
         overflow: hidden;
@@ -58,9 +59,14 @@
         background: whitesmoke;
         /* background: #f0f0f0; */
         font-size: 8em;
+        width:100%;
     }
 
     .underpart {
+        display: flex;
+        justify-content: center;
+        align-items: bottom;
+        width:100%;
         font-size: 1.5rem;
         background: #ececec;
     }
@@ -131,6 +137,15 @@
         font-weight: bold; 
         text-align: center;
     }
+
+    .left-under, .right-under, .left-upper, .right-upper{
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background-color: transparent;
+    }
+
     @media (max-width: 576px){
      #hoverMenu {
         position: fixed; /* 最上部に固定 */
@@ -156,7 +171,9 @@
         justify-content: center;
         align-items: center;
         font-size: 4em;
+        width:100%;
     }
+
     .underpart {
         font-size: 1.5rem;
     }
@@ -198,18 +215,33 @@
     </div> -->
 
     <div class="flashcard {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
-        <div class = 'upperpart p1'>{{ card.word }}</div>
-        <div class = 'underpart mean1 p1' style="align-content:center;">
-            <span class="gray1">{{ card.mean1 }}</span>
+        <!-- <div class = 'upperpart p1'>
+            <div id = 'section2' style="flex:0 1 70%;background-color: #d1ecf1;">{{ card.word }}</div>
+        </div> -->
+
+        <div class="upperpart p1" style="width: 100%; text-align: center; position: relative;">
+            <div class="left-upper" style="left: 0; width:35%; "></div>
+            <div class="right-upper" style="right: 0; width:65%; "></div>
+            <span style="z-index: 1">{{card.word}}</span>
+        </div>
+
+        <div class = 'underpart mean1 p1' style="align-content:center; width: 100%; text-align: center; position: relative;">
+            <div class="left-under" style="left: 0; width:35%; "></div>
+            <div class="right-under" style="right: 0; width:65%; "></div>
+
+            <span class="gray1" style="z-index: 1">{{ card.mean1 }}</span>
             <!-- {% if card.img %} -->
-            <img class="gray2" src="{{ card.img.url }}" style="height:100%;margin:auto;"
+            <img class="gray2" src="{{ card.img.url }}" style="height:100%; margin:auto; z-index: 1"
             onerror="this.onerror=null; this.src='/media/images/default.webp';">
             <!-- {% else %} -->
             <!-- <img class="gray2" src="/media/images/default.webp" style="height:100%;margin:auto;">
             {% endif %} -->
         </div>
-            <div class = 'underpart mean2 p1' style="align-content:top;">
-            <span class ="gray1">{{ card.mean2 }}</span>
+        <div class = 'underpart mean2 p1' style="align-content:top; width: 100%; text-align: center; position: relative;">
+            <div class="left-under"  style="left: 0; width:35%; "></div>
+            <div class="right-under" style="right: 0; width:65%; "></div>
+    
+            <span class ="gray1" style="z-index: 1">{{ card.mean2 }}</span>
         </div>
     </div>
 

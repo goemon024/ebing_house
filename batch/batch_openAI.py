@@ -112,8 +112,8 @@ def resize_and_compress_image(input_path, output_path, new_size=(512, 512), qual
 
 def image_generate(default_list):
     
-    output_folder0 = 'media/images0'  # 圧縮前の画像を保存するフォルダ
-    output_folder = 'media/images'   # 圧縮後の画像を保存するフォルダ
+    output_folder0 = '/tmp'  # 圧縮前の画像を保存するフォルダ
+    output_folder  = 'media/images'   # 圧縮後の画像を保存するフォルダ
     os.makedirs(output_folder0, exist_ok=True)
     os.makedirs(output_folder, exist_ok=True)
 
@@ -125,7 +125,7 @@ def image_generate(default_list):
         
         output_filename = f"{default_list[i]}.webp"
         file_path0 = os.path.join(output_folder0, output_filename)
-        file_path = os.path.join(output_folder, output_filename)
+        file_path  = os.path.join(output_folder,  output_filename)
         
         if not os.path.exists(file_path):
                             
@@ -160,8 +160,8 @@ def image_generate(default_list):
         # images0に保存した画像を圧縮しimages処理。
             resize_and_compress_image(file_path0, file_path)
             
-            if os.path.isfile(file_path0):
-                os.remove(file_path0)
+            # if os.path.isfile(file_path0):
+            #     os.remove(file_path0)
             
             print(f'{output_filename} has been resized,compressed,deleted.')
         
