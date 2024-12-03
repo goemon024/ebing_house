@@ -205,7 +205,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles' # 本番環境で必要。ファイルを1場所にまとめるため。
-STATICFILES_DIRS = [str(BASE_DIR / 'static')] 
+
+STATICFILES_DIRS = [
+    str(BASE_DIR / 'static'),  # 現在の静的ファイル
+    str(BASE_DIR / 'build/static'),  # Reactのビルド成果物
+]
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
