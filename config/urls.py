@@ -11,7 +11,7 @@ from django.conf import settings
 
 from django.contrib.auth.views import LogoutView
 
-from .views import logout_view  # config/views.py にある logout_view をインポート
+from .views import logout_view, index  # config/views.py にある logout_view をインポート
 
 
 urlpatterns = [
@@ -32,6 +32,8 @@ urlpatterns = [
     
     # path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('api/logout/', logout_view, name='logout'),  # logout_view をルートに追加
+    
+    path('react_index', index, name='index'),
 
 ]
 
