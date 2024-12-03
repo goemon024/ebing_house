@@ -98,6 +98,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://front-rho-red.vercel.app',  # 本番のReactアプリURL
 ]
 
+# CORS_ALLOW_ALL_ORIGINS = True 
+
 CORS_ALLOW_HEADERS = [
     "content-type",
     "authorization",

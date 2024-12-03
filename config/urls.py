@@ -32,6 +32,8 @@ urlpatterns = [
     
     # path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('api/logout/', logout_view, name='logout'),  # logout_view をルートに追加
+    
+    path('', TemplateView.as_view(template_name="build/index.html")), 
 
 ]
 
