@@ -18,7 +18,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('wlist/', include('wlist.urls')),
     # path('',TemplateView.as_view(template_name='home.html'), name='home'),
-    path('', HomeView.as_view(template_name='home.html'), name='home'),
+    path('home/', HomeView.as_view(template_name='home.html'), name='home'),
 
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
@@ -33,7 +33,7 @@ urlpatterns = [
     # path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('api/logout/', logout_view, name='logout'),  # logout_view をルートに追加
     
-    path('react_index', index, name='index'),
+    path('react_index/', index, name='index'),
 
 ]
 
