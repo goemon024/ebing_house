@@ -16,7 +16,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'react/index.html')  # コピーされた build/index.html を参照
+    return render(request, 'index.html')  # コピーされた build/index.html を参照
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'

@@ -109,7 +109,10 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,'templates'],
+        # 'DIRS': [BASE_DIR,'templates'],
+        'DIRS': [BASE_DIR / 'static/react',
+                 BASE_DIR / 'templates'],  # React の index.html を指す
+        
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
