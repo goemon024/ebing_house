@@ -18,6 +18,12 @@ from django.http import JsonResponse
 # def index(request):
 #     return render(request, 'index.html')  # コピーされた build/index.html を参照
 
+from django.http import FileResponse
+
+def serve_media(request, path):
+    return FileResponse(open(f'media/{path}', 'rb'), content_type='image/webp')
+
+
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
 
