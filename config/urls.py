@@ -11,7 +11,15 @@ from django.conf import settings
 
 from django.contrib.auth.views import LogoutView
 
-from .views import logout_view, index  # config/views.py にある logout_view をインポート
+from .views import logout_view
+#  index  # config/views.py にある logout_view をインポート
+
+from django.http import HttpResponseRedirect
+
+def dev_redirect(request):
+    # React 開発サーバーにリダイレクト
+    print("#########  redirect to 3000  #########")
+    return HttpResponseRedirect("http://localhost:3000/")
 
 
 urlpatterns = [
@@ -33,7 +41,14 @@ urlpatterns = [
     # path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('api/logout/', logout_view, name='logout'),  # logout_view をルートに追加
     
-    path('react_index/', index, name='index'),
+    # path('react_index/', index, name='index'),
+    
+    # 本番環境用
+    # path('', TemplateView.as_view(template_name='index.html'), name='react_index'),
+    # path('<path:path>', TemplateView.as_view(template_name='index.html')),  # その他のReact用ルート
+
+    # 開発環境用
+    path("", dev_redirect),
 
 ]
 
