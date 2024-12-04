@@ -93,10 +93,12 @@ MIDDLEWARE = [
 
 ## 追加1201
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # ReactアプリのURL
-    'https://front-rho-red.vercel.app',  # 本番のReactアプリURL
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',  # ReactアプリのURL
+#     'https://front-rho-red.vercel.app',  # 本番のReactアプリURL
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # CORS_ALLOW_ALL_ORIGINS = True 
 
@@ -111,7 +113,10 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,'templates'],
+        # 'DIRS': [BASE_DIR,'templates'],
+        'DIRS': [BASE_DIR / 'static/react',
+                 BASE_DIR / 'templates'],  # React の index.html を指す
+        
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -280,5 +285,5 @@ CACHES = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+ALLOW_MEDIA_DELIVERY_IN_PRODUCTION = True
 
