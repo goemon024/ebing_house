@@ -11,7 +11,7 @@ from django.conf import settings
 
 from django.contrib.auth.views import LogoutView
 
-from .views import logout_view
+from .views import logout_view, serve_media
 #  index  # config/views.py にある logout_view をインポート
 
 from django.http import HttpResponseRedirect
@@ -44,13 +44,14 @@ urlpatterns = [
     # path('react_index/', index, name='index'),
     
     # 本番環境用
-    # path('', TemplateView.as_view(template_name='index.html'), name='react_index'),
-    # path('<path:path>', TemplateView.as_view(template_name='index.html')),  # その他のReact用ルート
+    path('', TemplateView.as_view(template_name='index.html'), name='react_index'),
+    path('media/<path:path>', serve_media, name='serve_media'),
+    path('<path:path>', TemplateView.as_view(template_name='index.html')),  # その他のReact用ルート
 
     # 開発環境用
-    path("", dev_redirect),
+    # path("", dev_redirect),
 
 ]
 
-if settings.DEBUG:  # 開発環境のみメディアファイル提供を許可
+if settings.DEBUG or settings.ALLOW_MEDIA_DELIVERY_IN_PRODUCTION:  # 開発環境、本番環境でメディアファイル提供を許可
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
