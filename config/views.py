@@ -13,10 +13,10 @@ from django.contrib.auth import logout
 from django.http import JsonResponse
 
 ## build react
-from django.shortcuts import render
+# from django.shortcuts import render
 
-def index(request):
-    return render(request, 'index.html')  # コピーされた build/index.html を参照
+# def index(request):
+#     return render(request, 'index.html')  # コピーされた build/index.html を参照
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
