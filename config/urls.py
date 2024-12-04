@@ -11,14 +11,22 @@ from django.conf import settings
 
 from django.contrib.auth.views import LogoutView
 
-from .views import logout_view  # config/views.py にある logout_view をインポート
+from .views import logout_view, serve_media
+#  index  # config/views.py にある logout_view をインポート
+
+from django.http import HttpResponseRedirect
+
+def dev_redirect(request):
+    # React 開発サーバーにリダイレクト
+    print("#########  redirect to 3000  #########")
+    return HttpResponseRedirect("http://localhost:3000/")
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wlist/', include('wlist.urls')),
     # path('',TemplateView.as_view(template_name='home.html'), name='home'),
-    path('', HomeView.as_view(template_name='home.html'), name='home'),
+    path('home/', HomeView.as_view(template_name='home.html'), name='home'),
 
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
@@ -33,9 +41,17 @@ urlpatterns = [
     # path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('api/logout/', logout_view, name='logout'),  # logout_view をルートに追加
     
-    path('index/', TemplateView.as_view(template_name="build/index.html")), 
+    # path('react_index/', index, name='index'),
+    
+    # 本番環境用
+    path('', TemplateView.as_view(template_name='index.html'), name='react_index'),
+    path('media/<path:path>', serve_media, name='serve_media'),
+    path('<path:path>', TemplateView.as_view(template_name='index.html')),  # その他のReact用ルート
+
+    # 開発環境用
+    # path("", dev_redirect),
 
 ]
 
-if settings.DEBUG:  # 開発環境のみメディアファイル提供を許可
+if settings.DEBUG or settings.ALLOW_MEDIA_DELIVERY_IN_PRODUCTION:  # 開発環境、本番環境でメディアファイル提供を許可
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

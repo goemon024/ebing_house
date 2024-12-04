@@ -12,6 +12,17 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import logout
 from django.http import JsonResponse
 
+## build react
+# from django.shortcuts import render
+
+# def index(request):
+#     return render(request, 'index.html')  # コピーされた build/index.html を参照
+
+from django.http import FileResponse
+
+def serve_media(request, path):
+    return FileResponse(open(f'media/{path}', 'rb'), content_type='image/webp')
+
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
@@ -38,3 +49,4 @@ class CustomAuthToken(ObtainAuthToken):
 def logout_view(request):
     logout(request)
     return JsonResponse({'message': 'Logged out successfully'})
+
