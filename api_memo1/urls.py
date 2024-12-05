@@ -10,4 +10,3 @@ router.register(r'memo1', Memo1ViewSet, basename='memo1')
 urlpatterns = [
     path('',include(router.urls))
 ]
-
