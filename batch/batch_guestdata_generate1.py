@@ -94,7 +94,7 @@ def update_data_mysql(tbl,user_id1,user_id2):
 
 # メイン処理
 if __name__ == '__main__':
-    tbl = os.getenv('BATCH_CHECK_TABLE')
+    tbl = os.getenv('BATCH_CHECK_TABLE1')
     user_id1 = "7"
-    user_id2 = "6"
+    user_id2 = "12"
     update_data_mysql(tbl,user_id1,user_id2)

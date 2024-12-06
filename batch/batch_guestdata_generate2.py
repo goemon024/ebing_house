@@ -53,8 +53,8 @@ def update_data_mysql(tbl,user_id1,user_id2):
 
         # Step 2: user_id1 のデータを複製し、user_id2 として挿入
         insert_query = f"""
-            INSERT INTO {tbl} (word, mean1, mean2, reg_date, user_id)
-            SELECT word, mean1, mean2, reg_date, %s FROM {tbl} WHERE user_id = %s
+            INSERT INTO {tbl} (memo, reg_date, user_id)
+            SELECT memo, reg_date, %s FROM {tbl} WHERE user_id = %s
         """
         cursor.execute(insert_query, (user_id1, user_id2))
         
@@ -94,10 +94,6 @@ def update_data_mysql(tbl,user_id1,user_id2):
 
 # メイン処理
 if __name__ == '__main__':
-    tbl = os.getenv('BATCH_CHECK_TABLE1')
-    user_id1 = "7"
-    user_id2 = "12"
-    update_data_mysql(tbl,user_id1,user_id2)
     
     tbl = os.getenv('BATCH_CHECK_TABLE2')
     user_id1 = "7"
