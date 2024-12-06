@@ -291,3 +291,11 @@
 2024-12-05 01:57:15,206 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2024-12-05 01:57:28,353 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2024-12-05 01:57:41,099 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-06 20:26:25,068 - INFO - User_id=7 のデータを削除しました: 184 件
+2024-12-06 20:26:25,087 - ERROR - MySQLエラーが発生しました: 1364 (HY000): Field 'fusen' doesn't have a default value
+2024-12-06 20:38:41,670 - INFO - User_id=7 のデータを削除しました: 184 件
+2024-12-06 20:38:41,678 - ERROR - MySQLエラーが発生しました: 1364 (HY000): Field 'fusen' doesn't have a default value
+2024-12-06 20:39:25,862 - INFO - User_id=7 のデータを削除しました: 184 件
+2024-12-06 20:39:25,869 - ERROR - MySQLエラーが発生しました: 1364 (HY000): Field 'fusen' doesn't have a default value
+2024-12-06 20:42:22,793 - INFO - User_id=7 のデータを削除しました: 184 件
+2024-12-06 20:42:22,802 - ERROR - MySQLエラーが発生しました: 1364 (HY000): Field 'fusen' doesn't have a default value
