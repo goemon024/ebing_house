@@ -6,15 +6,20 @@
 ### 作成の動機
 - webエンジニアリングのような分野で多岐にわたる学習をしていると、しばらくご無沙汰の分野が生じて記憶が曖昧になりがち。一定間隔を置いて復習できるメモ帳が欲しい。
 - 英語が苦手な息子の大学受験への活用（⇒単語イメージの画像化など機能拡充中）。<br><br><br>
+- webエンジニアリングのような分野で多岐にわたる学習をしていると、しばらくご無沙汰の分野が生じて記憶が曖昧になりがち。一定間隔を置いて復習できるメモ帳が欲しい。
+- 英語が苦手な息子の大学受験への活用（⇒単語イメージの画像化など機能拡充中）。<br><br><br>
   
 ### チュートリアル
 1.ログイン後 ＴＯＰ画面
 ![トップ画面](./static/images/image_top_react.png)<br><br><br><br><br>
+![トップ画面](./static/images/image_top_react.png)<br><br><br><br><br>
   
 2.英単語　インプット画面（今日のインプット）
 ![インプット画面](./static/images/image_input_react.png)<br><br><br><br><br>
+![インプット画面](./static/images/image_input_react.png)<br><br><br><br><br>
   
 3.英単語帳　復習・ドリル画面
+![復習・ドリル画面](./static/images/image_card_react.png)<br><br><br><br><br>
 ![復習・ドリル画面](./static/images/image_card_react.png)<br><br><br><br><br>
   
 （メモ帳については、英単語帳のマイナーチェンジなので省略します）<br><br><br><br><br>
