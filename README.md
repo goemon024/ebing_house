@@ -36,7 +36,7 @@
 <br>
 ### セットアップ  
 1.バックエンド:MySQL,python,Django  
-(1)MySQL(ubuntuの場合)  
+(1)MySQL(ubuntuの場合)
 ・システムパッケージの最新化  
 sudo apt update  
 sudo apt upgrade -y  
@@ -44,24 +44,26 @@ sudo apt upgrade -y
 sudo apt install mysql-server -y  
 （確認作業：sudo systemctl status mysqlでActivateの表示を確認）  
 ・セキュリティ設定（指示に従ってパスワード設定等）  
-sudo mysql_secure_installation★  
+sudo mysql_secure_installation
 ・MySQLへのログイン  
 sudo mysql -u root -p  
+
 ・新しいデータベースを作成  
-CREATE DATABASE my_database;★  
+CREATE DATABASE my_database(任意);  
 ・新しいユーザ、パスワード設定  
-CREATE USER 'my_user'@'localhost' IDENTIFIED BY 'my_password';★  
+CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_password（任意）'; 
 ・上記ユーザに権限付与  
 GRANT ALL PRIVILEGES ON my_database.* TO 'my_user'@'localhost';  
 FLUSH PRIVILEGES;  
-・終了（exit）  
-・後の、envファイルの設定のために控えておく。  
+・終了（exit）これらは、.envファイル設定に適用する。下記を参考にしてください。
+
 <br>
-DB_NAME=my_database  
-DB_USER=my_user    
-DB_PASSWORD=my_password  
-DB_HOST=localhost  
-DB_PORT=3306  
+DB_NAME=my_database（任意）
+DB_USER=my_user（任意）    
+DB_PASSWORD=my_password（任意） 
+DB_HOST=localhost（任意？）
+MYSQL_ROOT_PASSWORD = "root" (こちらはrootユーザのパスワードだと思いますが未確認です。)  
+
 <br>
 (2)Python,djangoの設定  
 ・Python 3.10.12をインストールする  
