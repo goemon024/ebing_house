@@ -89,7 +89,7 @@ git clone https://github.com/goemon024/ebing_house.git<br>
   git clone https://github.com/goemon024/front.git<br>
   ブランチは、mainを利用。<br> 
 ・frontのディレクトリで、npm install<br>
-・.env.exampleファイルは原則不要です。ただし本番環境のためのnpm run buidl-deployを実行する場合には、build-deploy.shに環境変数の入力が必要となります。このときは、build-deploy.shに、DJANGO_MANAGE_DIRと、PYENV_ACTIVATEを入力してください。<br>  
+・.env.exampleファイルは不要となったので作成していません。ただし本番環境のためのnpm run buidl-deployを実行する場合には、build-deploy.shに環境変数の入力が必要となります。このときは、build-deploy.shに、DJANGO_MANAGE_DIRと、PYENV_ACTIVATEを入力してください。<br>  
 ・（開発環境）npm start<br>
 ・（本番環境）npm run build-deploy<br>  
   build-deploy.shは、backendへのデプロイ処理を効率化するバッチです。上記のコマンドを入力することで、frontで構築されたbuildファイル群が、backendのstatic/reactフォルダ下に配置され,staticfilesフォルダも更新されます。<br>
