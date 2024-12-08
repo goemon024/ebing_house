@@ -55,16 +55,15 @@ CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_passw
 ・上記ユーザに権限付与  
 GRANT ALL PRIVILEGES ON my_database.* TO 'my_user'@'localhost';  
 FLUSH PRIVILEGES;  
-・終了（exit）これらは、.envファイル設定に適用する。下記を参考にしてください。
+・終了（exit）これらは、.envファイル設定に適用する。下記を参考にしてください。  
 
-<br>
-DB_NAME=my_database（任意）
-DB_USER=my_user（任意）    
-DB_PASSWORD=my_password（任意） 
-DB_HOST=localhost（任意？）
-MYSQL_ROOT_PASSWORD = "root" (こちらはrootユーザのパスワードだと思いますが未確認です。)  
+<br>  
+DB_NAME=my_database（任意）  
+DB_USER=my_user（任意）  
+DB_PASSWORD=my_password（任意）   
+DB_HOST=localhost（任意？）  
 
-<br>
+<br>  
 (2)Python,djangoの設定  
 ・Python 3.10.12をインストールする  
 ・下記のgit cloneコマンドで、バックエンドソースコードを取得。  
