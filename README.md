@@ -34,9 +34,10 @@
            npm 10.8.2  
   開発環境: VSCode, WSL2(ubuntu:22.04)  
 <br>
+
 ### セットアップ  
-1.バックエンド:MySQL,python,Django  
-(1)MySQL(ubuntuの場合)  
+## 1.バックエンド:MySQL,python,Django  
+# (1)MySQL(ubuntuの場合)  
 ・システムパッケージの最新化  
 sudo apt update  
 sudo apt upgrade -y  
@@ -63,7 +64,8 @@ FLUSH PRIVILEGES;
 - DB_PASSWORD=my_password（任意）<br> 
 - DB_HOST=localhost（任意？）<br>
 <br>  
-(2)Python,djangoの設定<br>
+
+# (2)Python,djangoの設定<br>
 ・Python 3.10.12をインストールする。<br>  
 ・下記のgit cloneコマンドで、バックエンドソースコードを取得。<br> 
 git clone https://github.com/goemon024/ebing_house.git<br>  
@@ -79,7 +81,8 @@ python manage.py migrate<br>
 （・必要に応じてsuperuserの作成）<br>  
 python manage.py createsuperuser <br> 
 <br>
-２．フロントエンド：react <br>
+
+## ２．フロントエンド：react <br>
 ・node.jsのインストール（2024年10月時点のLTS）<br> 
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -<br>
 sudo apt-get install -y nodejs<br> 
@@ -95,18 +98,20 @@ git clone https://github.com/goemon024/front.git<br>
 ・（実行環境）npm build-deploy<br>  
 実行環境でのbackendへのデプロイ処理を効率化するため、build-deploy.shを活用している。このコマンドによりフロントで構築されたbuildファイル群が、backendのstatic/reactフォルダ下に配置されてstaticfilesフォルダも更新される。<br>
 <br>
+
 ### 開発環境と実行環境について<br>
 ・開発環境にするときは、backendのconfig/urls.pyの53行目のコメントアウトを解除し、47～49行目をコメントアウトする。これによりローカルにおいてfrontがlocalhost:3000に、backendがlocalhost:8000に立ち上がる。<br>
 ・実行環境にするときは、backendのconfig/urls.pyの47～49行目のコメントアウトを解除し、53行目をコメントアウトする。これによりfront部分がbackendと共通ドメインのlocalhost:8000に立ち上がる。<br>
-<br>
+<br><br>
+
 ### その他<br>
-１．herokuにて下記のバッチファイルがスケジュール実行される。<br>  
+## １．herokuにて下記のバッチファイルがスケジュール実行される。<br>  
 ・batch/batch_backup.py<br>
 　ＤＢのバックアップファイルを形成。<br>  
 ・batch_guestdata_generate1.py, batch_guestdata_generate2.py<br>  
 　これらはデモンストレーションのため、アクティブなユーザの使用状況をguestIDで確認できるようにしている。<br>
-２．OpenAIのAPIによる画像生成について<br>  
+## ２．OpenAIのAPIによる画像生成について<br>  
 ・batch_openAI.py,temp_mysql_update.py<br>
 　現状ではopenAIによる英単語の画像生成は、息子のアカウントのみの適用としている。コスト面などの懸念からの試験的運用であり、これらのバッチファイルを手動実行させて画像生成をしている。 <br>
-３．携帯での英単語・メモ帳の編集画面表示について<br>  
+## ３．携帯での英単語・メモ帳の編集画面表示について<br>  
 ・表示レコード数が多いと、モーダルが開かずに強制終了する不具合があります（今回は対応しないため説明のみ）。<br>
