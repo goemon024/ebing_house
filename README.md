@@ -36,7 +36,7 @@
 <br>
 ### セットアップ  
 1.バックエンド:MySQL,python,Django  
-(1)MySQL(ubuntuの場合)
+(1)MySQL(ubuntuの場合)  
 ・システムパッケージの最新化  
 sudo apt update  
 sudo apt upgrade -y  
@@ -44,18 +44,20 @@ sudo apt upgrade -y
 sudo apt install mysql-server -y  
 （確認作業：sudo systemctl status mysqlでActivateの表示を確認）  
 ・セキュリティ設定（指示に従ってパスワード設定等）  
-sudo mysql_secure_installation
+sudo mysql_secure_installation  
 ・MySQLへのログイン  
 sudo mysql -u root -p  
 
 ・新しいデータベースを作成  
 CREATE DATABASE my_database(任意);  
 ・新しいユーザ、パスワード設定  
-CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_password（任意）'; 
+CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_password（任意）';   
 ・上記ユーザに権限付与  
 GRANT ALL PRIVILEGES ON my_database.* TO 'my_user'@'localhost';  
 FLUSH PRIVILEGES;  
-・終了（exit）これらは、.envファイル設定に適用する。下記を参考にしてください。  <br>  
+・終了（exit）  
+こちらで設定した、４つのパラメータは後述の.envファイル設定に適用する。  
+<br>
 - DB_NAME=my_database（任意）<br>
 - DB_USER=my_user（任意）<br>
 - DB_PASSWORD=my_password（任意）<br> 
@@ -70,41 +72,41 @@ git clone https://github.com/goemon024/ebing_house.git<br>
   python -m venv venv<br>
   source venv/bin/activate<br> 
 ・pip install -r requirements.txt<br>
-・.envファイルを作成する。  
-　詳細は、.env.exampleを参照のこと。  
-・データベースのmigration  
-python manage.py migrate  
-（・必要に応じてsuperuserの作成）  
-python manage.py createsuperuser  
+・.envファイルを作成する。 <br>
+　詳細は、.env.exampleを参照のこと。 <br> 
+・データベースのmigration<br>
+python manage.py migrate<br>
+（・必要に応じてsuperuserの作成）<br>  
+python manage.py createsuperuser <br> 
 <br>
-２．フロントエンド：react  
-・node.jsのインストール（2024年10月時点のLTS）  
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -  
-sudo apt-get install -y nodejs  
-・reactをインストールするフォルダを作成してgit clone  
-・下記のgit cloneコマンドで、フロントエンドソースコードを取得。  
-mkdir front  
-cd front  
-git clone https://github.com/goemon024/front.git   
-ブランチは、mainを利用。  
-・frontのディレクトリで、npm install  
-・.envファイルを作成する。詳細は.env.exampleを参考。  
-・（開発環境）npm start  
-・（実行環境）npm build-deploy  
-実行環境でのbackendへのデプロイ処理を効率化するため、build-deploy.shを活用している。このコマンドによりフロントで構築されたbuildファイル群が、backendのstatic/reactフォルダ下に配置されてstaticfilesフォルダも更新される。  
+２．フロントエンド：react <br>
+・node.jsのインストール（2024年10月時点のLTS）<br> 
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -<br>
+sudo apt-get install -y nodejs<br> 
+・reactをインストールするフォルダを作成してgit clone <br> 
+・下記のgit cloneコマンドで、フロントエンドソースコードを取得。 <br> 
+mkdir front<br>
+cd front <br>
+git clone https://github.com/goemon024/front.git<br>   
+ブランチは、mainを利用。<br> 
+・frontのディレクトリで、npm install<br>
+・.envファイルを作成する。詳細は.env.exampleを参考。<br>  
+・（開発環境）npm start<br>
+・（実行環境）npm build-deploy<br>  
+実行環境でのbackendへのデプロイ処理を効率化するため、build-deploy.shを活用している。このコマンドによりフロントで構築されたbuildファイル群が、backendのstatic/reactフォルダ下に配置されてstaticfilesフォルダも更新される。<br>
 <br>
-### 開発環境と実行環境について  
-・開発環境にするときは、backendのconfig/urls.pyの53行目のコメントアウトを解除し、47～49行目をコメントアウトする。これによりローカルにおいてfrontがlocalhost:3000に、backendがlocalhost:8000に立ち上がる。  
-・実行環境にするときは、backendのconfig/urls.pyの47～49行目のコメントアウトを解除し、53行目をコメントアウトする。これによりfront部分がbackendと共通ドメインのlocalhost:8000に立ち上がる。  
+### 開発環境と実行環境について<br>
+・開発環境にするときは、backendのconfig/urls.pyの53行目のコメントアウトを解除し、47～49行目をコメントアウトする。これによりローカルにおいてfrontがlocalhost:3000に、backendがlocalhost:8000に立ち上がる。<br>
+・実行環境にするときは、backendのconfig/urls.pyの47～49行目のコメントアウトを解除し、53行目をコメントアウトする。これによりfront部分がbackendと共通ドメインのlocalhost:8000に立ち上がる。<br>
 <br>
-### その他  
-１．herokuにて下記のバッチファイルがスケジュール実行される。  
-・batch/batch_backup.py  
-　ＤＢのバックアップファイルを形成する。  
-・batch_guestdata_generate1.py, batch_guestdata_generate2.py  
-　これらはデモンストレーションのため、アクティブなユーザの使用状況をguestIDで確認できるようにするためのものである。  
-２．OpenAIのAPIによる画像生成について  
-・batch_openAI.py,temp_mysql_update.py  
-　現状ではopenAIによる英単語の画像生成は、息子のアカウントのみの適用としている。コスト面などの懸念からの試験的運用であり、これらのバッチファイルを手動実行させて画像生成をしている。    
-３．携帯での英単語・メモ帳の編集画面表示について  
-・表示レコード数が多いと、モーダルが開かずに強制終了する不具合があります（今回は対応しないため説明のみ）。        
+### その他<br>
+１．herokuにて下記のバッチファイルがスケジュール実行される。<br>  
+・batch/batch_backup.py<br>
+　ＤＢのバックアップファイルを形成。<br>  
+・batch_guestdata_generate1.py, batch_guestdata_generate2.py<br>  
+　これらはデモンストレーションのため、アクティブなユーザの使用状況をguestIDで確認できるようにしている。<br>
+２．OpenAIのAPIによる画像生成について<br>  
+・batch_openAI.py,temp_mysql_update.py<br>
+　現状ではopenAIによる英単語の画像生成は、息子のアカウントのみの適用としている。コスト面などの懸念からの試験的運用であり、これらのバッチファイルを手動実行させて画像生成をしている。 <br>
+３．携帯での英単語・メモ帳の編集画面表示について<br>  
+・表示レコード数が多いと、モーダルが開かずに強制終了する不具合があります（今回は対応しないため説明のみ）。<br>
