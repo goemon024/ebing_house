@@ -55,24 +55,21 @@ CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_passw
 ・上記ユーザに権限付与  
 GRANT ALL PRIVILEGES ON my_database.* TO 'my_user'@'localhost';  
 FLUSH PRIVILEGES;  
-・終了（exit）これらは、.envファイル設定に適用する。下記を参考にしてください。  
-
+・終了（exit）これらは、.envファイル設定に適用する。下記を参考にしてください。  <br>  
+- DB_NAME=my_database（任意）<br>
+- DB_USER=my_user（任意）<br>
+- DB_PASSWORD=my_password（任意）<br> 
+- DB_HOST=localhost（任意？）<br>
 <br>  
-DB_NAME=my_database（任意）  
-DB_USER=my_user（任意）  
-DB_PASSWORD=my_password（任意）   
-DB_HOST=localhost（任意？）  
-
-<br>  
-(2)Python,djangoの設定  
-・Python 3.10.12をインストールする  
-・下記のgit cloneコマンドで、バックエンドソースコードを取得。  
-git clone https://github.com/goemon024/ebing_house.git  
-ブランチは、masterを利用。  
-・pythonの仮想環境を有効化。  
-python -m venv venv  
-source venv/bin/activate   
-・pip install -r requirements.txt  
+(2)Python,djangoの設定<br>
+・Python 3.10.12をインストールする。<br>  
+・下記のgit cloneコマンドで、バックエンドソースコードを取得。<br> 
+git clone https://github.com/goemon024/ebing_house.git<br>  
+ブランチは、masterを利用。<br>
+・pythonの仮想環境を有効化。<br>
+  python -m venv venv<br>
+  source venv/bin/activate<br> 
+・pip install -r requirements.txt<br>
 ・.envファイルを作成する。  
 　詳細は、.env.exampleを参照のこと。  
 ・データベースのmigration  
