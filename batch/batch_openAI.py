@@ -42,7 +42,7 @@ def get_defaultList(tbl,UPDATE=False):
         user=os.getenv('DB_USER')
         password=os.getenv('DB_PASSWORD')
         database=os.getenv('DB_NAME')
-
+        
         DATABASE_URL = os.getenv('JAWSDB_URL')
         if DATABASE_URL:
             url = urlparse(DATABASE_URL)
@@ -169,7 +169,8 @@ def image_generate(default_list):
             
 # メイン処理
 if __name__ == '__main__':
-    tbl = os.getenv('BATCH_CHECK_TABLE')
+    tbl = os.getenv('BATCH_CHECK_TABLE1')
+    print(tbl)
     
     default_list = get_defaultList(tbl,UPDATE=True)
     image_generate(default_list)

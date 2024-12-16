@@ -178,7 +178,7 @@ def image_generate(word_list):
             
 # メイン処理
 if __name__ == '__main__':
-    tbl = os.getenv('BATCH_CHECK_TABLE')
+    tbl = os.getenv('BATCH_CHECK_TABLE1')
     user_id = "12"
     
     word_list = get_wordList(tbl,user_id,UPDATE=True)
