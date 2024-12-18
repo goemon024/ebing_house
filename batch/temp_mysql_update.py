@@ -106,7 +106,7 @@ def image_update_mysql(tbl):
 
 # メイン処理
 if __name__ == '__main__':
-    tbl = os.getenv('BATCH_CHECK_TABLE')
+    tbl = os.getenv('BATCH_CHECK_TABLE1')
     tbl = 'wlist_wordsmodel'
     # username="12"
 

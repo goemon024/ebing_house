@@ -46,7 +46,7 @@ class WordsSerializer(serializers.ModelSerializer):
         instance.mean1 = validated_data.get('mean1', instance.mean1)
         instance.mean2 = validated_data.get('mean2', instance.mean2)
         instance.word = validated_data.get('word', instance.word)
-        # instance.fusen = validated_data.get('fusen', instance.fusen)
+        instance.fusen = validated_data.get('fusen', instance.fusen)
         # instance.img = validated_data.get('img', instance.img)
 
         instance.save()
