@@ -299,3 +299,26 @@
 2024-12-06 20:39:25,869 - ERROR - MySQLエラーが発生しました: 1364 (HY000): Field 'fusen' doesn't have a default value
 2024-12-06 20:42:22,793 - INFO - User_id=7 のデータを削除しました: 184 件
 2024-12-06 20:42:22,802 - ERROR - MySQLエラーが発生しました: 1364 (HY000): Field 'fusen' doesn't have a default value
+2024-12-16 13:00:33,968 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:11:43,689 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:12:29,768 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:17:55,375 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:23:48,942 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:23:58,395 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:24:36,761 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:24:52,894 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:25:22,579 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:26:11,663 - ERROR - MySQLエラーが発生しました: 1146 (42S02): Table 'wm_db.None' doesn't exist
+2024-12-16 13:29:20,915 - INFO - img field update
+2024-12-16 13:29:30,923 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:29:43,448 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:29:56,729 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:30:07,595 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:30:23,050 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:30:37,429 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:30:50,775 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:31:29,812 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:31:41,853 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:32:00,615 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:32:14,553 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-16 13:32:26,849 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
