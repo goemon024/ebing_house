@@ -76,6 +76,27 @@ class WordsModel(models.Model):
             return result.text
         except Exception as e:
             return "not get"
+        
+class ListSentenceModel(models.Model):
+    
+    EVALUATION_CHOICES = [('OK', 'OK'),('MINOR', 'MINOR'),('ALERT', 'ALERT'),]
+    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    word = models.CharField(max_length=20)  # Wordモデルのwordフィールドを複製
+    source = models.ForeignKey(WordsModel,on_delete=models.SET_NULL, null=True,blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)  # 登録日時
+    word_list = models.JSONField(null=True, blank=True)
+    eibun = models.CharField(max_length=250,null=True, blank=True)
+    eval = models.CharField(max_length=10,choices=EVALUATION_CHOICES,default='MINOR')
+
+    wayaku = models.CharField(max_length=250,null=True, blank=True)
+    bunpo = models.TextField(null=True, blank=True)
+    freq = models.IntegerField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.id}: {self.word}"
+    
 
     
 class MemoModel(models.Model):
