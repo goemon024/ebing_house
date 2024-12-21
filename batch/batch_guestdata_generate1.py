@@ -18,7 +18,7 @@ logging.basicConfig(
 )
 
 # MySQLに接続してデータを取得
-def update_data_mysql(tbl,user_id1,user_id2):
+def update_words_mysql(tbl,user_id1,user_id2):
     try:
         # MySQLに接続
         host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST')
@@ -91,10 +91,76 @@ def update_data_mysql(tbl,user_id1,user_id2):
             cursor.close()
         if conn:
             conn.close()
+            
+            
+# MySQLに接続してデータを取得
+def update_sentence_mysql(tbl,user_id1,user_id2):
+    try:
+        # MySQLに接続
+        host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST')
+        user=os.getenv('DB_USER')
+        password=os.getenv('DB_PASSWORD')
+        database=os.getenv('DB_NAME')
+
+        DATABASE_URL = os.getenv('JAWSDB_URL')
+        if DATABASE_URL:
+            url = urlparse(DATABASE_URL)
+            host = url.hostname       
+            user = url.username       
+            password = url.password   
+            database = url.path[1:]
+  
+        conn = mysql.connector.connect(host=host,user=user,
+                                       password=password,database=database)      
+        cursor = conn.cursor()
+        
+        
+        # Step 1: user_id1 のデータを削除
+        delete_query = f"DELETE FROM {tbl} WHERE user_id = %s"
+        cursor.execute(delete_query, (user_id1,))
+
+        logging.info(f"User_id={user_id1} のsentenceのデータを削除しました: {cursor.rowcount} 件")
+        print(f"User_id={user_id1} のsentenceのデータを削除しました: {cursor.rowcount} 件")
+
+        # Step 2: user_id2 のデータを複製し、user_id1 として挿入
+        insert_query = f"""
+            INSERT INTO {tbl} (word,source_id,created_at,eval,eibun,wayaku,user_id)
+            SELECT word,source_id,created_at,eval,eibun,wayaku, %s FROM {tbl} WHERE user_id = %s
+        """
+        cursor.execute(insert_query, (user_id1, user_id2))
+        
+        conn.commit()
+        logging.info(f"User_id={user_id1} のデータを user_id={user_id2} から複製しました: {cursor.rowcount} 件")
+        print(f"User_id={user_id1} のデータを user_id={user_id2} から複製しました: {cursor.rowcount} 件")
+
+    
+    except mysql.connector.Error as err:
+        conn.rollback()  # ロールバック
+        logging.error(f"MySQLエラーが発生しました: {err}")
+        print(f"MySQLエラーが発生しました: {err}")
+    
+    except Exception as e:
+        conn.rollback()  # ロールバック
+        logging.error(f"予期しないエラーが発生しました: {e}")
+        print(f"予期しないエラーが発生しました: {e}")
+    
+    except Exception as e:
+        conn.rollback()  # ロールバック
+        logging.error(f"予期しないエラーが発生しました: {e}")
+        print(f"予期しないエラーが発生しました: {e}")
+    
+    finally:
+        # カーソルと接続をクローズ
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 # メイン処理
 if __name__ == '__main__':
-    tbl = os.getenv('BATCH_CHECK_TABLE1')
+    tbl1 = os.getenv('BATCH_CHECK_TABLE1')
+    tbl2 = os.getenv('BATCH_CHECK_TABLE3')
     user_id1 = "7"
     user_id2 = "12"
-    update_data_mysql(tbl,user_id1,user_id2)
+    update_words_mysql(tbl1,user_id1,user_id2)
+    update_sentence_mysql(tbl2,user_id1,user_id2)
