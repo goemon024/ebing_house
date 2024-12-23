@@ -17,6 +17,12 @@ class SentenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListSentenceModel
         fields = '__all__'
+        
+    # def update(self, instance, validated_data):
+    #     instance.fusen = validated_data.get('fusen', instance.fusen)
+
+    #     instance.save()
+    #     return instance
 
 
 class WordsSerializer(serializers.ModelSerializer):

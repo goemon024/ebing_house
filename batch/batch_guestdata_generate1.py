@@ -95,6 +95,7 @@ def update_words_mysql(tbl,user_id1,user_id2):
             
 # MySQLに接続してデータを取得
 def update_sentence_mysql(tbl,user_id1,user_id2):
+    
     try:
         # MySQLに接続
         host='db' if IS_DOCKER and IS_HEROKU else os.getenv('DB_HOST')
@@ -113,8 +114,7 @@ def update_sentence_mysql(tbl,user_id1,user_id2):
         conn = mysql.connector.connect(host=host,user=user,
                                        password=password,database=database)      
         cursor = conn.cursor()
-        
-        
+         
         # Step 1: user_id1 のデータを削除
         delete_query = f"DELETE FROM {tbl} WHERE user_id = %s"
         cursor.execute(delete_query, (user_id1,))

@@ -93,6 +93,7 @@ class ListSentenceModel(models.Model):
     wayaku = models.CharField(max_length=250,null=True, blank=True)
     bunpo = models.TextField(null=True, blank=True)
     freq = models.IntegerField(null=True, blank=True)
+    fusen = models.BooleanField(default=True)
     
     def __str__(self):
         return f"{self.id}: {self.word}"
