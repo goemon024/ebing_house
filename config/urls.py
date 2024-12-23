@@ -44,13 +44,13 @@ urlpatterns = [
     # path('react_index/', index, name='index'),
     
     ##### 本番環境用 #####
-    # path('', TemplateView.as_view(template_name='index.html'), name='react_index'),
-    # path('media/<path:path>', serve_media, name='serve_media'),
-    # path('<path:path>', TemplateView.as_view(template_name='index.html')),  # その他のReact用ルート
+    path('', TemplateView.as_view(template_name='index.html'), name='react_index'),
+    path('media/<path:path>', serve_media, name='serve_media'),
+    path('<path:path>', TemplateView.as_view(template_name='index.html')),  # その他のReact用ルート
     #####################
 
     ##### 開発環境用 #####
-    path("", dev_redirect),
+    # path("", dev_redirect),
     #####################
 
 ]
