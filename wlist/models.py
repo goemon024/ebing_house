@@ -88,12 +88,12 @@ class ListSentenceModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 登録日時
     word_list = models.JSONField(null=True, blank=True)
     eibun = models.CharField(max_length=250,null=True, blank=True)
-    eval = models.CharField(max_length=10,choices=EVALUATION_CHOICES,default='MINOR')
+    eval = models.CharField(max_length=10,choices=EVALUATION_CHOICES,default='MINOR', null=True, blank=True)
 
     wayaku = models.CharField(max_length=250,null=True, blank=True)
     bunpo = models.TextField(null=True, blank=True)
     freq = models.IntegerField(null=True, blank=True)
-    fusen = models.BooleanField(default=True)
+    fusen = models.BooleanField(default=True,null=True, blank=True)
     
     def __str__(self):
         return f"{self.id}: {self.word}"

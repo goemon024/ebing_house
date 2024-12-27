@@ -57,8 +57,8 @@ def generate_sentence_record(tbl1,tbl2,username):
             
         add_record_list = list(set(default_list1) - set(default_list2))
         for row in add_record_list:
-            query3 = f"""INSERT INTO {tbl2} (word, source_id, user_id, created_at) 
-             VALUES (%s, %s, %s, %s)"""
+            query3 = f"""INSERT INTO {tbl2} (word, source_id, user_id, created_at,eval,fusen) 
+             VALUES (%s, %s, %s, %s, 'MINOR', 1)"""
             cursor.execute(query3, (row[0], row[1], row[2], datetime.now()))
             print(row[0],row[1])
             

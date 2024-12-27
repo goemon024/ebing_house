@@ -334,3 +334,10 @@
 2024-12-21 19:26:52,813 - INFO - User_id=7 のデータを user_id=12 から複製しました: 143 件
 2024-12-21 19:26:52,826 - INFO - User_id=7 のsentenceのデータを削除しました: 48 件
 2024-12-21 19:26:52,837 - INFO - User_id=7 のデータを user_id=12 から複製しました: 48 件
+2024-12-27 16:52:30,771 - INFO - img field update
+2024-12-27 16:52:42,792 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:53:00,303 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:53:19,191 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:53:44,208 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:54:03,533 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:54:22,009 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
