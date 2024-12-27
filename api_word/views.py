@@ -61,4 +61,4 @@ class PageSentenceViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)             ##追加
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user, eval='OK')      ##追加
+        return self.queryset.filter(user=self.request.user, eval="OK")      ##追加
