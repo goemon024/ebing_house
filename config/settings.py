@@ -10,10 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import json
 from pathlib import Path
 from dotenv import load_dotenv
 import os
 import dj_database_url
+
+import firebase_admin
+from firebase_admin import credentials, initialize_app
 
 load_dotenv()
 IS_DOCKER = os.getenv('IS_DOCKER', False)
@@ -32,8 +36,8 @@ IS_HEROKU = os.getenv('DYNO') is not None
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = os.getenv('DEBUG')=='True'
+# DEBUG = True
+DEBUG = os.getenv('DEBUG')=='True'
 
 ALLOWED_HOSTS = [os.getenv('HEROKU_APP_COM'),'127.0.0.1', 'localhost',
                  '172.25.139.129']
@@ -303,3 +307,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ALLOW_MEDIA_DELIVERY_IN_PRODUCTION = True
 
+# Firebase
+firebase_credentials_path = os.getenv('FIREBASE_CREDENTIALS')
+
+## ローカル環境
+if os.path.exists(firebase_credentials_path):
+    print("ローカル環境")
+    cred = credentials.Certificate(firebase_credentials_path)
+## heroku
+else:
+    cred = credentials.Certificate(json.loads(os.getenv('FIREBASE_CREDENTIALS_CONTENT')))
+
+initialize_app(cred)
