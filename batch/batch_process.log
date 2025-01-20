@@ -322,3 +322,35 @@
 2024-12-16 13:32:00,615 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2024-12-16 13:32:14,553 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2024-12-16 13:32:26,849 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-21 19:19:56,860 - INFO - User_id=7 のデータを削除しました: 315 件
+2024-12-21 19:19:56,926 - INFO - User_id=7 のデータを user_id=12 から複製しました: 143 件
+2024-12-21 19:19:56,936 - INFO - User_id=7 のsentenceのデータを削除しました: 0 件
+2024-12-21 19:19:56,940 - ERROR - MySQLエラーが発生しました: 1054 (42S22): Unknown column 'source' in 'field list'
+2024-12-21 19:21:32,459 - INFO - User_id=7 のデータを削除しました: 143 件
+2024-12-21 19:21:32,482 - INFO - User_id=7 のデータを user_id=12 から複製しました: 143 件
+2024-12-21 19:21:32,493 - INFO - User_id=7 のsentenceのデータを削除しました: 0 件
+2024-12-21 19:21:32,525 - INFO - User_id=7 のデータを user_id=12 から複製しました: 48 件
+2024-12-21 19:26:52,788 - INFO - User_id=7 のデータを削除しました: 143 件
+2024-12-21 19:26:52,813 - INFO - User_id=7 のデータを user_id=12 から複製しました: 143 件
+2024-12-21 19:26:52,826 - INFO - User_id=7 のsentenceのデータを削除しました: 48 件
+2024-12-21 19:26:52,837 - INFO - User_id=7 のデータを user_id=12 から複製しました: 48 件
+2024-12-27 16:52:30,771 - INFO - img field update
+2024-12-27 16:52:42,792 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:53:00,303 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:53:19,191 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:53:44,208 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:54:03,533 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2024-12-27 16:54:22,009 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-05 16:02:17,302 - INFO - img field update
+2025-01-05 16:02:30,253 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-11 01:44:49,517 - INFO - img field update
+2025-01-11 01:45:01,428 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-11 01:45:18,474 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-11 01:45:29,632 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-19 01:14:42,006 - INFO - img field update
+2025-01-19 01:14:55,871 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-19 01:15:09,975 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-19 01:15:22,471 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-19 01:15:36,319 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-19 01:15:49,723 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-01-19 01:16:04,765 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"

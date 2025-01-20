@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from wlist.models import WordsModel
+from wlist.models import WordsModel,ListSentenceModel
 
 from django.utils import timezone
 import requests
@@ -11,6 +11,18 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+
+
+class SentenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListSentenceModel
+        fields = '__all__'
+        
+    # def update(self, instance, validated_data):
+    #     instance.fusen = validated_data.get('fusen', instance.fusen)
+
+    #     instance.save()
+    #     return instance
 
 
 class WordsSerializer(serializers.ModelSerializer):
