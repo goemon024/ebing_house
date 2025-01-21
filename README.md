@@ -27,7 +27,7 @@
   動作環境：Python 3.10.12  
            Node.js v20.17.0  
            npm 10.8.2  
-  開発環境: VSCode, WSL2(ubuntu:22.04)  
+  開発環境: VSCode,Cursor,WSL2(ubuntu:22.04)  
 <br>
 
 ### セットアップ  
