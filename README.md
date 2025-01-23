@@ -99,8 +99,8 @@
 ### プロジェクト進捗管理（ガントチャート）
 https://docs.google.com/spreadsheets/d/1zcICsNI8FeobAz0OJA_6ljW3WibZfMKnr55VtePGg04/edit?usp=sharing
 
-### 開発メモ・デバッグ記録
-./document/開発.md
+### メモ
+[作業・リファクタ・デバッグメモ](./document/開発.md)
 
 ### その他<br>
 #### １．本番環境のherokuサーバでは下記のバッチファイルがスケジュール実行されます。<br>  
