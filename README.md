@@ -92,19 +92,24 @@
 <br>
 
 ### 開発環境と本番環境について<br>
-◆開発環境にするときは、backendのconfig/urls.pyの53行目のコメントアウトを解除し、47～49行目をコメントアウトしてください。これによりローカルにおいて、frontがlocalhost:3000に、backendがlocalhost:8000に立ち上がります。<br>
-◆本番環境にするときは、backendのconfig/urls.pyの47～49行目のコメントアウトを解除し、53行目をコメントアウトしてください。これによりfront部分がbackendと共通ドメインのlocalhost:8000に包含されるようになります。<br>
+・開発環境にするときは、backendのconfig/urls.pyの53行目のコメントアウトを解除し、47～49行目をコメントアウトしてください。これによりローカルにおいて、frontがlocalhost:3000に、backendがlocalhost:8000に立ち上がります。<br>
+・本番環境にするときは、backendのconfig/urls.pyの47～49行目のコメントアウトを解除し、53行目をコメントアウトしてください。これによりfront部分がbackendと共通ドメインのlocalhost:8000に包含されるようになります。<br>
 <br><br>
+
+### プロジェクト進捗管理（ガントチャート）
+https://docs.google.com/spreadsheets/d/1zcICsNI8FeobAz0OJA_6ljW3WibZfMKnr55VtePGg04/edit?usp=sharing
+
+### 開発メモ・デバッグ記録
+./document/開発.md
 
 ### その他<br>
 #### １．本番環境のherokuサーバでは下記のバッチファイルがスケジュール実行されます。<br>  
-◆batch/batch_backup.py<br>
+・batch/batch_backup.py<br>
   ＤＢのバックアップファイルを形成。<br>  
-◆batch_guestdata_generate1.py, batch_guestdata_generate2.py  
+・batch_guestdata_generate1.py, batch_guestdata_generate2.py  
   これらはデモンストレーションのため、アクティブなユーザの使用状況をguestIDで確認できるようにするためのものです。利用する場合には、BATCH_CHECK_TABLE1 = 'wlist_wordsmodel'
   BATCH_CHECK_TABLE2 = 'wlist_memomodel'というように環境変数を設定してください。<br>
 #### ２．OpenAIのAPIによる画像生成について  
-◆batch_openAI.py,temp_mysql_update.py<br>
+・batch_openAI.py,temp_mysql_update.py<br>
   現状ではopenAIによる英単語の画像生成は、息子のアカウントのみの適用としています。コスト面などからの試験的運用で、上記２つのバッチファイルを手動実行させて画像生成をしています。<br>
-#### ３．携帯での英単語・メモ帳の編集画面表示について<br>  
-◆表示レコード数が多い場合に、モーダルが開かずに強制終了する不具合があります（今回は対応しないため説明のみ）。<br>
+
