@@ -20,29 +20,27 @@
 （メモ帳については、英単語帳のマイナーチェンジなので省略します）<br><br><br><br><br>
 
 ### 使用技術
-  バックエンド：Python,Django,MySQL,RestframeWork  
-  フロントエンド：React,javascript,html,css  
-  サーバ：heroku  
-  バージョン管理：git (version 2.34.1)  
-  動作環境：Python 3.10.12  
-           Node.js v20.17.0  
-           npm 10.8.2  
-  開発環境: VSCode,Cursor,WSL2(ubuntu:22.04)  
+- バックエンド：Python,Django,MySQL,RestframeWork  
+- フロントエンド：React,javascript,html,css  
+- サーバ：heroku  
+- バージョン管理：git (version 2.34.1)  
+- 動作環境：Python 3.10.12, Node.js v20.17.0, npm 10.8.2    
+- 開発環境: VSCode,Cursor,WSL2(ubuntu:22.04)  
 <br>
 
 ### セットアップ  
 ### 1.バックエンド:MySQL,python,Django  
 #### (1)MySQL(ubuntuの場合)  
 ・システムパッケージの最新化  
-  sudo apt update  
-  sudo apt upgrade -y  
+  - sudo apt update  
+  - sudo apt upgrade -y  
 ・MySQLサーバのインストール  
-  sudo apt install mysql-server -y  
+  - sudo apt install mysql-server -y  
 （確認作業：sudo systemctl status mysqlでActivateの表示を確認）  
 ・セキュリティ設定（指示に従ってパスワード設定等）  
-  sudo mysql_secure_installation  
+  - sudo mysql_secure_installation  
 ・MySQLへのログイン  
-  sudo mysql -u root -p  
+  - sudo mysql -u root -p  
 
 ・新しいデータベースを作成  
   CREATE DATABASE my_database(任意);  
