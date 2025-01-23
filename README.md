@@ -34,25 +34,25 @@
 ### 1.バックエンド:MySQL,python,Django  
 #### (1)MySQL(ubuntuの場合)  
 ・システムパッケージの最新化  
-sudo apt update  
-sudo apt upgrade -y  
+  sudo apt update  
+  sudo apt upgrade -y  
 ・MySQLサーバのインストール  
-sudo apt install mysql-server -y  
+  sudo apt install mysql-server -y  
 （確認作業：sudo systemctl status mysqlでActivateの表示を確認）  
 ・セキュリティ設定（指示に従ってパスワード設定等）  
-sudo mysql_secure_installation  
+  sudo mysql_secure_installation  
 ・MySQLへのログイン  
-sudo mysql -u root -p  
+  sudo mysql -u root -p  
 
 ・新しいデータベースを作成  
-CREATE DATABASE my_database(任意);  
+  CREATE DATABASE my_database(任意);  
 ・新しいユーザ、パスワード設定  
-CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_password（任意）';   
+  CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_password（任意）';   
 ・上記ユーザに権限付与  
-GRANT ALL PRIVILEGES ON my_database.* TO 'my_user(任意)'@'localhost(任意？)';  
-FLUSH PRIVILEGES;  
+  GRANT ALL PRIVILEGES ON my_database.* TO 'my_user(任意)'@'localhost(任意？)';  
+  FLUSH PRIVILEGES;  
 ・終了（exit）  
-こちらで設定した、４つのパラメータは後述の.envファイル設定に適用する。  
+  こちらで設定した、４つのパラメータは後述の.envファイル設定に適用する。  
 <br>
 - DB_NAME=my_database（任意）<br>
 - DB_USER=my_user（任意）<br>
@@ -63,7 +63,7 @@ FLUSH PRIVILEGES;
 #### (2)Python,djangoの設定<br>
 ・Python 3.10.12をインストールする。<br>  
 ・下記のgit cloneコマンドで、バックエンドソースコードを取得。<br> 
-git clone https://github.com/goemon024/ebing_house.git<br>  
+  git clone https://github.com/goemon024/ebing_house.git<br>  
 ブランチは、masterを利用。<br>
 ・pythonの仮想環境を有効化。<br>
   python -m venv venv<br>
@@ -103,11 +103,11 @@ git clone https://github.com/goemon024/ebing_house.git<br>
 ・batch/batch_backup.py<br>
   ＤＢのバックアップファイルを形成。<br>  
 ・batch_guestdata_generate1.py, batch_guestdata_generate2.py  
- 　これらはデモンストレーションのため、アクティブなユーザの使用状況をguestIDで確認できるようにするためのものです。利用する場合には、BATCH_CHECK_TABLE1 = 'wlist_wordsmodel'
-BATCH_CHECK_TABLE2 = 'wlist_memomodel'というように環境変数を設定してください。<br>
+  これらはデモンストレーションのため、アクティブなユーザの使用状況をguestIDで確認できるようにするためのものです。利用する場合には、BATCH_CHECK_TABLE1 = 'wlist_wordsmodel'
+  BATCH_CHECK_TABLE2 = 'wlist_memomodel'というように環境変数を設定してください。<br>
 #### ２．OpenAIのAPIによる画像生成について  
 ・batch_openAI.py,temp_mysql_update.py<br>
- 現状ではopenAIによる英単語の画像生成は、息子のアカウントのみの適用としています。コスト面などからの試験的運用で、上記２つのバッチファイルを手動実行させて画像生成をしています。<br>
+  現状ではopenAIによる英単語の画像生成は、息子のアカウントのみの適用としています。コスト面などからの試験的運用で、上記２つのバッチファイルを手動実行させて画像生成をしています。<br>
 #### ３．携帯での英単語・メモ帳の編集画面表示について<br>  
 ・表示レコード数が多い場合に、モーダルが開かずに強制終了する不具合があります（今回は対応しないため説明のみ）。<br>
 #### ４．編集モーダルのフォーマット入力時の文字の透明化について<br>  
