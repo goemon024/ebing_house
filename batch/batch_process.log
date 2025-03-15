@@ -354,3 +354,42 @@
 2025-01-19 01:15:36,319 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2025-01-19 01:15:49,723 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
 2025-01-19 01:16:04,765 - INFO - HTTP Request: POST https://api.openai.com/v1/images/generations "HTTP/1.1 200 OK"
+2025-03-15 19:45:08,124 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2025-03-15 19:45:08,147 - INFO - User_id=7 のsentenceのデータを削除しました: 324 件
+2025-03-15 19:45:08,178 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 19:45:25,843 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2025-03-15 19:45:25,853 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 19:45:25,874 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:01:04,276 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2025-03-15 20:01:04,291 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:01:04,310 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:07:39,892 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2025-03-15 20:07:39,903 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:07:39,924 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:10:34,850 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2025-03-15 20:10:34,862 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:10:34,882 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:19:12,092 - ERROR - 予期しないエラーが発生しました: Requested setting USE_TZ, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
+2025-03-15 20:19:12,103 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:19:12,120 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:19:42,934 - ERROR - 予期しないエラーが発生しました: module 'django.utils' has no attribute 'localtime'
+2025-03-15 20:19:42,944 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:19:42,972 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:20:33,746 - ERROR - 予期しないエラーが発生しました: type object 'datetime.timezone' has no attribute 'localtime'
+2025-03-15 20:20:33,756 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:20:33,779 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:24:23,935 - ERROR - 予期しないエラーが発生しました: type object 'datetime.timezone' has no attribute 'localtime'
+2025-03-15 20:24:23,946 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:24:23,964 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:24:56,191 - INFO - User_id=7 のデータを削除しました: 1034 件
+2025-03-15 20:24:56,243 - INFO - User_id=7 のデータを user_id=12 から複製しました: 160 件
+2025-03-15 20:24:56,253 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:24:56,282 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:25:08,289 - INFO - User_id=7 のデータを削除しました: 160 件
+2025-03-15 20:25:08,353 - INFO - User_id=7 のデータを user_id=12 から複製しました: 160 件
+2025-03-15 20:25:08,365 - INFO - User_id=7 のsentenceのデータを削除しました: 60 件
+2025-03-15 20:25:08,396 - INFO - User_id=7 のデータを user_id=12 から複製しました: 60 件
+2025-03-15 20:37:55,283 - INFO - User_id=7 のデータを削除しました: 1760 件
+2025-03-15 20:37:55,322 - INFO - User_id=7 のデータを user_id=6 から複製しました: 265 件
+2025-03-15 20:42:00,513 - INFO - User_id=7 のデータを削除しました: 265 件
+2025-03-15 20:42:00,542 - INFO - User_id=7 のデータを user_id=6 から複製しました: 264 件
