@@ -43,7 +43,7 @@ def update_data_mysql(tbl,user_id1,user_id2):
         cursor.execute(get_latest_query,(user_id2,))
         latest_date = cursor.fetchone()[0]
         # add_date = date.today()-latest_date - timedelta(days=1)
-        add_date = timezone.localtime(timezone.now()).date() -latest_date - timedelta(days=1)
+        add_date = timezone.localtime(timezone.now()).date() -latest_date
         
         # Step 1: user_id1 のデータを削除
         delete_query = f"DELETE FROM {tbl} WHERE user_id = %s"
