@@ -4,20 +4,29 @@
   
   
 ### 作成の動機
-- webエンジニアリングのような分野で多岐にわたる学習をしていると、しばらくご無沙汰の分野が生じて記憶が曖昧になりがち。一定間隔を置いて復習できるメモ帳が欲しい。
-- 英語が苦手な息子の大学受験への活用（⇒単語イメージの画像化、複数単語の例文生成など機能拡充）。<br><br><br>
+- 英語が苦手な息子の大学受験への活用（⇒単語イメージの画像化、複数単語の例文生成）。  
+- 多岐にわたる学習をしていると、しばらくご無沙汰の分野が生じて記憶が曖昧になりがち。一定間隔を置いて復習できるメモ帳のようなアプリが欲しい。<br><br><br>
 
-### チュートリアル（画像は古いバージョンのものです。）
-1.ログイン後 ＴＯＰ画面
-![トップ画面](./static/images/image_top_react.png)<br><br><br><br><br>
+### 公開サイト
+https://pure-reaches-08614-283f2e14249d.herokuapp.com/  
+ID: guest
+password: guestguest
+<br><br>
+
+### チュートリアル
+1.ＴＯＰ画面 (英単語帳ボタンをクリック)
+![トップ画面](./static/images/image_top1.png)<br>
   
-2.英単語　インプット画面（今日のインプット）
-![インプット画面](./static/images/image_input_react.png)<br><br><br><br><br>
-  
+2.エビングハウス英単語帳　
+![インプット画面](./static/images/image_top2.png)<br>
+・中央の４つのボタンを押すと単語帳アプリが起動します。
+・英単語登録ボタンを押すと単語登録できます（英単語の意味はｗｅｂから自動取得）。
+・編集ボタンを押すと、今までに登録した英単語を編集できます。
+
 3.英単語帳　復習・ドリル画面
-![復習・ドリル画面](./static/images/image_card_react.png)<br><br><br><br><br>
+![復習・ドリル画面](./static/images/image_card_react.png)<br><br>
   
-（メモ帳については、英単語帳のマイナーチェンジなので省略します）<br><br><br><br><br>
+（英語例文帳、メモ帳１、メモ帳２についてはマイナーチェンジなので説明省略）<br><br><br><br>
 
 ### 使用技術
 バックエンド：Python,Django,MySQL,RestframeWork  
@@ -26,90 +35,139 @@
 バージョン管理：git (version 2.34.1)  
 動作環境：Python 3.10.12, Node.js v20.17.0, npm 10.8.2    
 開発環境: VSCode,Cursor,WSL2(ubuntu:22.04)  
-<br>
+<br><br><br><br>
 
 ### セットアップ  
 ### 1.バックエンド:MySQL,python,Django  
 #### (1)MySQL(ubuntuの場合)  
-◆システムパッケージの最新化  
-  sudo apt update  
-  sudo apt upgrade -y  
-◆MySQLサーバのインストール  
-  sudo apt install mysql-server -y  
+ - システムパッケージの最新化  
+```
+sudo apt update  
+sudo apt upgrade -y  
+```
+ - MySQLサーバのインストール  
 （確認作業：sudo systemctl status mysqlでActivateの表示を確認）  
-◆セキュリティ設定（指示に従ってパスワード設定等）  
-  sudo mysql_secure_installation  
-◆MySQLへのログイン  
-  sudo mysql -u root -p  
 
-◆新しいデータベースを作成  
+```
+  sudo mysql_secure_installation  
+```
+ - MySQLへのログイン  
+```
+  sudo mysql -u root -p  
+```
+
+ - 新しいデータベースを作成  
+```
   CREATE DATABASE my_database(任意);  
-◆新しいユーザ、パスワード設定  
-  CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_password（任意）';   
-◆上記ユーザに権限付与  
+```
+ - 新しいユーザ、パスワード設定  
+```
+  CREATE USER 'my_user(任意)'@'localhost（任意？）' IDENTIFIED BY 'my_password（任意）';
+```   
+ - 上記ユーザに権限付与  
+```
   GRANT ALL PRIVILEGES ON my_database.* TO 'my_user(任意)'@'localhost(任意？)';  
   FLUSH PRIVILEGES;  
-◆終了（exit）  
-  こちらで設定した、４つのパラメータは後述の.envファイル設定に適用する。  
-<br>
-- DB_NAME=my_database（任意）<br>
-- DB_USER=my_user（任意）<br>
-- DB_PASSWORD=my_password（任意）<br> 
-- DB_HOST=localhost（任意？）<br>
-<br>  
+```
+ - 終了（exit）  
+  上記で入力した下記の４つのパラメータは、後述の.envファイル設定に記述。  
+```
+DB_NAME=my_database（任意）  
+DB_USER=my_user（任意）  
+DB_PASSWORD=my_password（任意）
+DB_HOST=localhost（任意？）
+```  
 
 #### (2)Python,djangoの設定<br>
-◆Python 3.10.12をインストールする。<br>  
-◆下記のgit cloneコマンドで、バックエンドソースコードを取得。<br> 
-  git clone https://github.com/goemon024/ebing_house.git<br>  
-ブランチは、masterを利用。<br>
-◆pythonの仮想環境を有効化。<br>
-  python -m venv venv<br>
-  source venv/bin/activate<br> 
-◆pip install -r requirements.txt<br>  
-◆.envファイルを作成する。 <br>
-  詳細は、.env.exampleを参照のこと。 <br> 
-◆データベースのmigration<br>
+ Python 3.10.12をインストールする。  
+ git cloneコマンドで、バックエンドソースコードを取得（masterブランチ）。
+``` 
+git clone https://github.com/goemon024/ebing_house.git
+```
+ pythonの仮想環境を有効化。
+```
+  python -m venv venv
+  source venv/bin/activate
+```
+```
+pip install -r requirements.txt 
+```
+
+ .envファイルを作成（詳細は、.env.exampleを参照）。 
+ データベースのmigration<br>
+```
   python manage.py migrate<br>
-  （・必要に応じてsuperuserの作成）<br>  
-  python manage.py createsuperuser <br> 
-<br>
+```
 
-### ２．フロントエンド：react <br>
-◆node.jsのインストール（2024年10月時点のLTS）<br> 
-  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -<br>
-  sudo apt-get install -y nodejs<br> 
-◆reactをインストールするフォルダを作成してgit cloneします。下記のgit cloneコマンドで、フロントエンドソースコードを取得。 <br> 
-  mkdir front<br>
-  cd front <br>
-  git clone https://github.com/goemon024/front.git<br>
-  ブランチは、mainを利用。<br> 
-◆frontのディレクトリで、npm install<br>
-◆.env.exampleファイルは原則不要です。ただし本番環境のためのnpm run buidl-deployを実行する場合には、build-deploy.shに環境変数の入力が必要となります。このときは、build-deploy.shに、DJANGO_MANAGE_DIRと、PYENV_ACTIVATEを入力してください。<br>  
-◆（開発環境）npm start<br>
-◆（本番環境）npm run build-deploy<br>  
-  build-deploy.shは、backendへのデプロイ処理を効率化するバッチです。上記のコマンドを入力することで、frontで構築されたbuildファイル群が、backendのstatic/reactフォルダ下に配置され,staticfilesフォルダも更新されます。<br>
-<br>
-
-### 開発環境と本番環境について<br>
-・開発環境にするときは、backendのconfig/urls.pyの53行目のコメントアウトを解除し、47～49行目をコメントアウトしてください。これによりローカルにおいて、frontがlocalhost:3000に、backendがlocalhost:8000に立ち上がります。<br>
-・本番環境にするときは、backendのconfig/urls.pyの47～49行目のコメントアウトを解除し、53行目をコメントアウトしてください。これによりfront部分がbackendと共通ドメインのlocalhost:8000に包含されるようになります。<br>
+ （必要であればsuperuserの作成）
+```
+  python manage.py createsuperuser
+```
 <br><br>
+### ２．フロントエンド：react <br>
+ node.jsのインストール（2024年10月時点のLTS） 
+```
+  curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+```
 
+ reactをインストールするフォルダを作成してgit cloneする(mainブランチ)。
+```
+   git clone https://github.com/goemon024/front.git<br>
+```
+ frontディレクトリに移行して、npm install
+```
+   cd front
+   npm install
+```
+(.env.exampleファイルは原則不要です。ただし本番環境のためのnpm run buidl-deployを実行する場合には、build-deploy.shへの環境変数の入力が必要となります。このときは、build-deploy.shに、DJANGO_MANAGE_DIRと、PYENV_ACTIVATEを入力してください。)  <br><br>
+
+### ３．開発環境、本番環境の立ち上げ
+#### (1)開発環境  
+ - backendのconfig/urls.pyの53行目のコメントアウトを解除し、47～49行目をコメントアウトしてください。これによりローカルにおいて、frontがlocalhost:3000に、backendがlocalhost:8000に立ち上がります。
+ ```
+ (backend)
+   source venv/bin/activate
+   python manage.py runserver
+```
+```
+(frontend)
+  npm start
+```
+
+#### (2)本番環境  
+ - backendのconfig/urls.pyの53行目のコメントアウトし、47～49行目をコメントアウトを解除してください。これによりローカルにおいて、localhost:8000に立ち上がります。
+ ```
+(back end)
+  source venv/bin/activate
+  python manage.py runserver
+(front end)
+  npm run start
+```
+ - frontendの開発を本番環境に反映させる場合は下記のコマンドを入力します。build-deploy.shは、backendへのデプロイ処理を効率化するバッチであり、これによりfrontで構築されたbuildファイル群が、backendのstatic/reactフォルダ下に配置され,staticfilesフォルダが更新されます。
+ ```
+(front end)
+  npm run build-deploy
+```
+<br><br><br><br><br>
 ### プロジェクト進捗管理（ガントチャート）
 https://docs.google.com/spreadsheets/d/1zcICsNI8FeobAz0OJA_6ljW3WibZfMKnr55VtePGg04/edit?usp=sharing
+
+<br><br>
 
 ### メモ
 [作業・リファクタ・デバッグメモ](./document/開発.md)
 
-### その他<br>
-#### １．本番環境のherokuサーバでは下記のバッチファイルがスケジュール実行されます。<br>  
-・batch/batch_backup.py<br>
-  ＤＢのバックアップファイルを形成。<br>  
-・batch_guestdata_generate1.py, batch_guestdata_generate2.py  
-  これらはデモンストレーションのため、アクティブなユーザの使用状況をguestIDで確認できるようにするためのものです。利用する場合には、BATCH_CHECK_TABLE1 = 'wlist_wordsmodel'
-  BATCH_CHECK_TABLE2 = 'wlist_memomodel'というように環境変数を設定してください。<br>
-#### ２．OpenAIのAPIによる画像生成について  
-・batch_openAI.py,temp_mysql_update.py<br>
-  現状ではopenAIによる英単語の画像生成は、息子のアカウントのみの適用としています。コスト面などからの試験的運用で、上記２つのバッチファイルを手動実行させて画像生成をしています。<br>
+<br><br>
 
+### その他
+#### １．本番環境のherokuサーバでは下記のバッチファイルがスケジュール実行されます。<br>  
+‐ batch/batch_backup.py  
+　データベースのバックアップ。  
+‐ batch_guestdata_generate1.py, batch_guestdata_generate2.py  
+　guestアカウントのための、データ更新用バッチファイル。
+#### ２．OpenAIのAPIによる画像生成と例文生成について  
+‐ batch/manual_openAI.py, batch/temp_mysql_update.py  
+  バッチファイルの手動実行で、openAIのAPIで英単語画像を生成。実行手順については省略。  
+‐ batch2/sentence_generate.py, batch2/sentence_preprocess.py
+　バッチファイルの主導事項で、openAIのAPIで英語例文を生成。実行手順については省略。

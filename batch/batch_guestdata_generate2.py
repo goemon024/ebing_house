@@ -6,7 +6,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from datetime import date,timedelta
 from urllib.parse import urlparse
-
+from django.utils import timezone
 load_dotenv()
 IS_DOCKER = os.path.exists('/.dockerenv')
 IS_HEROKU = os.getenv('DYNO') is not None
@@ -42,7 +42,8 @@ def update_data_mysql(tbl,user_id1,user_id2):
         get_latest_query = f"SELECT MAX(reg_date) AS latest_date FROM {tbl} WHERE user_id = %s"
         cursor.execute(get_latest_query,(user_id2,))
         latest_date = cursor.fetchone()[0]
-        add_date = date.today()-latest_date - timedelta(days=1)
+        # add_date = date.today()-latest_date - timedelta(days=1)
+        add_date = timezone.localtime(timezone.now()).date() -latest_date - timedelta(days=1)
         
         # Step 1: user_id1 のデータを削除
         delete_query = f"DELETE FROM {tbl} WHERE user_id = %s"
