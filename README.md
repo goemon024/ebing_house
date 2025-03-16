@@ -16,6 +16,10 @@ password: guestguest
 ### チュートリアル
 1.ＴＯＰ画面 (英単語帳ボタンをクリック)
 ![トップ画面](./static/images/image_top1.png)<br>
+・英語例文帳：英単語帳の登録内容から生成された英語例文帳。
+・メモ帳１：１クリックでページが変わるメモ帳
+・メモ帳２：１クリックで解答が表示され２クリックでページ遷移するメモ帳。
+<br>
   
 2.エビングハウス英単語帳　
 ![インプット画面](./static/images/image_top2.png)<br>
@@ -25,8 +29,9 @@ password: guestguest
 
 3.英単語帳　復習・ドリル画面
 ![復習・ドリル画面](./static/images/image_card_react.png)<br><br>
-  
-（英語例文帳、メモ帳１、メモ帳２についてはマイナーチェンジなので説明省略）<br><br><br><br>
+
+（語例文帳、メモ帳１、メモ帳２についてはマイナーチェンジなので説明を省略。）
+<br><br><br><br>
 
 ### 使用技術
 バックエンド：Python,Django,MySQL,RestframeWork  
