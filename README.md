@@ -14,6 +14,10 @@ password: guestguest
 　ログイン後、英単語帳ボタン（水色）をクリックし、復習ボタン（水色）をクリックすると英単語帳アプリが開始します。マウス操作により、画像・意味の表示、ページ遷移が発生します。  
 <br><br>
 
+### フロントエンドの公開github
+https://github.com/goemon024/front
+
+
 ### チュートリアル
 ##### 1.ＴＯＰ画面  
 ![トップ画面](./static/images/image_top.png)<br>
